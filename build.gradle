@@ -49,8 +49,16 @@ dependencies {
     compile 'junit:junit:4.10'
     testCompile 'junit:junit:4.10'
   	compile 'ros.rosjava_core:rosjava:0.0.0-SNAPSHOT'
-    
+  	
+  	//classpath files(['/Users/j/Dropbox/workspace/nengoros/vivae/src/dist/'])
 }
+
+buildscript{
+    dependencies{
+        classpath files(['/Users/j/Dropbox/workspace/nengoros/vivae/src/dist/'])
+    }
+}
+
 
 /*
   compile 'org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1'
