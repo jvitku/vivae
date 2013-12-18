@@ -1,0 +1,12 @@
+*.class
+*.pyc
+*.pkc
+*.idx
+.DS_Store
+
+#### eclipse
+.classpath
+.settings/*
+.metadata/*
+basic/.settings/org.eclipse.jdt.core.prefs
+basic/build/poms/pom-default.xml
