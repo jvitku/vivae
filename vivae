@@ -37,9 +37,10 @@ shift $((OPTIND-1))
 
 # check whether vivae is installed as application, if not, do it
 # TODO: somehow does not work
-#if [ ! -z "build/install/vivae/bin/vivae" ]; then
-#		./gradlew installApp
-#fi
+if [ ! -d "build/install/vivae/bin/vivae" ]; then
+    echo "will install the applicaton now"
+		./gradlew installApp
+fi
 
 
 # this is where I am (and all things to copy)
