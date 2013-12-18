@@ -1,9 +1,11 @@
 #!/bin/sh
-#clear
-#echo ""
-
-# This thing will start the application, starts the script called:
-# build/install/myNodePubSub/bin/<projectName>/<projectName>
+#
+# Almost universal launcher of appllication installed by means of Gradle.
+#
+# If the installation files are found (/build/install), the aplication is started, 
+# if not, the applicatoion is installed from source and started.
+#
+# Should work with any gradle project
 
 # @author Jaroslav Vitku
 
@@ -35,22 +37,18 @@ shift $((OPTIND-1))
 [ "$1" = "--" ] && shift
 
 
-# check whether vivae is installed as application, if not, do it
-# TODO: somehow does not work
-if [ ! -d "build/install/vivae/bin/vivae" ]; then
-    echo "will install the applicaton now"
-		./gradlew installApp
+##################################################### Start the project
+NAME=${PWD##*/}         # project name (paren folder)
+BASEDIR=$(dirname $0)   # my directory
+
+# if no installation found, then install it
+if [ ! -d "build/install/$NAME/bin/" ]; then
+    echo "No installation found, installing from source.."
+    ./gradlew installApp
+    echo "\nInstalled\n"
 fi
 
-
-# this is where I am (and all things to copy)
-BASEDIR=$(dirname $0)
-
 echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Starting Vivae Simulation Server NOW"  
-
-# get the name of parent folder (project)
-NAME=${PWD##*/}
-# go to the subfulder where the launch script is installed 
 cd build/install/$NAME/bin/
 
 ./$NAME vivae.ros.simulatorControlsServer.ControlsServer
