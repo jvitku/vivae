@@ -1,8 +1,11 @@
 package vivae.ros.simulator.demo.keycontrolled;
 
+import java.io.FileNotFoundException;
 import java.util.Vector;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import vivae.arena.Arena;
 import vivae.arena.parts.Active;
 import vivae.controllers.KeyboardVivaeController;
@@ -14,6 +17,7 @@ import vivae.fitness.MovablesOnTop;
 import vivae.ros.simulator.Simulation;
 import vivae.ros.simulator.SimulatorController;
 import vivae.ros.util.DataLoader;
+import vivae.ros.util.MapLoader;
 import vivae.util.FrictionBuffer;
 import vivae.util.Util;
 
@@ -82,6 +86,18 @@ public class KeyControlledVivaeSimulator implements Simulation{
 	public boolean init() {
 		System.out.println(me+"loading the simulation.. ");
 		if(!pathFound){
+			try {
+				this.path = MapLoader.locateMap(MapLoader.DEF_MAP);
+				System.out.println(me+"Loading the default map named: "+MapLoader.DEF_MAP);
+			} catch (FileNotFoundException e) {
+				//e.printStackTrace();
+				System.err.println(me+"Not even default map could be found!! Will not start simulation!");
+				return false;
+			}
+		}
+		createArena(path,true);
+		/*
+		if(!pathFound){
 			if(!DataLoader.fileCanBeLocated(defPath)){
 				System.err.println(me+"even the default map file not found, will not init!");
 				return false;
@@ -89,6 +105,7 @@ public class KeyControlledVivaeSimulator implements Simulation{
 			path = defPath;
 		}
 		createArena(DataLoader.locateFile(path),true);
+		*/
 		// random weight matrices as 3D array
 		// 3 robots,
 		int sensors=5; // 5 for distance and 5 for surface
@@ -110,6 +127,7 @@ public class KeyControlledVivaeSimulator implements Simulation{
 
 	@Override
 	public boolean loadMap(String path) {
+		/*
 		// file cannot be found?
 		if(!DataLoader.fileCanBeLocated(path)){
 			System.err.println(me+"file containing the map "+path+" NOT FOUND! ");
@@ -119,6 +137,14 @@ public class KeyControlledVivaeSimulator implements Simulation{
 		this.path = path;
 		System.out.println(me+"map "+path+" exists, remembered..");
 		pathFound = true;
+		return true;*/
+		try {
+			this.path = MapLoader.locateMap(path);
+			this.pathFound = true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 

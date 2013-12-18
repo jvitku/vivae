@@ -1,7 +1,9 @@
 package vivae.ros.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
+
 import org.jdesktop.swingx.util.OS;
 
 /**
@@ -13,8 +15,23 @@ import org.jdesktop.swingx.util.OS;
  * @author Jaroslav Vitku
  *
  */
-public class DataLoader {
+public class DataLoader{
 
+	public static final String me = "[DataLoader] ";
+	
+	// these relative locations can hold the folder data
+	// if ran from class file, the second will be used, if ran from installation the 1st.1
+	protected static final String[] unixLocations = {
+		"../src/dist/", 
+		"bin/", 
+		"src/main/resources/",
+		"../src/main/resources/",
+		"../../src/main/resources/",
+		"../../../src/main/resources/",
+		"build/resources/test/"};
+	
+	protected static final String[] winLocations = {"..\\", "..\\src\\dist\\"};
+	
 	//TODO check support for windows..
 
 	public static String getProjectAbsPath(){
@@ -61,10 +78,7 @@ public class DataLoader {
 		}
 	}
 
-	// these relative locations can hold the folder data
-	// if ran from class file, the second will be used, if ran from installation the 1st.1
-	protected static final String[] unixLocations = {"../", "../src/dist/"}; 
-	protected static final String[] winLocations = {"..\\", "..\\src\\dist\\"};
+
 
 
 	/**
@@ -75,7 +89,7 @@ public class DataLoader {
 	 * @return absolute path to the file if found
 	 * @throws Exception
 	 */
-	public static String locateFile(String s){
+	public static String locateFile(String s) throws FileNotFoundException{
 		String[] locations;
 
 		if(OS.isLinux() || OS.isMacOSX()){
@@ -88,7 +102,7 @@ public class DataLoader {
 		// try to find file, if found, return his name with absolute path
 		for(int i=0; i<locations.length; i++){
 			abs = getProjectAbsPath()+locations[i]+s;
-			//System.out.println("trying: "+abs);
+			System.out.println("trying: "+abs);
 			File f = new File(abs);
 			if(f.exists()){
 				return abs;
@@ -98,10 +112,14 @@ public class DataLoader {
 		// this does not work when launched from nengo!! use getAbsPath()
 		System.err.println("DataLoader: this file not found in any of given locations: "+s+
 				"\nDataLoader: my directory is: "+System.getProperty("user.dir"));*/
-		System.err.println("DataLoader: this file not found in any of given locations: "+s+
-				"\nDataLoader: my directory is: "+getProjectAbsPath());
-					
-		return s;
+		
+		//System.err.println(me+"this file not found in any of given locations: "+s+
+//				"\nDataLoader: my directory is: "+getProjectAbsPath());
+
+		System.err.println(me+" I can see only these files: ");
+		ClasspathPrinter.printListFiles();
+		throw new FileNotFoundException(me+" this file not found in any of given "
+				+ "locations: "+s+"\nDataLoader: my directory is: "+getProjectAbsPath());
 	}
 	
 	public static boolean fileCanBeLocated(String s){

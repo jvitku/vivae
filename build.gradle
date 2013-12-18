@@ -53,12 +53,13 @@ dependencies {
   	//classpath files(['/Users/j/Dropbox/workspace/nengoros/vivae/src/dist/'])
 }
 
-buildscript{
-    dependencies{
-        classpath files(['/Users/j/Dropbox/workspace/nengoros/vivae/src/dist/'])
+sourceSets{
+    test{
+        resources{
+            srcDir "src/main/resources/"
+        }
     }
 }
-
 
 /*
   compile 'org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1'

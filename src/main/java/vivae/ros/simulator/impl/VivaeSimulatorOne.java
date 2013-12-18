@@ -1,12 +1,15 @@
 package vivae.ros.simulator.impl;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Vector;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import vivae.arena.Arena;
 import vivae.arena.parts.Active;
 import vivae.controllers.VivaeController;
@@ -16,6 +19,7 @@ import vivae.ros.simulator.SimulatorController;
 import vivae.ros.simulator.AgentRegisteringSimulation;
 import vivae.ros.simulator.agents.RosAgent;
 import vivae.ros.util.DataLoader;
+import vivae.ros.util.MapLoader;
 import vivae.util.FrictionBuffer;
 
 /**
@@ -36,14 +40,13 @@ import vivae.util.FrictionBuffer;
  */
 public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 
-	public final String me = "VivaeSimulator ";
+	public final String me = "[VivaeSimulator] ";
 
-	private final String defPath = "data/scenarios/arena1.svg";
 	private String path;
 	private boolean pathFound = false;
 
 	private boolean visibility;
-	
+
 	FitnessFunction mot, avg;
 	Thread arenaThread;
 
@@ -54,7 +57,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 
 	// map of agents that are already spawned
 	HashMap<String, RosAgent> agentMap;	
-	
+
 	// call this to control the simulation run please..
 	public final SimulatorController sc;
 
@@ -85,12 +88,30 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		}
 		System.out.println(me+"arena stopped OK");
 	}
-	
+
 	/**
 	 * Method init here just creates arena, waiting for adding the agents.
 	 */
 	@Override
 	public boolean init() {
+
+		if(!pathFound){
+			try {
+				this.path = MapLoader.locateMap(MapLoader.DEF_MAP);
+				System.out.println(me+"Loading the default map named: "+MapLoader.DEF_MAP);
+			} catch (FileNotFoundException e) {
+				//e.printStackTrace();
+				System.err.println(me+"Not even default map could be found!! Will not start simulation!");
+				return false;
+			}
+		}
+		createArena(path,visibility);
+		arena.setInfiniteSimulation();				// do not stop automatically (wait for external signal)
+		agentMap = new HashMap<String, RosAgent>(3);	// prepare the storage for agents	
+		return true;
+
+		/*
+
 		if(!pathFound){
 			if(!DataLoader.fileCanBeLocated(defPath)){
 				System.err.println(me+"even the default map file not found, will not init!");
@@ -98,17 +119,29 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 			}
 			path = defPath;
 		}
-		createArena(DataLoader.locateFile(path),visibility);
-		arena.setInfiniteSimulation();				// do not stop automatically (wait for external signal)
-		agentMap = new HashMap<String, RosAgent>(3);	// prepare the storage for agents	
-		return true;
+
+	createArena(DataLoader.locateFile(path),visibility);
+	arena.setInfiniteSimulation();				// do not stop automatically (wait for external signal)
+	agentMap = new HashMap<String, RosAgent>(3);	// prepare the storage for agents	
+	return true;
+		 */
 	}
-	
+
 	@Override
 	public SimulatorController getController() { return sc;	}
 
 	@Override
 	public boolean loadMap(String path) {
+		try {
+			this.path = MapLoader.locateMap(path);
+			this.pathFound = true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+		/*
+
 		// file cannot be found?
 		if(!DataLoader.fileCanBeLocated(path)){
 			System.err.println(me+"file containing the map "+path+" NOT FOUND! ");
@@ -119,6 +152,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		//System.out.println(me+"map "+path+" exists, remembered..");
 		pathFound = true;
 		return true;
+		 */
 	}
 
 	@Override
@@ -132,14 +166,14 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 
 			arena = new Arena(f);
 			System.out.println("will load scenario on "+svgFilename);
-			
+
 			// here is the problem , in SVGLoader.. new Thread .join..
 			arena.loadScenario(svgFilename);
 
 			arena.setAllArenaPartsAntialiased(true);
 			f.setBounds(50, 0, arena.getScreenWidth(), arena.getScreenHeight() + 30);
 			f.setResizable(false);
-		//	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			//	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			f.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 			f.getContentPane().add((JPanel)arena);
 
@@ -166,7 +200,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		arena = null;	
 	}
 
-	
+
 	/**
 	 * Setups the keyboard controlled agent 
 	 * @param number how many sensors/2
@@ -178,13 +212,13 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		int snum = a.getNumSensors()-1;	// the more of this, the more sensors  (it is 2*numSensors+1)
 		double sd = a.getMaxSensorDistance();
 		double fd = a.getFrictionDistance();
-		
+
 		double sangle = -Math.PI / 2;
 		double ai = Math.PI / (snum / 2 - 1);
-		
+
 		/// bad class hierarchy :(
 		arena.registerController(agent, (VivaeController)a);	// register agent (controller) in the arena
-		
+
 		if (agent instanceof FRNNControlledRobot) {
 			// the old way:
 			((FRNNControlledRobot) agent).setSensors(snum / 2, sangle, ai, sd, fd);
@@ -194,8 +228,8 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 				((FRNNControlledRobot) agent).setDistanceSensors(snum / 2, sangle, ai, sd);
 			if(fd != 0)
 				((FRNNControlledRobot) agent).setFrictionSensors(snum / 2, sangle, ai, fd);
-			*/
-		
+			 */
+
 		}
 		int dataLen = snum/2;
 		a.setSensoryDataLength(2*dataLen+1);	// distance and friction sensors
@@ -209,7 +243,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 			a.setSensoryDataLength(2*dataLen);	// distance and friction sensors
 		}*/
 	}
-	
+
 	public boolean canAddAgent(String name){
 		if(!sc.isInited())
 			sc.init();
@@ -219,17 +253,17 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public void reregisterAgents(HashMap<String, RosAgent> map){
-		
+
 		Iterator<Entry<String, RosAgent>> it = map.entrySet().iterator();
-	    while (it.hasNext()) {
-	    	Map.Entry<String,RosAgent> pairs = (Map.Entry<String,RosAgent>)it.next();
-	        this.registerAgent(pairs.getValue());
-	        pairs.getValue().reset();	// reset each agents state here
-	        it.remove(); 				// avoids a ConcurrentModificationException
-	    }
+		while (it.hasNext()) {
+			Map.Entry<String,RosAgent> pairs = (Map.Entry<String,RosAgent>)it.next();
+			this.registerAgent(pairs.getValue());
+			pairs.getValue().reset();	// reset each agents state here
+			it.remove(); 				// avoids a ConcurrentModificationException
+		}
 
 	}
 
@@ -238,7 +272,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	public HashMap<String, RosAgent> getAgentMap() {
 		return (HashMap<String, RosAgent>) agentMap.clone();
 	}
-	
+
 	@Override
 	public void registerAgent(RosAgent agent) {
 		if(!canAddAgent(agent.getName())){
@@ -265,15 +299,15 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		return this.visibility;
 	}
 
-	
+
 	@Override
 	public void setAgentsReady() {
 		Iterator<Entry<String, RosAgent>> it = agentMap.entrySet().iterator();
-	    while (it.hasNext()) {
-	    	Map.Entry<String,RosAgent> pairs = (Map.Entry<String,RosAgent>)it.next();
-	        pairs.getValue().reset();	// reset each agents state here (reset speeds and set ready)
-	        //it.remove(); 				// avoids a ConcurrentModificationException
-	    }
+		while (it.hasNext()) {
+			Map.Entry<String,RosAgent> pairs = (Map.Entry<String,RosAgent>)it.next();
+			pairs.getValue().reset();	// reset each agents state here (reset speeds and set ready)
+			//it.remove(); 				// avoids a ConcurrentModificationException
+		}
 	}
 	/**/
 
