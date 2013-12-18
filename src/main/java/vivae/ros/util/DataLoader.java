@@ -102,20 +102,14 @@ public class DataLoader{
 		// try to find file, if found, return his name with absolute path
 		for(int i=0; i<locations.length; i++){
 			abs = getProjectAbsPath()+locations[i]+s;
-			System.out.println("trying: "+abs);
+			//System.out.println("trying: "+abs);
 			File f = new File(abs);
 			if(f.exists()){
+				//System.out.println("FOUND here: "+abs);
 				return abs;
 			}
 		}
-		/*
-		// this does not work when launched from nengo!! use getAbsPath()
-		System.err.println("DataLoader: this file not found in any of given locations: "+s+
-				"\nDataLoader: my directory is: "+System.getProperty("user.dir"));*/
 		
-		//System.err.println(me+"this file not found in any of given locations: "+s+
-//				"\nDataLoader: my directory is: "+getProjectAbsPath());
-
 		System.err.println(me+" I can see only these files: ");
 		ClasspathPrinter.printListFiles();
 		throw new FileNotFoundException(me+" this file not found in any of given "
