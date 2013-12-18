@@ -1,0 +1,14 @@
+\BOOKMARK [1][-]{section.1}{Experiment Design}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Objects in Simulation}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Known Issues}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Measurements}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Fitness Functions}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Average Speed}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Movables on Top}{subsection.2.1}% 7
+\BOOKMARK [1][-]{section.3}{examples}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{FRNN Experiment}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.1}{FRNNExperiment class}{subsection.3.1}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.2}{FRNNController class}{subsection.3.1}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.3}{FRNNControlledRobot}{subsection.3.1}% 12
+\BOOKMARK [2][-]{subsection.3.2}{Random Search}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.3}{Mathematica Example}{section.3}% 14

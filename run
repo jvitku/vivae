@@ -1,0 +1,63 @@
+#!/bin/sh
+#clear
+#echo ""
+
+# This thing will start the application, starts the script called:
+# build/install/myNodePubSub/bin/<projectName>/<projectName>
+
+# made by Jaroslav Vitku
+
+
+# this is where I am (and all things to copy)
+BASEDIR=$(dirname $0)
+
+
+
+
+
+# print usage
+pu()
+{
+	echo " "
+	echo "====================== Usage ===================="
+	echo 	"Type 'run org.ros.myPackage.myNode' start myNode, packed in myPackage"
+	echo "================================================="
+	echo " "
+}
+
+
+run(){
+	
+	echo " "
+	echo "====================== Running the node ===================="
+	echo " "
+
+	# call the script <projectName> with the class (node) to load  
+	./$2 $1
+}
+
+
+# get the name of parent folder (project)
+NAME=${PWD##*/}
+# go to the subfulder where the launch script is installed 
+cd build/install/$NAME/bin/
+# if one commandline argument obtained, pass it to another script:
+if [ "$#" -eq "1" ]; then
+
+	# call the script <projectName> with the class (node) to load  
+	./$NAME $1
+
+# two command line arguments (name of a class to load and e.g. custom node name)
+elif [ "$#" -eq "2" ]; then
+	
+	./$NAME $1 $2	
+
+# three arguments.. 
+elif [ "$#" -eq "3" ]; then
+	
+	./$NAME $1 $2 $3
+else
+	pu
+fi
+
+

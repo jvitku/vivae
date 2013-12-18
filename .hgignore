@@ -1,0 +1,18 @@
+syntax: glob
+# what to ignore:
+# ignore eclipse project data, after cloning, build them with: ./gradlew eclipse
+.classpath
+.project
+.settings 
+
+# do not sync compiled classes (Eclipse rebuilds projects..)
+*.class
+
+build/install
+build/scripts
+build/libs
+
+
+# OS specific:
+*~
+*.DS_Store

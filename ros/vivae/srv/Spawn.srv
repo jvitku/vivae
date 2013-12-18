@@ -1,0 +1,10 @@
+string name # set the name of Agent, should be unique
+int32 numSensors      # see vivae simulator
+float32 maxDistance  # see vivae simulator
+float32 frictionDistance # -1 means default values everywhere 
+---
+string name         # may be modified.. ?
+string pubTopicName # name of topic (without namespace) which publeshes vivae agent on
+string subTopicName # publish actuator commands on this topic
+int32 numSensors    # return the size of sensoric data in floats
+bool spawnedOK

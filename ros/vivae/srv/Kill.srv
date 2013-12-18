@@ -1,0 +1,3 @@
+string name # set the name of Agent, you want to kill
+---
+bool killedOK # returns true of the agent was found and killed

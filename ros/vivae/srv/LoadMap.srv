@@ -1,0 +1,3 @@
+string name # give me name of the map to be loaded
+---
+bool loadedOK

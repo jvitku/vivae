@@ -1,0 +1,58 @@
+#!/bin/sh
+#clear
+#echo ""
+
+# This thing will start the application, starts the script called:
+# build/install/myNodePubSub/bin/<projectName>/<projectName>
+
+# @author Jaroslav Vitku
+
+usage()
+{
+	echo ""
+	echo "This script launches the ViVae simulaiton server. "
+	echo "Before starting the server, lauch your preffered roscore (jroscore)"
+	echo "The simulation server will listen to requests for simulaiton received over the ROS network."
+	echo "These messages (service/client type) can be found under vivae/ros/vivae/srv"
+	echo ""
+}
+
+
+##################################################### Parse command line
+BASE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # we are here
+
+OPTIND=1        # Reset in case getopts has been used previously in the shell.
+while getopts "help?:" opt; do
+    case "$opt" in
+    h|\?|help)
+        usage
+        exit 0
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+[ "$1" = "--" ] && shift
+
+
+# check whether vivae is installed as application, if not, do it
+# TODO: somehow does not work
+#if [ ! -z "build/install/vivae/bin/vivae" ]; then
+#		./gradlew installApp
+#fi
+
+
+# this is where I am (and all things to copy)
+BASEDIR=$(dirname $0)
+
+echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Starting Vivae Simulation Server NOW"  
+
+# get the name of parent folder (project)
+NAME=${PWD##*/}
+# go to the subfulder where the launch script is installed 
+cd build/install/$NAME/bin/
+
+./$NAME vivae.ros.simulatorControlsServer.ControlsServer
+
+
+
