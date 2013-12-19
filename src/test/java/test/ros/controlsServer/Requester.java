@@ -25,14 +25,15 @@ import vivae.ros.simulatorControlsServer.ControlsServer;
  */
 public class Requester extends AbstractNodeMain {
 
-	private final String me = "MyRequester: ";
+	private final String me = "["+NAME+"] ";
+	public static final String NAME = "Requester";
 
 	/**
 	 * default name of the Node
 	 */
 	@Override
 	public GraphName getDefaultNodeName() {
-		return GraphName.of("myPublisher");
+		return GraphName.of(NAME);
 	}
 
 	ServiceClient<vivae.LoadMapRequest, vivae.LoadMapResponse> mapServiceClient; // load maps
@@ -125,16 +126,15 @@ public class Requester extends AbstractNodeMain {
 	public void callStartSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat("start");
-		// set requires for starting the simulation
+		req.setWhat(ControlsServer.START);
+		// set requests for starting the simulation
 		simServiceClient.call(req, simSrl);
 	}
 
 	public void callStopSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat("stop");
-		// set reques for starting the simulation
+		req.setWhat(ControlsServer.STOP);
 		simServiceClient.call(req, simSrl);
 
 	}
@@ -142,8 +142,17 @@ public class Requester extends AbstractNodeMain {
 	public void callDestroySimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat("destroy");
-		// set reques for starting the simulation
+		req.setWhat(ControlsServer.DESTROY);
+		simServiceClient.call(req, simSrl);
+	}
+	
+	public void callSetVisible(boolean visible){
+
+		final vivae.SimControllerRequest req = simServiceClient.newMessage();
+		if(visible)
+			req.setWhat(ControlsServer.SETVISIBLE);
+		else
+			req.setWhat(ControlsServer.SETINVISIBLE);
 		simServiceClient.call(req, simSrl);
 	}
 

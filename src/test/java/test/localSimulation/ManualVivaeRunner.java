@@ -17,6 +17,8 @@ import static org.junit.Assert.assertFalse;
  */
 public class ManualVivaeRunner {
 
+	public static int wait = 50;
+	
 	public static void main(String[] args){
 		ManualVivaeRunner mvr = new ManualVivaeRunner(); 
 
@@ -27,7 +29,6 @@ public class ManualVivaeRunner {
 	@Test
 	public void testVivaeRunner(){
 
-		int wait = 1;
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		ClasspathPrinter.printListFiles();
 
@@ -67,8 +68,6 @@ public class ManualVivaeRunner {
 	 */
 	@Test
 	public void startStopStartStopDestroy(){
-		
-		int wait = 1; 
 		
 		Simulation vs = new KeyControlledVivaeSimulator();
 		SimulatorController sc = vs.getController();

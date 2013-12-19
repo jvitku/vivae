@@ -32,6 +32,24 @@ import vivae.ros.simulator.impl.VivaeSimulatorOne;
  */
 public class ControlsServer extends AbstractNodeMain {
 
+	public static final String [] COMMANDS = new String[]{
+		"init", 
+		"start",
+		"stop", 
+		"reset",
+		"destroy",
+		"setvisible",
+		"setinvisible"};
+	
+	public static final String INIT = COMMANDS[0];
+	public static final String START = COMMANDS[1];
+	public static final String STOP = COMMANDS[2];
+	public static final String RESET = COMMANDS[3];
+	public static final String DESTROY = COMMANDS[4];
+	public static final String SETVISIBLE = COMMANDS[5];
+	public static final String SETINVISIBLE = COMMANDS[6];
+	
+	
 	public static final java.lang.String spwn = "spawnService";
 	public static final java.lang.String controlSrv = "simControlSerice";
 	public static final java.lang.String loadSrv = "loadMapSerice";
@@ -122,43 +140,50 @@ public class ControlsServer extends AbstractNodeMain {
 				throws ServiceException {
 			//System.out.println(me+"requested this: "+req.getWhat());
 
-			if(req.getWhat().equalsIgnoreCase("init")){
+			if(req.getWhat().equalsIgnoreCase(INIT)){
 				boolean result = sc.init();
 				//System.out.println(me+"called request for init, responding, result: "+result);
 				resp.setOk(result);
 
-			}else if(req.getWhat().equalsIgnoreCase("start")){
+			}else if(req.getWhat().equalsIgnoreCase(START)){
 				sc.start();
 				//System.out.println(me+"called request for start, responding ok");
 				resp.setOk(true);
 
-			}else if(req.getWhat().equalsIgnoreCase("stop")){
+			}else if(req.getWhat().equalsIgnoreCase(STOP)){
 				sc.stop();
 				//System.out.println(me+"called request for stop, responding ok");
 				resp.setOk(true);
 
-			}else if(req.getWhat().equalsIgnoreCase("destroy")){
+			}else if(req.getWhat().equalsIgnoreCase(DESTROY)){
 				sc.destroy();
 				//System.out.println(me+"called request for destroy, responding ok");
 				resp.setOk(true);
 
-			}else if(req.getWhat().equalsIgnoreCase("reset")){
+			}else if(req.getWhat().equalsIgnoreCase(RESET)){
 				sc.reset();
 				resp.setOk(true);
 
-			}else if(req.getWhat().equalsIgnoreCase("setvisible")){
+			}else if(req.getWhat().equalsIgnoreCase(SETVISIBLE)){
 				sc.setVisible(true);
 				resp.setOk(true);	
-			}else if(req.getWhat().equalsIgnoreCase("setinvisible")){
+			}else if(req.getWhat().equalsIgnoreCase(SETINVISIBLE)){
 				sc.setVisible(false);
 				resp.setOk(true);
 			}else{
-				System.err.println(me+"Request on SimControlService not recognized, only these "
-						+"are supported: init,start,stop,destroy,reset,setheadless");
+				System.err.println(me+"This request: \""+req.getWhat()+"\" on SimControlService "
+						+ "not recognized, only the following commands are supported: \n"
+						+"-----------\n"+getSupportedCommands()+"\n----------");
 			}
 		}
 	}
-
+	
+	public String getSupportedCommands(){
+		String out = COMMANDS[0];
+		for(int i=1; i<COMMANDS.length; i++)
+			out = out +"\n"+COMMANDS[i];
+		return out;
+	}
 
 	private class LoadMapServiceResponseBuilder implements 
 	ServiceResponseBuilder<vivae.LoadMapRequest, vivae.LoadMapResponse>{
@@ -178,7 +203,7 @@ public class ControlsServer extends AbstractNodeMain {
 
 			if(sim.loadMap(name)){
 				resp.setLoadedOK(true);
-				
+
 			}else{
 				System.err.println("Vivae node: could not load map named: "+name);
 				//System.out.println("My classpath is: "+)  directory

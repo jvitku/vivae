@@ -25,7 +25,8 @@ import vivae.util.FrictionBuffer;
  * Starts with empty list of agents, agents can be added from external source.
  * Each agent can be controlled across the ROS network.
  * 
- * Basic work flow:
+ * Basic workflow:
+ * 
  * 	-start ControlsServer
  * 	-request loading the map
  * 	-add agents
@@ -285,7 +286,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	@Override
 	public void killAgent(String name) {
 		// TODO Auto-generated method stub
-		System.err.println("Simulation here: killing the Agents is not supported so faaar");
+		System.err.println("Simulation here: killing the Agents is not supported so far");
 	}
 
 	@Override
@@ -297,7 +298,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	public boolean isVisible() {
 		return this.visibility;
 	}
-
+// SimControlService 
 
 	@Override
 	public void setAgentsReady() {
@@ -308,6 +309,4 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 			//it.remove(); 				// avoids a ConcurrentModificationException
 		}
 	}
-	/**/
-
 }
