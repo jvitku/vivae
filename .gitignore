@@ -10,3 +10,7 @@
 .metadata/*
 basic/.settings/org.eclipse.jdt.core.prefs
 basic/build/poms/pom-default.xml
+
+build/reports/tests/
+build/test-results/
+build/classes/main/vivae/

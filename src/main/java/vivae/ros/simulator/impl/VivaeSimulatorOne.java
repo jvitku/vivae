@@ -18,7 +18,6 @@ import vivae.fitness.FitnessFunction;
 import vivae.ros.simulator.SimulatorController;
 import vivae.ros.simulator.AgentRegisteringSimulation;
 import vivae.ros.simulator.agents.RosAgent;
-import vivae.ros.util.DataLoader;
 import vivae.ros.util.MapLoader;
 import vivae.util.FrictionBuffer;
 

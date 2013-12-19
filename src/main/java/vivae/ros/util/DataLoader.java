@@ -28,7 +28,8 @@ public class DataLoader{
 		"../src/main/resources/",
 		"../../src/main/resources/",
 		"../../../src/main/resources/",
-		"build/resources/test/"};
+		"build/resources/test/",
+		"../"};					// installApp case
 	
 	protected static final String[] winLocations = {"..\\", "..\\src\\dist\\"};
 	
