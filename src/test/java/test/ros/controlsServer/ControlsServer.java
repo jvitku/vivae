@@ -6,9 +6,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import ctu.nengoros.RosRunner;
-import vivae.ros.simulator.Simulation;
-import vivae.ros.simulator.SimulatorController;
-import vivae.ros.simulator.demo.keycontrolled.KeyControlledVivaeSimulator;
 
 /**
  * RosCommunicationTest auto-starts and auto-shuts down the core and
@@ -20,7 +17,7 @@ import vivae.ros.simulator.demo.keycontrolled.KeyControlledVivaeSimulator;
 public class ControlsServer extends ctu.nengoros.nodes.RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulatorControlsServer.ControlsServer";
-	
+	public static final String requester = "test.ros.controlsServer.Requester";
 	
 	@Test
 	public void startStopServer(){
@@ -36,20 +33,42 @@ public class ControlsServer extends ctu.nengoros.nodes.RosCommunicationTest{
 	}
 	
 	@Test
+	public void startStopClientServer(){
+		
+		RosRunner s= runNode(server);		// server
+		assertTrue(s.isRunning());
+		
+		RosRunner rr = runNode(requester);	// client
+		assertTrue(rr.isRunning());
+		
+		sleep(100); // cannot shut down the server immediately
+		
+		s.stop();
+		assertFalse(s.isRunning());
+		
+		rr.stop();
+		assertFalse(rr.isRunning());
+	}
+	
+	@Test
 	public void testVivaeRunner(){
 
-		// launch server and use its services
-		RosRunner simServer = runNode(server);
-		assertTrue(simServer.isRunning());
-
+		RosRunner s= runNode(server);		// server
+		assertTrue(s.isRunning());
 		
+		RosRunner rr = runNode(requester);	// client
+		assertTrue(rr.isRunning());
+		
+		sleep(100); // cannot shut down the server immediately
+		
+		Requester req = (Requester)rr.getNode();
+		req.callRequestMap("data/scenarios/arena1.svg");
+		req.callStartSimulation();
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		/*
 		assertTrue(sc.isInited());
 		assertTrue(sc.isRunning());
@@ -63,6 +82,11 @@ public class ControlsServer extends ctu.nengoros.nodes.RosCommunicationTest{
 		System.out.println("Stopping the arena..");
 		sc.stop();
 		sc.destroy();*/
+		s.stop();
+		assertFalse(s.isRunning());
+		
+		rr.stop();
+		assertFalse(rr.isRunning());
 	}
 
 }
