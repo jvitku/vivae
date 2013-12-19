@@ -45,11 +45,11 @@ public class MySynchronousRequester extends AbstractNodeMain {
 		try {
 			// service for map loading
 			ServiceClient<vivae.LoadMapRequest, vivae.LoadMapResponse> mapServiceClient =
-					connectedNode.newServiceClient(ControlsServer.loadSrv, vivae.LoadMap._TYPE);
+					connectedNode.newServiceClient(ControlsServer.srvLOAD, vivae.LoadMap._TYPE);
 			
 			// service for controlling the simulation
 			ServiceClient<vivae.SimControllerRequest, vivae.SimControllerResponse> simServiceClient =
-					connectedNode.newServiceClient(ControlsServer.controlSrv, vivae.SimController._TYPE);
+					connectedNode.newServiceClient(ControlsServer.srvCONTROL, vivae.SimController._TYPE);
 
 			controls = new SynchronousService<vivae.SimControllerRequest, vivae.SimControllerResponse>(simServiceClient);
 			map      = new SynchronousService<vivae.LoadMapRequest, vivae.LoadMapResponse>(mapServiceClient);

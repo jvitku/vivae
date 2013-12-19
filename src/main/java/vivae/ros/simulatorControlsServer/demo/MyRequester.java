@@ -52,8 +52,8 @@ public class MyRequester extends AbstractNodeMain {
 
 		// try to subscribe to the service for requesting the maps..		
 		try {
-			mapServiceClient = connectedNode.newServiceClient(ControlsServer.loadSrv, vivae.LoadMap._TYPE);
-			simServiceClient = connectedNode.newServiceClient(ControlsServer.controlSrv, vivae.SimController._TYPE);
+			mapServiceClient = connectedNode.newServiceClient(ControlsServer.srvLOAD, vivae.LoadMap._TYPE);
+			simServiceClient = connectedNode.newServiceClient(ControlsServer.srvCONTROL, vivae.SimController._TYPE);
 
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);

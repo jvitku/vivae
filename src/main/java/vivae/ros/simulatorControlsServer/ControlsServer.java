@@ -32,6 +32,8 @@ import vivae.ros.simulator.impl.VivaeSimulatorOne;
  */
 public class ControlsServer extends AbstractNodeMain {
 
+	// commands that control the simulation, 
+	// these are accepted by the SimControlServiceResponseBuilder 
 	public static final String [] COMMANDS = new String[]{
 		"init", 
 		"start",
@@ -49,12 +51,13 @@ public class ControlsServer extends AbstractNodeMain {
 	public static final String SETVISIBLE = COMMANDS[5];
 	public static final String SETINVISIBLE = COMMANDS[6];
 	
+	// ROS topic names of provided services
+	public static final java.lang.String srvSPAWN = "spawnService";
+	public static final java.lang.String srvCONTROL = "simControlSerice";
+	public static final java.lang.String srvLOAD = "loadMapSerice";
 	
-	public static final java.lang.String spwn = "spawnService";
-	public static final java.lang.String controlSrv = "simControlSerice";
-	public static final java.lang.String loadSrv = "loadMapSerice";
-	public static final java.lang.String v2n = "vivae2nengo";
-	public static final java.lang.String n2v = "nengo2vivae";
+	public static final java.lang.String V2N = "vivae2nengo";
+	public static final java.lang.String N2V = "nengo2vivae";
 
 	public final String me = "ControlsServer ";
 
@@ -72,16 +75,16 @@ public class ControlsServer extends AbstractNodeMain {
 
 		// loading the maps to vivae server
 		LoadMapServiceResponseBuilder mapSrb = new LoadMapServiceResponseBuilder(vs);
-		connectedNode.newServiceServer(loadSrv, vivae.LoadMap._TYPE, mapSrb);
+		connectedNode.newServiceServer(srvLOAD, vivae.LoadMap._TYPE, mapSrb);
 
 		// simulation controller over the ROS network
 		SimControlServiceResponseBuilder srb = new SimControlServiceResponseBuilder(sc);
-		connectedNode.newServiceServer(controlSrv, vivae.SimController._TYPE,srb);
+		connectedNode.newServiceServer(srvCONTROL, vivae.SimController._TYPE,srb);
 
 		// agent spawner over the ROS network
 		AgentSpawnServiceResponseBuilder asp = new AgentSpawnServiceResponseBuilder(vs,
 				connectedNode);
-		connectedNode.newServiceServer(spwn, vivae.Spawn._TYPE,asp);
+		connectedNode.newServiceServer(srvSPAWN, vivae.Spawn._TYPE,asp);
 	}
 
 	private class AgentSpawnServiceResponseBuilder implements 

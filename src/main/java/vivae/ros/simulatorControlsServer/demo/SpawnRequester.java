@@ -40,7 +40,7 @@ public class SpawnRequester extends AbstractNodeMain {
 		// try to subscribe to the service for requesting the agents..		
 		try {
 			ServiceClient<vivae.SpawnRequest, vivae.SpawnResponse> serviceClient 
-			= connectedNode.newServiceClient(ControlsServer.spwn, vivae.Spawn._TYPE);
+			= connectedNode.newServiceClient(ControlsServer.srvSPAWN, vivae.Spawn._TYPE);
 			
 			spawn= new SynchronousService<vivae.SpawnRequest, vivae.SpawnResponse>(serviceClient);
 		
