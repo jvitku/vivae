@@ -1,26 +1,8 @@
-defaultDataLoadeòìtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/dist/data/scenarios/arena1.svg
-defaultDataLoadeòätrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/bin/data/scenarios/arena1.svg
-defaultDataLoadeòótrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/src/main/resources/data/scenarios/arena1.svg
-defaultDataLoadeòötrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/main/resources/data/scenarios/arena1.svg
-defaultDataLoadeòùtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../src/main/resources/data/scenarios/arena1.svg
-defaultDataLoadeòütrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena1.svg
 defaultDataLoadeòÕThis map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena1.svg
-defaultMapLoadeòìtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/dist/data/scenarios/arena2.svg
-defaultMapLoadeòätrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/bin/data/scenarios/arena2.svg
-defaultMapLoadeòótrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/src/main/resources/data/scenarios/arena2.svg
-defaultMapLoadeòötrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/main/resources/data/scenarios/arena2.svg
-defaultMapLoadeòùtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../src/main/resources/data/scenarios/arena2.svg
-defaultMapLoadeòütrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena2.svg
 defaultMapLoadeòÕThis map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena2.svg
-defaultMapLoaderNotFounäïtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/dist/data/scenarios/arena2.svgggg
-defaultMapLoaderNotFounäçtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/bin/data/scenarios/arena2.svgggg
-defaultMapLoaderNotFounäötrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/src/main/resources/data/scenarios/arena2.svgggg
-defaultMapLoaderNotFounäùtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/main/resources/data/scenarios/arena2.svgggg
-defaultMapLoaderNotFounäütrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../src/main/resources/data/scenarios/arena2.svgggg
-defaultMapLoaderNotFounäÿtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena2.svgggg
-defaultMapLoaderNotFounäøtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/build/resources/test/data/scenarios/arena2.svgggg
 defaultMapLoaderNotFounää/Users/j/Dropbox/workspace/nengoros/vivae/build/classes/test/test/dataLoader/ScenarioLoading.class
 defaultMapLoaderNotFounäë/Users/j/Dropbox/workspace/nengoros/vivae/build/classes/test/test/localSimulation/ManualVivaeRunner.class
+defaultMapLoaderNotFounäæ/Users/j/Dropbox/workspace/nengoros/vivae/build/classes/test/test/ros/simulator/ServerServices.class
 defaultMapLoaderNotFounäÚ/Users/j/Dropbox/workspace/nengoros/vivae/build/resources/test/data/scenarios/arena1.svg
 defaultMapLoaderNotFounäÚ/Users/j/Dropbox/workspace/nengoros/vivae/build/resources/test/data/scenarios/arena2.svg
 defaultMapLoaderNotFounäÞ/Users/j/Dropbox/workspace/nengoros/vivae/build/resources/test/data/scenarios/manyAgents.svg
@@ -202,28 +184,22 @@ defaultMapLoaderNotFounäÎ/Users/j/Dropbox/workspace/nengoros/vivae/lib/uncommon
 defaultMapLoaderNotFounä/Users/j/Dropbox/workspace/nengoros/vivae/lib/xalan-2.6.0.jarŠdefaultMapLoaderNotFounä/Users/j/Dropbox/workspace/nengoros/vivae/lib/xerces_2_5_0.jarŠdefaultMapLoaderNotFounä/Users/j/Dropbox/workspace/nengoros/vivae/lib/xml-apis-ext.jarŠdefaultMapLoaderNotFounä/Users/j/Dropbox/workspace/nengoros/vivae/lib/xml-apis.jarŠdefaultMapLoaderNotFounäý/Users/j/.gradle/caches/artifacts-26/filestore/junit/junit/4.10/jar/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar
 defaultMapLoaderNotFounäÜ/Users/j/.m2/repository/ros/rosjava_core/rosjava/0.0.0-SNAPSHOT/rosjava-0.0.0-SNAPSHOT.jar
 defaultMapLoaderNotFounäÒ/Users/j/.gradle/caches/artifacts-26/filestore/org.hamcrest/hamcrest-core/1.1/jar/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar
+defaultMapLoaderNotFounäØ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1/jar/7657caf2c78e1d79c74d36f2ae128a115f7cc180/com.springsource.org.apache.commons.logging-1.1.1.jar
+defaultMapLoaderNotFounäÊ/Users/j/.gradle/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar
+defaultMapLoaderNotFounäã/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.ws.commons/ws-commons-util/1.0.1/jar/126e80ff798fece634bc94e61f8be8a8da00be60/ws-commons-util-1.0.1.jar
+defaultMapLoaderNotFounäÔ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.codec/1.3.0/jar/f8690570eb0913d750262bb4223eed30b0d619ed/com.springsource.org.apache.commons.codec-1.3.0.jar
+defaultMapLoaderNotFounäÞ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.httpclient/3.1.0/jar/c493a925a091ac3d8f449d9265fe12482dabb2a7/com.springsource.org.apache.commons.httpclient-3.1.0.jar
+defaultMapLoaderNotFounäö/Users/j/.m2/repository/ros/rosjava_core/apache_xmlrpc_common/0.0.0-SNAPSHOT/apache_xmlrpc_common-0.0.0-SNAPSHOT.jar
+defaultMapLoaderNotFounäö/Users/j/.m2/repository/ros/rosjava_core/apache_xmlrpc_server/0.0.0-SNAPSHOT/apache_xmlrpc_server-0.0.0-SNAPSHOT.jar
+defaultMapLoaderNotFounäÏ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.net/2.0.0/jar/3e78766072ff5a5cf3f5431d973c430c94ec612/com.springsource.org.apache.commons.net-2.0.0.jar
 defaultMapLoaderNotFounäÐ/Users/j/.gradle/caches/artifacts-26/filestore/commons-pool/commons-pool/1.6/jar/4572d589699f09d866a226a14b7f4323c6d8f040/commons-pool-1.6.jar
 defaultMapLoaderNotFounäÔ/Users/j/.gradle/caches/artifacts-26/filestore/com.google.code.findbugs/jsr305/1.3.9/jar/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar
 defaultMapLoaderNotFounäÈ/Users/j/.gradle/caches/artifacts-26/filestore/com.google.guava/guava/12.0/jar/5bc66dd95b79db1e437eb08adba124a3e4088dc0/guava-12.0.jar
 defaultMapLoaderNotFounäÒ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.lang/2.4.0/jar/686e3713650c8e3a5d98723b4d3e239586bf9822/com.springsource.org.apache.commons.lang-2.4.0.jar
-defaultMapLoaderNotFounäÔ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.codec/1.3.0/jar/f8690570eb0913d750262bb4223eed30b0d619ed/com.springsource.org.apache.commons.codec-1.3.0.jar
 defaultMapLoaderNotFounäÎ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.io/1.4.0/jar/51097cd000ec88214ff181c9f059947de1cf4a35/com.springsource.org.apache.commons.io-1.4.0.jar
 defaultMapLoaderNotFounäÑ/Users/j/.gradle/caches/artifacts-26/filestore/io.netty/netty/3.5.2.Final/bundle/e6fb74a0699abe108969b2ec1f269391169a0426/netty-3.5.2.Final.jar
 defaultMapLoaderNotFounäð/Users/j/.m2/repository/ros/rosjava_core/rosjava_bootstrap/0.0.0-SNAPSHOT/rosjava_bootstrap-0.0.0-SNAPSHOT.jar
-defaultMapLoaderNotFounäî/Users/j/.m2/repository/ros/rosjava_core/rosjava_messages/0.0.0-SNAPSHOT/rosjava_messages-0.0.0-SNAPSHOT.jar
-defaultMapLoaderNotFounäÊ/Users/j/.gradle/caches/artifacts-26/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar
-defaultMapLoaderNotFounäã/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.ws.commons/ws-commons-util/1.0.1/jar/126e80ff798fece634bc94e61f8be8a8da00be60/ws-commons-util-1.0.1.jar
-defaultMapLoaderNotFounäØ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1/jar/7657caf2c78e1d79c74d36f2ae128a115f7cc180/com.springsource.org.apache.commons.logging-1.1.1.jar
-defaultMapLoaderNotFounäÞ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.httpclient/3.1.0/jar/c493a925a091ac3d8f449d9265fe12482dabb2a7/com.springsource.org.apache.commons.httpclient-3.1.0.jar
-defaultMapLoaderNotFounäö/Users/j/.m2/repository/ros/rosjava_core/apache_xmlrpc_common/0.0.0-SNAPSHOT/apache_xmlrpc_common-0.0.0-SNAPSHOT.jar
 defaultMapLoaderNotFounäö/Users/j/.m2/repository/ros/rosjava_core/apache_xmlrpc_client/0.0.0-SNAPSHOT/apache_xmlrpc_client-0.0.0-SNAPSHOT.jar
-defaultMapLoaderNotFounäÏ/Users/j/.gradle/caches/artifacts-26/filestore/org.apache.commons/com.springsource.org.apache.commons.net/2.0.0/jar/3e78766072ff5a5cf3f5431d973c430c94ec612/com.springsource.org.apache.commons.net-2.0.0.jar
 defaultMapLoaderNotFounäÅ/Users/j/.gradle/caches/artifacts-26/filestore/dnsjava/dnsjava/2.1.1/jar/5708df81cf6dbff545695f0be6380b7bbc85accc/dnsjava-2.1.1.jar
-defaultMapLoaderNotFounäö/Users/j/.m2/repository/ros/rosjava_core/apache_xmlrpc_server/0.0.0-SNAPSHOT/apache_xmlrpc_server-0.0.0-SNAPSHOT.jar
-defaultMapLoaderNotFounäìtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/dist/data/scenarios/arena1.svg
-defaultMapLoaderNotFounäätrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/bin/data/scenarios/arena1.svg
-defaultMapLoaderNotFounäótrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/src/main/resources/data/scenarios/arena1.svg
-defaultMapLoaderNotFounäötrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../src/main/resources/data/scenarios/arena1.svg
-defaultMapLoaderNotFounäùtrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../src/main/resources/data/scenarios/arena1.svg
-defaultMapLoaderNotFounäütrying: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena1.svg
+defaultMapLoaderNotFounäî/Users/j/.m2/repository/ros/rosjava_core/rosjava_messages/0.0.0-SNAPSHOT/rosjava_messages-0.0.0-SNAPSHOT.jar
 defaultMapLoaderNotFounäÕThis map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena1.svg

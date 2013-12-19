@@ -9,10 +9,10 @@ import static org.junit.Assert.assertFalse;
  * This demo shows how the modified vivae simulator can be launched in 
  * separate thread and stopped from the outside.
  * 
- * Simulator can be then restarted from the actual state, if you want 
+ * Simulator can be then restarted from the state where stopped, if you want 
  * new simulation, call destroy and start again.
  * 
- * Mehtod destroy closes the window and releases all resources (process exits)
+ * Method destroy() closes the window and releases all resources (process exits)
  * 
  * @author Jaroslav Vitku
  *
@@ -27,7 +27,6 @@ public class SimulationRunner {
 	public static void testVivaeRunner(){
 		Simulation vs = new KeyControlledVivaeSimulator();
 		SimulatorController sc = vs.getController();
-		
 		
 		sc.start();
 		assertTrue(sc.isInited());

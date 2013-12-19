@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<testsuite name="test.ros.simulator.ServerServices" tests="1" failures="0" errors="0" timestamp="1970-01-01T00:00:00" hostname="b.local" time="1.387420494269E9">
+  <properties/>
+  <testcase name="testVivaeRunner" classname="test.ros.simulator.ServerServices" time="2.07"/>
+  <system-out><![CDATA[VivaeSimulator loading the simulation.. 
+VivaeSimulator Loading the default map named: data/scenarios/arena1.svg
+loaded this num of agents: 3
+Registering keyboard controlled agent
+SimulatorControls OK, starting simulation
+Stopping the arena..
+VivaeSimulator stopping, waiting for arena to stop..
+VivaeSimulator arena stopped OK
+VivaeSimulator releasing all resources
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

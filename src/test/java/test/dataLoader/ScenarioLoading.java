@@ -10,7 +10,18 @@ import org.junit.Test;
 
 import vivae.ros.util.DataLoader;
 import vivae.ros.util.MapLoader;
-
+/**
+ * DataLoader now contains more locations, because relative path to data/scenarios is 
+ * different in many cases, such as:
+ * -JUnit test from eclipse
+ * -JUnit test from gradle
+ * -running from class files
+ * -running from jar file
+ * ..etc etc
+ * 
+ * @author Jaroslav Vitku
+ *
+ */
 public class ScenarioLoading {
 
 	@BeforeClass
@@ -66,8 +77,6 @@ public class ScenarioLoading {
 			fail();
 		}
 	}
-
-	
 	
 	/**
 	 * Non-existing map, return the default one

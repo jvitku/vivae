@@ -2,17 +2,17 @@
 <html>
 <head>
 <meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Test results - Class test.dataLoader.ScenarioLoading</title>
+<title>Test results - Class test.localSimulation.ManualVivaeRunner</title>
 <link href="base-style.css" rel="stylesheet" type="text/css"/>
 <link href="style.css" rel="stylesheet" type="text/css"/>
 <script src="report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>Class test.dataLoader.ScenarioLoading</h1>
+<h1>Class test.localSimulation.ManualVivaeRunner</h1>
 <div class="breadcrumbs">
 <a href="index.html">all</a> &gt; 
-<a href="test.dataLoader.html">test.dataLoader</a> &gt; ScenarioLoading</div>
+<a href="test.localSimulation.html">test.localSimulation</a> &gt; ManualVivaeRunner</div>
 <div id="summary">
 <table>
 <tr>
@@ -22,7 +22,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">5</div>
+<div class="counter">2</div>
 <p>tests</p>
 </div>
 </td>
@@ -34,7 +34,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.035s</div>
+<div class="counter">1.241s</div>
 <p>duration</p>
 </div>
 </td>
@@ -59,9 +59,6 @@
 <li>
 <a href="#tab1">Standard output</a>
 </li>
-<li>
-<a href="#tab2">Standard error</a>
-</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -74,28 +71,13 @@
 </tr>
 </thead>
 <tr>
-<td class="success">defaultDataLoader</td>
-<td>0.008s</td>
+<td class="success">startStopStartStopDestroy</td>
+<td>0.231s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">defaultMapLoader</td>
-<td>0.001s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">defaultMapLoaderNotFound</td>
-<td>0.026s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">loadTile</td>
-<td>0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">sub</td>
-<td>0s</td>
+<td class="success">testVivaeRunner</td>
+<td>1.010s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -103,8 +85,7 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>This map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena1.svg
-This map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena2.svg
+<pre>Working Directory = /Users/j/Dropbox/workspace/nengoros/vivae
 /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/test/test/dataLoader/ScenarioLoading.class
 /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/test/test/localSimulation/ManualVivaeRunner.class
 /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/test/test/ros/simulator/ServerServices.class
@@ -329,15 +310,44 @@ This map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build
 /Users/j/.m2/repository/ros/rosjava_core/apache_xmlrpc_client/0.0.0-SNAPSHOT/apache_xmlrpc_client-0.0.0-SNAPSHOT.jar
 /Users/j/.gradle/caches/artifacts-26/filestore/dnsjava/dnsjava/2.1.1/jar/5708df81cf6dbff545695f0be6380b7bbc85accc/dnsjava-2.1.1.jar
 /Users/j/.m2/repository/ros/rosjava_core/rosjava_messages/0.0.0-SNAPSHOT/rosjava_messages-0.0.0-SNAPSHOT.jar
-This map was found in this path: /Users/j/Dropbox/workspace/nengoros/vivae/build/classes/main/../../../src/main/resources/data/scenarios/arena1.svg
-</pre>
-</span>
-</div>
-<div id="tab2" class="tab">
-<h2>Standard error</h2>
-<span class="code">
-<pre>[DataLoader]  I can see only these files: 
-[MapLoader] File: data/scenarios/arena2.svgggg not found!
+VivaeSimulator loading the simulation.. 
+VivaeSimulator Loading the default map named: data/scenarios/arena1.svg
+loaded this num of agents: 3
+Registering keyboard controlled agent
+SimulatorControls OK, starting simulation
+Stopping the arena..
+VivaeSimulator stopping, waiting for arena to stop..
+VivaeSimulator arena stopped OK
+VivaeSimulator releasing all resources
+VivaeSimulator loading the simulation.. 
+VivaeSimulator Loading the default map named: data/scenarios/arena1.svg
+loaded this num of agents: 3
+Registering keyboard controlled agent
+SimulatorControls OK, starting simulation
+
+
+Stopping the simulation
+VivaeSimulator stopping, waiting for arena to stop..
+VivaeSimulator arena stopped OK
+
+
+ Resuming the simulation
+SimulatorControls OK, starting simulation
+VivaeSimulator stopping, waiting for arena to stop..
+VivaeSimulator arena stopped OK
+VivaeSimulator releasing all resources
+
+
+ Restarting simulation from the scratch
+
+VivaeSimulator loading the simulation.. 
+VivaeSimulator Loading the default map named: data/scenarios/arena1.svg
+loaded this num of agents: 3
+Registering keyboard controlled agent
+SimulatorControls OK, starting simulation
+
+CLosing the simulation end exiting the process..
+VivaeSimulator releasing all resources
 </pre>
 </span>
 </div>
