@@ -49,8 +49,8 @@ implements AgentSpawningSynchronousSimulationClient{
 
 		if(resp.getSpawnedOK()){
 			System.out.println(me+"agent named "+resp.getName() +" spawned OK");
-			System.out.println(me+"You can now make publisher and subscriber to him" +
-					"data are: "+resp.getPubTopicName()+" sub "+resp.getSubTopicName());
+			System.out.println(me+"His new publisher and subscriber topics are:" +
+					" Publisher=\""+resp.getPubTopicName()+"\" Subscriber=\""+resp.getSubTopicName()+"\"");
 			return resp;
 		}
 		System.err.println(me+"Error spawning agent named "+name+"!");
