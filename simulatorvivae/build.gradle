@@ -1,23 +1,12 @@
-// made by Jaroslav Vitku
+// @author by Jaroslav Vitku
 
-// this is default gradle configuration file for creating the rosnode project in Java
-// [code] marks the corresponding command, first create the wrapper
-
-// java support for gradle [no command]
-apply plugin: 'java'
-
-// task to create gradle wrapper (used only once) [gradle wrapper]
 task wrapper(type: Wrapper) {
     gradleVersion = '1.7'
 }
 
-// Create the Java (jar) library from this project. [./gradlew install]
+apply plugin: 'java'
 apply plugin: 'maven'
-
-// create the Eclipse project [./gradlew eclipse]
 apply plugin: 'eclipse'
-
-// Create the runnable application from this project into build/lib/bin.. ? [./gradlew installApp]
 apply plugin: 'application'
 //mainClassName = 'vivae.my.FRNNExperiment'
 mainClassName = 'org.ros.RosRun'
@@ -37,21 +26,15 @@ repositories {
 version = '0.0.0-SNAPSHOT'
 group = 'ctu.nengoros.simulators'
 
-// This project depends on compilation of rosjava_core
-// (and now, suddenly, on other things that were included in rosjava?? )
 dependencies {
-  //compile 'com.google.guava:guava:12.0'
-  //runtime 'com.google.guava:guava:12.0'
  	compile fileTree(dir: 'lib', include: '**/*.jar')
  	runtime fileTree(dir: 'lib', include: '**/*.jar')
-	//compile 'com.google.guava:guava:13.0.1'
-	//runtime 'com.google.guava:guava:13.0.1'
+
     compile 'junit:junit:4.10'
     testCompile 'junit:junit:4.10'
   	compile 'ros.rosjava_core:rosjava:0.0.0-SNAPSHOT'
   	compile 'ctu.nengoros:jroscore:0.0.3-SNAPSHOT' 
     testCompile 'ctu.nengoros:jroscore:0.0.3-SNAPSHOT'
-  	//classpath files(['/Users/j/Dropbox/workspace/nengoros/vivae/src/dist/'])
 }
 
 sourceSets{
@@ -61,16 +44,3 @@ sourceSets{
         }
     }
 }
-
-/*
-  compile 'org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1'
-  compile 'org.apache.commons:com.springsource.org.apache.commons.net:2.0.0'
-//  compile 'com.google.collections:google-collections:1.0-rc2'
-  compile 'com.google.guava:guava:12.0'
-
-  runtime 'org.apache.commons:com.springsource.org.apache.commons.logging:1.1.1'
-  runtime 'org.apache.commons:com.springsource.org.apache.commons.net:2.0.0'
-//  runtime 'com.google.collections:google-collections:1.0-rc2'
-  compile 'com.google.guava:guava:12.0'
-*/
-
