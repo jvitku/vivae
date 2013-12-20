@@ -1,4 +1,4 @@
-package test.dataLoader;
+package test.vivae.dataLoader;
 
 import static org.junit.Assert.*;
 

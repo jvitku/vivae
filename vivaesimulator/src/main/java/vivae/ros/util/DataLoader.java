@@ -29,6 +29,7 @@ public class DataLoader{
 		"../../src/main/resources/",
 		"../../../src/main/resources/",
 		"build/resources/test/",
+		"build/resources/main/",
 		"../"};					// installApp case
 	
 	protected static final String[] winLocations = {"..\\", "..\\src\\dist\\"};
@@ -103,7 +104,7 @@ public class DataLoader{
 		// try to find file, if found, return his name with absolute path
 		for(int i=0; i<locations.length; i++){
 			abs = getProjectAbsPath()+locations[i]+s;
-			//System.out.println("trying: "+abs);
+			System.out.println("trying: "+abs);
 			File f = new File(abs);
 			if(f.exists()){
 				//System.out.println("FOUND here: "+abs);
@@ -111,8 +112,8 @@ public class DataLoader{
 			}
 		}
 		
-		System.err.println(me+" I can see only these files: ");
-		ClasspathPrinter.printListFiles();
+		//System.err.println(me+" I can see only these files: ");
+		//ClasspathPrinter.printListFiles();
 		throw new FileNotFoundException(me+" this file not found in any of given "
 				+ "locations: "+s+"\nDataLoader: my directory is: "+getProjectAbsPath());
 	}

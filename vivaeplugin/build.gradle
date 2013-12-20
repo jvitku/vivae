@@ -27,9 +27,9 @@ group = 'ctu.nengoros.simulators'
 
 dependencies {
 	
- 	compile fileTree(dir: '../simulatorvivae/lib', include: '**/*.jar')
- 	runtime fileTree(dir: '../simulatorvivae/lib', include: '**/*.jar')
- 	testCompile fileTree(dir: '../simulatorvivae/lib', include: '**/*.jar')
+ 	compile fileTree(dir: '../vivaesimulator/lib', include: '**/*.jar')
+ 	runtime fileTree(dir: '../vivaesimulator/lib', include: '**/*.jar')
+ 	testCompile fileTree(dir: '../vivaesimulator/lib', include: '**/*.jar')
 
     compile 'junit:junit:4.10'
     testCompile 'junit:junit:4.10'
@@ -41,10 +41,9 @@ dependencies {
 
 
 	// here goes the integration, depends on both, vivaesimulator and nengoros:simulator
-	compile 'ctu.nengoros.simulators:simulatorvivae:0.0.0-SNAPSHOT' 
-    testCompile 'ctu.nengoros.simulators:simulatorvivae:0.0.0-SNAPSHOT' 
-	//runtime 'ctu.nengoros.simulators:simulatorvivae:0.0.0-SNAPSHOT'
-	
+	compile 'ctu.nengoros.simulators:vivaesimulator:0.0.0-SNAPSHOT' 
+    testCompile 'ctu.nengoros.simulators:vivaesimulator:0.0.0-SNAPSHOT' 
+
 	//compile 'ctu.nengoros:simulator:0.0.2-SNAPSHOT'
 	//testCompile 'ctu.nengoros:simulator:0.0.2-SNAPSHOT'
 	//runtime 'ctu.nengoros:simulator:0.0.2-SNAPSHOT'
@@ -54,6 +53,7 @@ sourceSets{
     test{
         resources{
             srcDir "src/main/resources/"
+			//srcDir "../vivaesimulator/src/main/resources/"
         }
     }
 }

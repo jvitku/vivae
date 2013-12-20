@@ -1,4 +1,4 @@
-package test.localSimulation;
+package test.vivae.localSimulation;
 
 import org.junit.Test;
 
