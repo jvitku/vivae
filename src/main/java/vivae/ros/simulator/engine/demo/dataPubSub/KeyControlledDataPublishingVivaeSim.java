@@ -31,9 +31,8 @@ import vivae.util.Util;
  */
 public class KeyControlledDataPublishingVivaeSim implements Simulation{
 
-	public final String me = "VivaeSimulator ";
+	public final String me = "[KeyControlledDataPublishingVivaeSimulator] ";
 
-	private final String defPath = "data/scenarios/arena1.svg";
 	private String path;
 	private boolean pathFound = false;
 
@@ -57,23 +56,26 @@ public class KeyControlledDataPublishingVivaeSim implements Simulation{
 	 * Just start the simulation asynchronously in a new Thread
 	 */
 	@Override
-	public void startSimulation() {
+	public boolean startSimulation() {
 		arenaThread = new Thread(arena);
 		arenaThread.start();
 		//  System.out.println("average speed fitness = "+ avg.getFitness());
 		// System.out.println("average ontop fitness = "+ mot.getFitness());
+		return true;
 	}
 
 	@Override
-	public void stopSimulation() {
+	public boolean stopSimulation() {
 		arena.shouldStop();
 		System.out.println(me+"stopping, waiting for arena to stop..");
 		try {
 			arenaThread.join();
 		} catch (InterruptedException e1) {
+			System.err.println(me+"Was unable to stop the simulation!");
 			e1.printStackTrace();
 		}
 		System.out.println(me+"arena stopped OK");
+		return true;
 	}
 
 	/**
@@ -226,14 +228,16 @@ public class KeyControlledDataPublishingVivaeSim implements Simulation{
 	}
 
 	@Override
-	public void destroy() {
+	public boolean destroy() {
 		System.out.println(me+"releasing all resources");
 		f.dispose();
+		return true;
 	}
 
 	@Override
-	public void setVisible(boolean visible) {
+	public boolean setVisible(boolean visible) {
 		arena.setVisibility(visible);
+		return true;
 	}
 
 

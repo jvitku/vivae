@@ -29,13 +29,13 @@ public class SimulatorController{
 		return running;
 	}
 
-	public void start() {
+	public boolean start() {
 		if(!inited){
 			init();
 		}
 		if(running){
 			System.err.println(me+"I am already running");
-			return;
+			return false;
 		}
 		running = true;
 		System.out.println(me+"OK, starting simulation");
@@ -44,22 +44,22 @@ public class SimulatorController{
 		//HashMap<String, RosAgent> map =((AgentRegisteringSimulation)mySim).getAgentMap();
 		//mySim.init();
 		//((AgentRegisteringSimulation)mySim).reregisterAgents(map);
-		mySim.startSimulation();
+		return mySim.startSimulation();
 	}
 
-	public void stop(){
+	public boolean stop(){
 		if(!running){
 			System.err.println(me+"Simulator already stopped");
-			return;
+			return false;
 		}
 		running = false;
-		mySim.stopSimulation();
+		return mySim.stopSimulation();
 	}
 
 	public boolean isInited() {	return inited; }
 
 	public boolean init() {
-		boolean result = mySim.init();		
+		boolean result = mySim.init();
 		this.inited = result;
 		return result;
 	}
@@ -67,10 +67,11 @@ public class SimulatorController{
 	/**
 	 * stop the simulation and close the simulation window
 	 */
-	public void destroy(){
-		mySim.destroy();
+	public boolean destroy(){
+		boolean result = mySim.destroy();
 		running = false;
 		inited = false;
+		return result;
 	}
 
 	/**
@@ -79,15 +80,18 @@ public class SimulatorController{
 	 *  -reload new simulation with the current map
 	 *  -register all agents again with the same ROS connections
 	 *  -start simulation
+	 *  
+	 *  if some of the above tasks failed, return false
 	 */
-	public void reset(){
+	public boolean reset(){
+		
 		System.out.println(me+"Reseting the simulation!");
 		boolean visibility = mySim.isVisible();
 		this.stop();
 		
 		if(!(mySim instanceof AgentRegisteringSimulation)){
 			System.err.println(me+"Cannot re-register agents: simulation does not support this");
-			return;
+			return false;
 		}
 		HashMap<String, RosAgent> map =((AgentRegisteringSimulation)mySim).getAgentMap();
 		
@@ -97,15 +101,22 @@ public class SimulatorController{
 			} catch (InterruptedException e) { e.printStackTrace(); }
 			System.out.println(me+"waiting until arena stops");
 		}
-		this.destroy();
-		mySim.setVisible(visibility);
-		this.init();
+		if(!this.destroy())
+			return false;
+		
+		if(!mySim.setVisible(visibility))
+			return false;
+		
+		if(!this.init())
+			return false;
+		
 		((AgentRegisteringSimulation)mySim).reregisterAgents(map);
-		this.start();
+		
+		return this.start();
 	}
 	
 	
-	public void setVisible(boolean visible){
-		mySim.setVisible(visible);
+	public boolean setVisible(boolean visible){
+		return mySim.setVisible(visible);
 	}
 }

@@ -11,13 +11,25 @@ import org.ros.node.ConnectedNode;
 import org.ros.node.service.ServiceClient;
 
 import ctu.nengoros.service.synchornous.SynchronousService;
+import vivae.ros.simulator.server.SimCommands;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
- * Press enter and this thing will request loading vivae with selected map.
+ * -Run the roscore
+ * -RUn the class SimulatorServer, e.g.:
  * 
- * Note: this sends requests to vivae simulator: SimulatorServer, 
- * so this must be running in the ROS network (e.g. in Nengo)
+ * 		./run vivae.ros.simulator.server.SimulatorServer
+ * 
+ * -Run this class:
+ * 
+ * 		./run vivae.ros.simulator.client.demo.basic.SynchronousClient
+ *  
+ * -Press enter and this thing will request loading vivae with selected map from the SimulatorServer.
+ * 
+ * Here, the requests are processes asynchronously (request is sent and control is passed back from the method).
+ *  
+ * Note that synchronous usage of services is strongly advised, for demo on this @see SynchronousClient .
+
  * 
  * @author Jaroslav Vitku
  *
@@ -78,12 +90,9 @@ public class SynchronousClient extends AbstractNodeMain {
 				} catch (IOException e) { e.printStackTrace(); }
 				System.out.println("requesting this: "+names[poc]);
 
-				// set the request and call the service server (SYNchornously)
-				vivae.LoadMapRequest req = map.getRequest();
-				req.setName(names[poc]);
-				System.out.println("map caaaaaaaaal....");
-				map.callService(req);
-				System.out.println("....ed");
+				System.out.println("---------------\nMap Request Calling ....");
+				loadMap(names[poc]);
+				System.out.println(".... map loaded\n---------");
 				
 				System.out.println("smulation staaar....");
 				startSimulation();
@@ -102,21 +111,28 @@ public class SynchronousClient extends AbstractNodeMain {
 		});
 	}
 	
+	public void loadMap(String name){
+		vivae.LoadMapRequest req = map.getRequest();
+		req.setName(name);
+		map.callService(req);
+
+	}
+	
 	public void startSimulation(){
 		vivae.SimControllerRequest req = controls.getRequest();
-		req.setWhat("start");
+		req.setWhat(SimCommands.START);
 		controls.callService(req);
 	}
 	
 	public void stopSimulation(){
 		vivae.SimControllerRequest req = controls.getRequest();
-		req.setWhat("stop");
+		req.setWhat(SimCommands.STOP);
 		controls.callService(req);
 	}
 	
 	public void destroySimulation(){
 		vivae.SimControllerRequest req = controls.getRequest();
-		req.setWhat("destroy");
+		req.setWhat(SimCommands.DESTROY);
 		controls.callService(req);
 	}
 }

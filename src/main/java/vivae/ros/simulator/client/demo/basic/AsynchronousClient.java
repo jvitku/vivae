@@ -14,6 +14,7 @@ import org.ros.node.service.ServiceResponseListener;
 
 import vivae.LoadMapResponse;
 import vivae.SimControllerResponse;
+import vivae.ros.simulator.server.SimCommands;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
@@ -24,11 +25,12 @@ import vivae.ros.simulator.server.SimulatorServer;
  * 
  * -Run this class:
  * 
- * 		./run vivae.ros.simulator.server.demo.MyRequester
+ * 		./run vivae.ros.simulator.client.demo.basic.AsynchronousClient
  *  
  * -Press enter and this thing will request loading vivae with selected map from the SimulatorServer.
  * 
- * 
+ * Here, the requests are processes asynchronously (request is sent and control is passed back from the method).
+ *  
  * Note that synchronous usage of services is strongly advised, for demo on this @see SynchronousClient .
  * 
  * @author Jaroslav Vitku
@@ -109,7 +111,7 @@ public class AsynchronousClient extends AbstractNodeMain {
 	public void startSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat("start");
+		req.setWhat(SimCommands.START);
 		// set reques for starting the simulation
 		simServiceClient.call(req, simSrl);
 		
@@ -118,7 +120,7 @@ public class AsynchronousClient extends AbstractNodeMain {
 	public void stopSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat("stop");
+		req.setWhat(SimCommands.STOP);
 		// set reques for starting the simulation
 		simServiceClient.call(req, simSrl);
 		
@@ -127,8 +129,8 @@ public class AsynchronousClient extends AbstractNodeMain {
 	public void destroySimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat("destroy");
-		// set reques for starting the simulation
+		req.setWhat(SimCommands.DESTROY);
+		// set request for starting the simulation
 		simServiceClient.call(req, simSrl);
 	}
 	

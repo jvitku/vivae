@@ -13,19 +13,19 @@ public interface Simulation {
 	
 	public SimulatorController getController();
 		
-	void startSimulation();
+	public boolean startSimulation();
 	
-	void stopSimulation();
+	public boolean stopSimulation();
 	
-	boolean init();
+	public boolean init();
 	
-	void destroy();
+	public boolean destroy();
 	
-	boolean loadMap(String path);
+	public boolean loadMap(String path);
 	
     public Arena getArena();
 
-    public void setVisible(boolean visible);
+    public boolean setVisible(boolean visible);
     
     public boolean isVisible();
 }

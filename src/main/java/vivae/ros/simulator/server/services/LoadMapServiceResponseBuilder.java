@@ -19,8 +19,7 @@ ServiceResponseBuilder<vivae.LoadMapRequest, vivae.LoadMapResponse>{
 	}
 
 	@Override
-	public void build(LoadMapRequest req, LoadMapResponse resp)
-			throws ServiceException {
+	public void build(LoadMapRequest req, LoadMapResponse resp) throws ServiceException {
 
 		java.lang.String name = req.getName();	// get name of map
 		

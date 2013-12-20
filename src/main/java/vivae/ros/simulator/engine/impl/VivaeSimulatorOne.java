@@ -70,23 +70,27 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	 * Just start the simulation asynchronously in a new Thread
 	 */
 	@Override
-	public void startSimulation() {
+	public boolean startSimulation() {
 		arenaThread = new Thread(arena);
 		arenaThread.start();
 		//  System.out.println("average speed fitness = "+ avg.getFitness());
 		// System.out.println("average ontop fitness = "+ mot.getFitness());
+		return true;
 	}
 
 	@Override
-	public void stopSimulation() {
+	public boolean stopSimulation() {
 		arena.shouldStop();
 		System.out.println(me+"stopping, waiting for arena to stop..");
 		try {
 			arenaThread.join();
 		} catch (InterruptedException e1) {
+			System.err.println(me+"Was unable to stop the simulation!");
 			e1.printStackTrace();
+			return false;
 		}
 		System.out.println(me+"arena stopped OK");
+		return true;
 	}
 
 	/**
@@ -192,12 +196,13 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	}
 
 	@Override
-	public void destroy() {
+	public boolean destroy() {
 		System.out.println(me+"releasing all resources");
 		if(f!=null)
 			f.dispose();
 		arena.setVisible(false);
-		arena = null;	
+		arena = null;
+		return true;
 	}
 
 
@@ -290,8 +295,10 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	}
 
 	@Override
-	public void setVisible(boolean visible){
+	public boolean setVisible(boolean visible){
 		this.visibility = visible;
+		//TODO: this could return false if the arena is running?
+		return true;
 	}
 
 	@Override

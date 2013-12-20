@@ -36,13 +36,11 @@ public class SimulatorServer extends AbstractNodeMain {
 	public static final java.lang.String V2N = "vivae2nengo";
 	public static final java.lang.String N2V = "nengo2vivae";
 
-
-	public final String me = "SimulatorServer ";
+	public static final String NAME = "VivaeSimulatorServer";
+	public final String me = "["+NAME+"] ";
 
 	@Override
-	public GraphName getDefaultNodeName() {
-		return GraphName.of("VivaeControlsServer");
-	}
+	public GraphName getDefaultNodeName() { return GraphName.of(NAME);	}
 
 	@Override
 	public void onStart(ConnectedNode connectedNode) {
@@ -64,6 +62,5 @@ public class SimulatorServer extends AbstractNodeMain {
 				connectedNode);
 		connectedNode.newServiceServer(srvSPAWN, vivae.Spawn._TYPE,asp);
 	}
-
 
 }
