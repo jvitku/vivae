@@ -6,13 +6,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.*;
 
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
+import vivae.ros.util.MapLoader;
 import vivae.ros.util.Util;
 import ctu.nengoros.RosRunner;
 /**
  * Further testing of functionalities of SimulatorServer: 
- * spawn controlled agents in the simulator.
- * 
- * TODO 
+ * spawn agents (that can be controlled over the ROS network) in the simulator.
  * 
  * @author Jaroslav Vitku
  *
@@ -22,12 +21,10 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient";
 	
-	public String[] names = new String[]{"data/scenarios/arena1.svg", 
+	public String[] names = new String[]{MapLoader.DEF_MAP, 
 			"data/scenarios/arena2.svg", 
 			"data/scenarios/ushape.svg" };
 
-	String[] agentNames = new String[]{"a", "b", "c", "overagented" };
-	
 	@Test
 	public void oneAgent(){
 		boolean resp;
@@ -38,7 +35,6 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 		//Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
-		
 		
 		// This must be here to initialize the services TODO improve this
 		Util.waitLoop(10);
@@ -219,6 +215,5 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 		rr.stop();
 		assertFalse(rr.isRunning());
 	}
-	
 	
 }
