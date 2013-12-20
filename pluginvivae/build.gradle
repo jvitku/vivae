@@ -37,6 +37,10 @@ dependencies {
 
   	compile 'ctu.nengoros:jroscore:0.0.3-SNAPSHOT' 
     testCompile 'ctu.nengoros:jroscore:0.0.3-SNAPSHOT'
+
+	compile 'ctu.nengoros.simulators:simulatorvivae:0.0.0-SNAPSHOT' 
+    testCompile 'ctu.nengoros.simulators:simulatorvivae:0.0.0-SNAPSHOT' 
+	runtime 'ctu.nengoros.simulators:simulatorvivae:0.0.0-SNAPSHOT'
 }
 
 sourceSets{
