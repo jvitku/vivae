@@ -1,6 +1,7 @@
-package vivae.ros.simulatorControlsServer.demo;
+package vivae.ros.simulatorServer.demo;
 
 import java.io.IOException;
+
 import org.ros.concurrent.CancellableLoop;
 import org.ros.exception.RosRuntimeException;
 import org.ros.exception.ServiceNotFoundException;
@@ -8,12 +9,13 @@ import org.ros.namespace.GraphName;
 import org.ros.node.AbstractNodeMain;
 import org.ros.node.ConnectedNode;
 import org.ros.node.service.ServiceClient;
-import vivae.ros.simulatorControlsServer.ControlsServer;
+
+import vivae.ros.simulatorServer.SimulatorServer;
 
 /**
  * Press enter and this thing will request loading vivae with selected map.
  * 
- * Note: this sends requests to vivae simulator: ControlsServer, 
+ * Note: this sends requests to vivae simulator: SimulatorServer, 
  * so this must be running in the ROS network (e.g. in Nengo)
  * 
  * @author Jaroslav Vitku
@@ -45,11 +47,11 @@ public class MySynchronousRequester extends AbstractNodeMain {
 		try {
 			// service for map loading
 			ServiceClient<vivae.LoadMapRequest, vivae.LoadMapResponse> mapServiceClient =
-					connectedNode.newServiceClient(ControlsServer.srvLOAD, vivae.LoadMap._TYPE);
+					connectedNode.newServiceClient(SimulatorServer.srvLOAD, vivae.LoadMap._TYPE);
 			
 			// service for controlling the simulation
 			ServiceClient<vivae.SimControllerRequest, vivae.SimControllerResponse> simServiceClient =
-					connectedNode.newServiceClient(ControlsServer.srvCONTROL, vivae.SimController._TYPE);
+					connectedNode.newServiceClient(SimulatorServer.srvCONTROL, vivae.SimController._TYPE);
 
 			controls = new SynchronousService<vivae.SimControllerRequest, vivae.SimControllerResponse>(simServiceClient);
 			map      = new SynchronousService<vivae.LoadMapRequest, vivae.LoadMapResponse>(mapServiceClient);

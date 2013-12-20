@@ -2,7 +2,7 @@
  * 
  * These classes are for testing SimulatorControls servers by hand.
  * 
- * E.g. MyRequester requests from the ControlsServer simulation with given map after
+ * E.g. MyRequester requests from the SimulatorServer simulation with given map after
  * pressing any key.
  * 
  * Asynchronous requesting over the ROS network did not prove to be good idea, 
@@ -13,4 +13,4 @@
  * @author Jaroslav Vitku
  *
  */
-package vivae.ros.simulatorControlsServer.demo;
+package vivae.ros.simulatorServer.demo;

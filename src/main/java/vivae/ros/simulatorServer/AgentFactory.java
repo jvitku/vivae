@@ -1,4 +1,4 @@
-package vivae.ros.simulatorControlsServer;
+package vivae.ros.simulatorServer;
 
 import org.ros.node.ConnectedNode;
 import vivae.ros.simulator.AgentRegisteringSimulation;

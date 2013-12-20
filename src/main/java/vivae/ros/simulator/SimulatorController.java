@@ -12,7 +12,7 @@ import vivae.ros.simulator.agents.RosAgent;
  */
 public class SimulatorController{
 
-	private final String me="SimulatorControls ";
+	private final String me="[SimulatorControls] ";
 	private volatile boolean running = false;
 	private volatile boolean inited = false;
 	private Simulation mySim;

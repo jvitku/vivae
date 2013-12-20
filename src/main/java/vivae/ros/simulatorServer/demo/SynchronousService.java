@@ -1,4 +1,4 @@
-package vivae.ros.simulatorControlsServer.demo;
+package vivae.ros.simulatorServer.demo;
 
 import org.ros.exception.RemoteException;
 import org.ros.node.service.ServiceClient;

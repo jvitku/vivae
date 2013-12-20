@@ -1,6 +1,7 @@
-package vivae.ros.simulatorControlsServer.demo;
+package vivae.ros.simulatorServer.demo;
 
 import java.io.IOException;
+
 import org.ros.concurrent.CancellableLoop;
 import org.ros.exception.RemoteException;
 import org.ros.exception.RosRuntimeException;
@@ -10,25 +11,26 @@ import org.ros.node.AbstractNodeMain;
 import org.ros.node.ConnectedNode;
 import org.ros.node.service.ServiceClient;
 import org.ros.node.service.ServiceResponseListener;
+
 import vivae.LoadMapResponse;
 import vivae.SimControllerResponse;
-import vivae.ros.simulatorControlsServer.ControlsServer;
+import vivae.ros.simulatorServer.SimulatorServer;
 
 /**
  * -Run the roscore
- * -RUn the class ControlsServer, e.g.:
- * 		./run vivae.ros.simulatorControlsServer.ControlsServer
+ * -RUn the class SimulatorServer, e.g.:
+ * 		./run vivae.ros.simulatorServer.SimulatorServer
  * -Run this class:
- * 		./run vivae.ros.simulatorControlsServer.demo.MyRequester
+ * 		./run vivae.ros.simulatorServer.demo.MyRequester
  *  
- * -Press enter and this thing will request loading vivae with selected map from the ControlsServer.
+ * -Press enter and this thing will request loading vivae with selected map from the SimulatorServer.
  * 
  * @author Jaroslav Vitku
  *
  */
 public class MyRequester extends AbstractNodeMain {
 
-	private final String me = "MyRequester: ";
+	private final String me = "[MyRequester] ";
 
 	/**
 	 * default name of the Node
@@ -52,8 +54,8 @@ public class MyRequester extends AbstractNodeMain {
 
 		// try to subscribe to the service for requesting the maps..		
 		try {
-			mapServiceClient = connectedNode.newServiceClient(ControlsServer.srvLOAD, vivae.LoadMap._TYPE);
-			simServiceClient = connectedNode.newServiceClient(ControlsServer.srvCONTROL, vivae.SimController._TYPE);
+			mapServiceClient = connectedNode.newServiceClient(SimulatorServer.srvLOAD, vivae.LoadMap._TYPE);
+			simServiceClient = connectedNode.newServiceClient(SimulatorServer.srvCONTROL, vivae.SimController._TYPE);
 
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);
@@ -77,7 +79,7 @@ public class MyRequester extends AbstractNodeMain {
 				try {
 					System.in.read();
 				} catch (IOException e) { e.printStackTrace(); }
-				System.out.println("requesting this: "+names[poc]);
+				System.out.println(me+"Requesting this map: "+names[poc]);
 
 				// set the request and call the srvice server (asynchronously)
 				final vivae.LoadMapRequest req = mapServiceClient.newMessage();
@@ -85,9 +87,9 @@ public class MyRequester extends AbstractNodeMain {
 				mapServiceClient.call(req, srl);
 				
 				startSimulation();
-				System.out.println(me+"eaiting 5 seconds and then stopping the simulation");
+				System.out.println(me+"waiting 5 seconds...");
 				Thread.sleep(5000);
-				
+				System.out.println(me+"stopping the simulation now!");
 				stopSimulation();
 				destroySimulation();
 				

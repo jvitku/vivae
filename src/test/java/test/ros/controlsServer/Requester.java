@@ -1,6 +1,5 @@
 package test.ros.controlsServer;
 
-import java.io.IOException;
 import org.ros.concurrent.CancellableLoop;
 import org.ros.exception.RemoteException;
 import org.ros.exception.RosRuntimeException;
@@ -10,13 +9,15 @@ import org.ros.node.AbstractNodeMain;
 import org.ros.node.ConnectedNode;
 import org.ros.node.service.ServiceClient;
 import org.ros.node.service.ServiceResponseListener;
+
 import vivae.LoadMapResponse;
 import vivae.SimControllerResponse;
-import vivae.ros.simulatorControlsServer.ControlsServer;
+import vivae.ros.simulatorServer.SimulatorServer;
+import vivae.ros.simulatorServer.services.SimCommands;
 
 /**
  * 
- *  Requests services from the ControlsServer
+ *  Requests services from the SimulatorServer
  *  
  *  E.g. loading vivae with selected map, start/stop simulation etc...
  * 
@@ -53,8 +54,8 @@ public class Requester extends AbstractNodeMain {
 
 		// try to subscribe to the service for requesting the maps..		
 		try {
-			mapServiceClient = connectedNode.newServiceClient(ControlsServer.srvLOAD, vivae.LoadMap._TYPE);
-			simServiceClient = connectedNode.newServiceClient(ControlsServer.srvCONTROL, vivae.SimController._TYPE);
+			mapServiceClient = connectedNode.newServiceClient(SimulatorServer.srvLOAD, vivae.LoadMap._TYPE);
+			simServiceClient = connectedNode.newServiceClient(SimulatorServer.srvCONTROL, vivae.SimController._TYPE);
 
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);
@@ -126,7 +127,7 @@ public class Requester extends AbstractNodeMain {
 	public void callStartSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(ControlsServer.START);
+		req.setWhat(SimCommands.START);
 		// set requests for starting the simulation
 		simServiceClient.call(req, simSrl);
 	}
@@ -134,7 +135,7 @@ public class Requester extends AbstractNodeMain {
 	public void callStopSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(ControlsServer.STOP);
+		req.setWhat(SimCommands.STOP);
 		simServiceClient.call(req, simSrl);
 
 	}
@@ -142,7 +143,7 @@ public class Requester extends AbstractNodeMain {
 	public void callDestroySimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(ControlsServer.DESTROY);
+		req.setWhat(SimCommands.DESTROY);
 		simServiceClient.call(req, simSrl);
 	}
 	
@@ -150,9 +151,9 @@ public class Requester extends AbstractNodeMain {
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
 		if(visible)
-			req.setWhat(ControlsServer.SETVISIBLE);
+			req.setWhat(SimCommands.SETVISIBLE);
 		else
-			req.setWhat(ControlsServer.SETINVISIBLE);
+			req.setWhat(SimCommands.SETINVISIBLE);
 		simServiceClient.call(req, simSrl);
 	}
 

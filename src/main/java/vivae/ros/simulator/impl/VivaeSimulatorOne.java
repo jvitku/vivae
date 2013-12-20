@@ -27,7 +27,7 @@ import vivae.util.FrictionBuffer;
  * 
  * Basic workflow:
  * 
- * 	-start ControlsServer
+ * 	-start SimulatorServer
  * 	-request loading the map
  * 	-add agents
  * 	-start simulation
@@ -298,7 +298,6 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	public boolean isVisible() {
 		return this.visibility;
 	}
-// SimControlService 
 
 	@Override
 	public void setAgentsReady() {

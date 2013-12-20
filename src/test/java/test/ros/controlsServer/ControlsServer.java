@@ -17,7 +17,7 @@ import ctu.nengoros.RosRunner;
  */
 public class ControlsServer extends ctu.nengoros.nodes.RosCommunicationTest{
 
-	public static final String server = "vivae.ros.simulatorControlsServer.ControlsServer";
+	public static final String server = "vivae.ros.simulatorServer.SimulatorServer";
 	public static final String requester = "test.ros.controlsServer.Requester";
 
 	@Ignore
