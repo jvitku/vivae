@@ -10,6 +10,21 @@ import vivae.ros.util.Util;
 /**
  * Start the client as a ROS node, press enter, this will load the simulation and run for 5 seconds.
  * 
+ * To run this demo:
+ * 
+ * -Run the ROS core, e.g.:
+ * 
+ * 		cd jroscore && ./jroscore
+ * 
+ * -RUn the class SimulatorServer, e.g.:
+ * 
+ * 		./run vivae.ros.simulator.server.SimulatorServer
+ * 
+ * -Run this class:
+ * 
+ * 		./run vivae.ros.simulator.client.demo.basic.MySynchronousClient
+ *  
+ * 
  * @author Jaroslav Vitku
  *
  */

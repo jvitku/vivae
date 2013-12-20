@@ -24,6 +24,9 @@ import vivae.ros.simulator.server.services.SimControlServiceResponseBuilder;
  * then RosRun another node (or smart neuron from Nengo script) in order to 
  * control the simulation. 
  * 
+ * For more information how to run this, 
+ * @see vivae.ros.simulator.client.demo.basic.MySynchronousClient .
+ * 
  * @author Jaroslav Vitku
  */
 public class SimulatorServer extends AbstractNodeMain {

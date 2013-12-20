@@ -18,20 +18,26 @@ import vivae.ros.simulator.server.SimCommands;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
- * -Run the roscore
+ * Start the client as a ROS node, press enter, this will load the simulation and run for 5 seconds.
+ * 
+ * To run this demo:
+ * 
+ * -Run the ROS core, e.g.:
+ * 
+ * 		cd jroscore && ./jroscore
+ * 
  * -RUn the class SimulatorServer, e.g.:
  * 
  * 		./run vivae.ros.simulator.server.SimulatorServer
  * 
  * -Run this class:
  * 
- * 		./run vivae.ros.simulator.client.demo.basic.MyAsynchronousClient
+ * 		./run vivae.ros.simulator.client.demo.basic.MySynchronousClient
  *  
- * -Press enter and this thing will request loading vivae with selected map from the SimulatorServer.
- * 
  * Here, the requests are processes asynchronously (request is sent and control is passed back from the method).
- *  
- * Note that synchronous usage of services is strongly advised, for demo on this @see SynchronousClient .
+ * 
+ * Note: by default, the simulation is started as invisible!  
+ * Note: that synchronous usage of services is strongly advised, for demo on this @see SynchronousClient .
  * 
  * @author Jaroslav Vitku
  *

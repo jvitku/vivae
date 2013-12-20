@@ -11,9 +11,9 @@ Author of the interface: Jaroslav Vitku.
 
 # Usage
 
-## Start the Controls Server
+## Start the Simulation Server
 
-Start the 'vivae.ros.simulatorControlsServer.ControlsServer' as a ROS node, then it provides services ( @see messages in `vivae/ros/vivae`). These services are:
+Start the 'vivae.ros.simulator.server.SimulatorServer' as a ROS node, then it provides services ( @see messages in `vivae/ros/vivae`). These services are:
 
 * `SimController.srv`:
 
@@ -33,14 +33,31 @@ Start the 'vivae.ros.simulatorControlsServer.ControlsServer' as a ROS node, then
 
 Agents are then controlled by the message of type `Velocity.msg`. 
 
-## Start the Simulator Controller
+## Start the Simulator Client
 
-Start the `vivae.ros.simulator.SimulatorController` on the other side (e.g. from the Nengoros simulator) and control the simulation.
+Start a class that implements `vivae.ros.simulator.client.SynchronousSimulationClient`, e.g. `vivae.ros.simulator.client.demo.basic.MySynchronousClient`. This node can initialize the ViVae simulation over the ROS network (e.g. from the Nengoros simulator) and control it.
 
 
 ## Spawn new Agents in the Simulation
 
 Spawn agents and control them. TODO: describe this more.
+
+
+# Demo
+
+To run the demo, which will start the Simulation Server and Simulation Client which will initialize the simulation, do the following:
+
+1. Start the ROS core, e.g.:
+	
+	cd jroscore && ./jroscore
+
+2. Start the simulation server:
+
+	./run vivae.ros.simulator.server.SimulatorServer
+	
+3. Start the demo simulation client, which will request loading the map and run the simulation for several seconds:
+
+	./run vivae.ros.simulator.client.demo.basic.MySynchronousClient
 
 
 # Known Issues
