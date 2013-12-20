@@ -11,8 +11,6 @@ Author of the interface: Jaroslav Vitku.
 
 # Usage
 
-This project consists of two parts: `simulator` and `plugin`. Simulator implements the vivae simulator and its ROS communication interface, while the Plugin implements integration with the Nengoros simulator (Neural Module, communication utilities etc.).
-
 ## Start the Simulation Server
 
 Start the 'vivae.ros.simulator.server.SimulatorServer' as a ROS node, then it provides services ( @see messages in `vivae/ros/vivae`). These services are:
