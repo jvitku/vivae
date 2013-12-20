@@ -3,7 +3,7 @@
  * These classes are for testing SimulatorControls servers by hand.
  * 
  * 
- * E.g. basic.AsynchronousClient requests from the SimulatorServer simulation with given map after
+ * E.g. basic.MyAsynchronousClient requests from the SimulatorServer simulation with given map after
  * pressing any key.
  * 
  * Asynchronous requesting over the ROS network did not prove to be good idea, 

@@ -6,7 +6,10 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import vivae.ros.simulator.client.impl.SynchronousClient;
 import ctu.nengoros.RosRunner;
+
+import vivae.ros.util.Util;
 
 /**
  * RosCommunicationTest auto-starts and auto-shuts down the core and
@@ -18,7 +21,11 @@ import ctu.nengoros.RosRunner;
 public class ControlsServer extends ctu.nengoros.nodes.RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
-	public static final String requester = "test.ros.controlsServer.Requester";
+	public static final String requester = "vivae.ros.simulator.client.impl.SynchronousClient";
+	
+	public String[] names = new String[]{"data/scenarios/arena1.svg", 
+			"data/scenarios/arena2.svg", 
+			"data/scenarios/ushape.svg" };
 
 	@Ignore
 	@Test
@@ -55,53 +62,44 @@ public class ControlsServer extends ctu.nengoros.nodes.RosCommunicationTest{
 	
 	@Test
 	public void testVivaeRunner(){
+		boolean resp;
 
 		RosRunner s= runNode(server);		// server
 		assertTrue(s.isRunning());
 		
-		sleep(1000); 
-		
+		Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
 		
-		sleep(1000); // cannot shut down the server immediately
+		Util.waitLoop(1000);
 		
-		Requester req = (Requester)rr.getNode();
-		req.callRequestMap("data/scenarios/arena1.svg");
-		req.callSetVisible(true);
-		/*
-		try {
-			Thread.sleep(1);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}*/
-		req.callStartSimulation();
-		/*
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		*/
-		req.callStopSimulation();
-		req.callDestroySimulation();
+		SynchronousClient cl = (SynchronousClient)rr.getNode();
 		
-		/* 
-		assertTrue(sc.isInited());
-		assertTrue(sc.isRunning());
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("Stopping the arena..");
-		*/
+		resp = cl.callLoadMap(names[0]);
+		System.out.println("map loaded OK? "+resp);
+		
+		resp = cl.callSetVisibility(true);
+		System.out.println("visibility set OK? "+resp);
+		
+		resp = cl.callStartSimulation();
+		System.out.println("simulation started OK? "+resp);
+		
+		
+		Util.waitLoop(2000);
+		
+		resp = cl.callStopSimulation();
+		System.out.println("simulation stopped OK? "+resp);
+		
+		resp = cl.callDestroySimulation();
+		System.out.println("simulation destroyed OK? "+resp);
+		
+		Util.waitLoop(100);
+		
 		s.stop();
 		assertFalse(s.isRunning());
 		
 		rr.stop();
 		assertFalse(rr.isRunning());
 	}
-
+	
 }

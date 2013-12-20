@@ -12,6 +12,13 @@ import vivae.ros.simulator.client.SynchronousSimulationClient;
 import vivae.ros.simulator.server.SimCommands;
 import vivae.ros.simulator.server.SimulatorServer;
 
+/**
+ * This is general synchronous client for the SimulatorServer. To implement your arbitrary client,
+ * subclass this and in the method onStart call super.onStart(connectedNode). 
+ * 
+ * @author Jaroslav Vitku
+ *
+ */
 public class SynchronousClient extends AbstractNodeMain implements SynchronousSimulationClient{
 
 	public final static String NAME = "SynchronousClient";
@@ -22,7 +29,6 @@ public class SynchronousClient extends AbstractNodeMain implements SynchronousSi
 
 	@Override
 	public GraphName getDefaultNodeName() { return GraphName.of(NAME); }
-	
 	
 	@Override
 	public void onStart(final ConnectedNode connectedNode) {

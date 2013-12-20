@@ -18,7 +18,7 @@
  * 
  * 		./run vivae.ros.simulator.client.demo.AsynchronousClient
  * 
- * EFor example, the class AsynchronousClient requests from the SimulatorServer simulation 
+ * EFor example, the class MyAsynchronousClient requests from the SimulatorServer simulation 
  * with given map after pressing any key. The simulation is ran for several seconds and stopped.
  * 
  * 
