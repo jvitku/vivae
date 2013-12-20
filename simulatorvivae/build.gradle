@@ -29,6 +29,7 @@ group = 'ctu.nengoros.simulators'
 dependencies {
  	compile fileTree(dir: 'lib', include: '**/*.jar')
  	runtime fileTree(dir: 'lib', include: '**/*.jar')
+ 	testCompile fileTree(dir: 'lib', include: '**/*.jar')
 
     compile 'junit:junit:4.10'
     testCompile 'junit:junit:4.10'
