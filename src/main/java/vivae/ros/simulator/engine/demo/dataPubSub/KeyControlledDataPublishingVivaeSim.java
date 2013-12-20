@@ -15,6 +15,7 @@ import vivae.fitness.FitnessFunction;
 import vivae.fitness.MovablesOnTop;
 import vivae.ros.simulator.engine.Simulation;
 import vivae.ros.simulator.engine.SimulatorController;
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.DataLoader;
 import vivae.ros.util.MapLoader;
 import vivae.util.FrictionBuffer;
@@ -87,8 +88,8 @@ public class KeyControlledDataPublishingVivaeSim implements Simulation{
 		System.out.println(me+"loading the simulation.. ");
 		if(!pathFound){
 			try {
-				this.path = MapLoader.locateMap(MapLoader.DEF_MAP);
-				System.out.println(me+"Loading the default map named: "+MapLoader.DEF_MAP);
+				this.path = MapLoader.locateMap(Sim.Maps.DEFAULT);
+				System.out.println(me+"Loading the default map named: "+Sim.Maps.DEFAULT);
 			} catch (FileNotFoundException e) {
 				//e.printStackTrace();
 				System.err.println(me+"Not even default map could be found!! Will not start simulation!");

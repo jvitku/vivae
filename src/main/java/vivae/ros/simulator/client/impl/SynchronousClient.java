@@ -9,7 +9,7 @@ import org.ros.node.service.ServiceClient;
 
 import ctu.nengoros.service.synchornous.SynchronousService;
 import vivae.ros.simulator.client.SynchronousSimulationClient;
-import vivae.ros.simulator.server.SimCommands;
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
@@ -37,11 +37,11 @@ public class SynchronousClient extends AbstractNodeMain implements SynchronousSi
 		try {
 			// service for map loading
 			ServiceClient<vivae.LoadMapRequest, vivae.LoadMapResponse> mapServiceClient =
-					connectedNode.newServiceClient(SimulatorServer.srvLOAD, vivae.LoadMap._TYPE);
+					connectedNode.newServiceClient(Sim.Msg.LOAD, vivae.LoadMap._TYPE);
 			
 			// service for controlling the simulation
 			ServiceClient<vivae.SimControllerRequest, vivae.SimControllerResponse> simServiceClient =
-					connectedNode.newServiceClient(SimulatorServer.srvCONTROL, vivae.SimController._TYPE);
+					connectedNode.newServiceClient(Sim.Msg.CONTROL, vivae.SimController._TYPE);
 
 			// make the services synchronous
 			controls = new SynchronousService<vivae.SimControllerRequest, vivae.SimControllerResponse>(simServiceClient);
@@ -69,25 +69,25 @@ public class SynchronousClient extends AbstractNodeMain implements SynchronousSi
 
 	@Override
 	public boolean callStartSimulation() {
-		return this.callControlsService(SimCommands.START);
+		return this.callControlsService(Sim.Cmd.START);
 	}
 
 	@Override
 	public boolean callStopSimulation() {
-		return this.callControlsService(SimCommands.STOP);
+		return this.callControlsService(Sim.Cmd.STOP);
 	}
 
 	@Override
 	public boolean callDestroySimulation() {
-		return this.callControlsService(SimCommands.DESTROY);
+		return this.callControlsService(Sim.Cmd.DESTROY);
 	}
 
 	@Override
 	public boolean callSetVisibility(boolean visible) {
 		if(visible)
-			return this.callControlsService(SimCommands.SETVISIBLE);
+			return this.callControlsService(Sim.Cmd.SETVISIBLE);
 		else
-			return this.callControlsService(SimCommands.SETINVISIBLE);
+			return this.callControlsService(Sim.Cmd.SETINVISIBLE);
 	}
 
 	private boolean callControlsService(String command){

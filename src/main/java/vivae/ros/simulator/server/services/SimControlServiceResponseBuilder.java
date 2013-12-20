@@ -6,11 +6,11 @@ import org.ros.node.service.ServiceResponseBuilder;
 import vivae.SimControllerRequest;
 import vivae.SimControllerResponse;
 import vivae.ros.simulator.engine.SimulatorController;
-import vivae.ros.simulator.server.SimCommands;
+import vivae.ros.simulator.server.Sim;
 
 /**
  * This service provides ability to control the state of the ViVae simulation, 
- * for all available commands @see the class SimCommands or the interface Simulaiton.  
+ * for all available commands @see the class Sim or the interface Simulaiton.  
  * 
  * @author Jaroslav Vitku
  *
@@ -28,42 +28,42 @@ ServiceResponseBuilder<vivae.SimControllerRequest, vivae.SimControllerResponse>{
 			throws ServiceException {
 		//System.out.println(me+"requested this: "+req.getWhat());
 
-		if(req.getWhat().equalsIgnoreCase(SimCommands.INIT)){
+		if(req.getWhat().equalsIgnoreCase(Sim.Cmd.INIT)){
 			boolean result = sc.init();
 			//System.out.println(me+"called request for init, responding, result: "+result);
 			resp.setOk(result);
 
-		}else if(req.getWhat().equalsIgnoreCase(SimCommands.START)){
+		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.START)){
 			boolean result = sc.start();
 			//System.out.println(me+"called request for start, responding with "+result);
 			resp.setOk(result);
 
-		}else if(req.getWhat().equalsIgnoreCase(SimCommands.STOP)){
+		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.STOP)){
 			boolean result = sc.stop();
 			//System.out.println(me+"called request for stop, responding with "+result);
 			resp.setOk(result);
 
-		}else if(req.getWhat().equalsIgnoreCase(SimCommands.DESTROY)){
+		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.DESTROY)){
 			boolean result = sc.destroy();
 			//System.out.println(me+"called request for destroy, responding with "+result);
 			resp.setOk(result);
 
-		}else if(req.getWhat().equalsIgnoreCase(SimCommands.RESET)){
+		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.RESET)){
 			boolean result = sc.reset();
 			resp.setOk(result);
 
-		}else if(req.getWhat().equalsIgnoreCase(SimCommands.SETVISIBLE)){
+		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.SETVISIBLE)){
 			boolean result = sc.setVisible(true);
 			resp.setOk(result);	
 			
-		}else if(req.getWhat().equalsIgnoreCase(SimCommands.SETINVISIBLE)){
+		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.SETINVISIBLE)){
 			boolean result = sc.setVisible(false);
 			resp.setOk(result);
 			
 		}else{
 			System.err.println(me+"This request: \""+req.getWhat()+"\" on SimControlService "
 					+ "not recognized, only the following commands are supported: \n"
-					+"-----------\n"+SimCommands.getAll()+"\n----------");
+					+"-----------\n"+Sim.Cmd.getAll()+"\n----------");
 		}
 	}
 }

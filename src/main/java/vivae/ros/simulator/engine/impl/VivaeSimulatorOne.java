@@ -18,6 +18,7 @@ import vivae.fitness.FitnessFunction;
 import vivae.ros.simulator.engine.AgentRegisteringSimulation;
 import vivae.ros.simulator.engine.SimulatorController;
 import vivae.ros.simulator.engine.agents.RosAgent;
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.MapLoader;
 import vivae.util.FrictionBuffer;
 
@@ -101,8 +102,8 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 
 		if(!pathFound){
 			try {
-				this.path = MapLoader.locateMap(MapLoader.DEF_MAP);
-				System.out.println(me+"Loading the default map named: "+MapLoader.DEF_MAP);
+				this.path = MapLoader.locateMap(Sim.Maps.DEFAULT);
+				System.out.println(me+"Loading the default map named: "+Sim.Maps.DEFAULT);
 			} catch (FileNotFoundException e) {
 				//e.printStackTrace();
 				System.err.println(me+"Not even default map could be found!! Will not start simulation!");

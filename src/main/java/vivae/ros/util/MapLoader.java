@@ -2,6 +2,8 @@ package vivae.ros.util;
 
 import java.io.FileNotFoundException;
 
+import vivae.ros.simulator.server.Sim;
+
 /**
  * Class for loading scenario files.
  * 
@@ -11,8 +13,6 @@ import java.io.FileNotFoundException;
 public class MapLoader extends DataLoader{
 
 	private static final String me = "[MapLoader] ";
-	public static final String DEF_MAP = "data/scenarios/arena1.svg"; 
-
 
 	public static String locateMap(String name) throws FileNotFoundException{
 		try{
@@ -23,7 +23,7 @@ public class MapLoader extends DataLoader{
 
 			// try to load default map, if not possible, throw exception, this is problem
 			try{
-				return DataLoader.locateFile(DEF_MAP);
+				return DataLoader.locateFile(Sim.Maps.DEFAULT);
 			}catch(FileNotFoundException er){
 				System.err.println(me+" I can see only these files: ");
 				ClasspathPrinter.printListFiles();
@@ -37,7 +37,7 @@ public class MapLoader extends DataLoader{
 	
 	public static boolean defaultMapFound(){
 		try{
-			locateMap(DEF_MAP);
+			locateMap(Sim.Maps.DEFAULT);
 			return true;
 		}catch(Exception e){
 			return false;

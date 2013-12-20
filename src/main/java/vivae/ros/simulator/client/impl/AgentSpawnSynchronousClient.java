@@ -8,6 +8,7 @@ import org.ros.node.service.ServiceClient;
 import ctu.nengoros.service.synchornous.SynchronousService;
 import vivae.SpawnResponse;
 import vivae.ros.simulator.client.AgentSpawningSynchronousSimulationClient;
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
@@ -31,7 +32,7 @@ implements AgentSpawningSynchronousSimulationClient{
 		// try to connect to the service for requesting the agents..		
 		try {
 			ServiceClient<vivae.SpawnRequest, vivae.SpawnResponse> serviceClient 
-			= connectedNode.newServiceClient(SimulatorServer.srvSPAWN, vivae.Spawn._TYPE);
+			= connectedNode.newServiceClient(Sim.Msg.SPAWN, vivae.Spawn._TYPE);
 
 			// make it synchronous service
 			spawn= new SynchronousService<vivae.SpawnRequest, vivae.SpawnResponse>(serviceClient);

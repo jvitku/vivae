@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.*;
 
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
-import vivae.ros.util.MapLoader;
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.Util;
 import ctu.nengoros.RosRunner;
 /**
@@ -21,10 +21,6 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient";
 	
-	public String[] names = new String[]{MapLoader.DEF_MAP, 
-			"data/scenarios/arena2.svg", 
-			"data/scenarios/ushape.svg" };
-
 	@Test
 	public void oneAgent(){
 		boolean resp;
@@ -41,7 +37,7 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		
-		resp = cl.callLoadMap(names[0]);
+		resp = cl.callLoadMap(Sim.Maps.names[0]);
 		System.out.println("map loaded OK? "+resp);
 		assertTrue(resp);
 		
@@ -92,7 +88,7 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		
-		resp = cl.callLoadMap(names[0]);
+		resp = cl.callLoadMap(Sim.Maps.names[0]);
 		System.out.println("map loaded OK? "+resp);
 		assertTrue(resp);
 		
@@ -154,7 +150,7 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		
-		resp = cl.callLoadMap(names[0]);
+		resp = cl.callLoadMap(Sim.Maps.names[0]);
 		System.out.println("map loaded OK? "+resp);
 		assertTrue(resp);
 		

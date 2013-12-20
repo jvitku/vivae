@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.*;
 
 import vivae.ros.simulator.client.impl.SynchronousClient;
+import vivae.ros.simulator.server.Sim;
 import ctu.nengoros.RosRunner;
-import vivae.ros.util.MapLoader;
 import vivae.ros.util.Util;
 
 /**
@@ -25,10 +25,7 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.SynchronousClient";
 	
-	public String[] names = new String[]{MapLoader.DEF_MAP, 
-			"data/scenarios/arena2.svg", 
-			"data/scenarios/ushape.svg" };
-
+	
 	@Test
 	public void startStopServer(){
 		RosRunner rr = runNode(server);
@@ -77,7 +74,7 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 		
 		SynchronousClient cl = (SynchronousClient)rr.getNode();
 		
-		resp = cl.callLoadMap(names[0]);
+		resp = cl.callLoadMap(Sim.Maps.names[0]);
 		System.out.println("map loaded OK? "+resp);
 		assertTrue(resp);
 		

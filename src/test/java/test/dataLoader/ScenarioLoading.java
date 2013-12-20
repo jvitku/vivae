@@ -8,6 +8,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.DataLoader;
 import vivae.ros.util.MapLoader;
 /**
@@ -48,7 +49,7 @@ public class ScenarioLoading {
 	public void defaultDataLoader() {
 		String s;
 		try {
-			s = DataLoader.locateFile("data/scenarios/arena1.svg");
+			s = DataLoader.locateFile(Sim.Maps.DEFAULT);
 			System.out.println("This map was found in this path: "+s);
 
 			// check if the one was returned
@@ -67,7 +68,7 @@ public class ScenarioLoading {
 	public void defaultMapLoader() {
 		String s;
 		try {
-			s = MapLoader.locateMap("data/scenarios/arena2.svg");
+			s = MapLoader.locateMap(Sim.Maps.names[1]);
 			System.out.println("This map was found in this path: "+s);
 
 			// check if the one was returned
@@ -85,11 +86,11 @@ public class ScenarioLoading {
 	public void defaultMapLoaderNotFound() {
 		String s;
 		try {
-			s = MapLoader.locateMap("data/scenarios/arena2.svgggg");
+			s = MapLoader.locateMap("data/scenarios/arena2.svggggNonExisting");
 			System.out.println("This map was found in this path: "+s);
 			
 			// check if the default one was returned
-			assertTrue(stringEndsWith(s,MapLoader.DEF_MAP));
+			assertTrue(stringEndsWith(s,Sim.Maps.DEFAULT));
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

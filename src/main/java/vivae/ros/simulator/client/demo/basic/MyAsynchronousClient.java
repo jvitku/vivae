@@ -14,7 +14,7 @@ import org.ros.node.service.ServiceResponseListener;
 
 import vivae.LoadMapResponse;
 import vivae.SimControllerResponse;
-import vivae.ros.simulator.server.SimCommands;
+import vivae.ros.simulator.server.Sim;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
@@ -68,8 +68,8 @@ public class MyAsynchronousClient extends AbstractNodeMain {
 
 		// try to subscribe to the service for requesting the maps..		
 		try {
-			mapServiceClient = connectedNode.newServiceClient(SimulatorServer.srvLOAD, vivae.LoadMap._TYPE);
-			simServiceClient = connectedNode.newServiceClient(SimulatorServer.srvCONTROL, vivae.SimController._TYPE);
+			mapServiceClient = connectedNode.newServiceClient(Sim.Msg.LOAD, vivae.LoadMap._TYPE);
+			simServiceClient = connectedNode.newServiceClient(Sim.Msg.CONTROL, vivae.SimController._TYPE);
 
 		} catch (ServiceNotFoundException e) {
 			throw new RosRuntimeException(e);
@@ -117,7 +117,7 @@ public class MyAsynchronousClient extends AbstractNodeMain {
 	public void startSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(SimCommands.START);
+		req.setWhat(Sim.Cmd.START);
 		// set request for starting the simulation
 		simServiceClient.call(req, simSrl);
 		
@@ -126,7 +126,7 @@ public class MyAsynchronousClient extends AbstractNodeMain {
 	public void stopSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(SimCommands.STOP);
+		req.setWhat(Sim.Cmd.STOP);
 		// set request for starting the simulation
 		simServiceClient.call(req, simSrl);
 		
@@ -135,7 +135,7 @@ public class MyAsynchronousClient extends AbstractNodeMain {
 	public void destroySimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(SimCommands.DESTROY);
+		req.setWhat(Sim.Cmd.DESTROY);
 		// set request for starting the simulation
 		simServiceClient.call(req, simSrl);
 	}

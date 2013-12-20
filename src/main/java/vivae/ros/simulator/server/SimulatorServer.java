@@ -31,13 +31,7 @@ import vivae.ros.simulator.server.services.SimControlServiceResponseBuilder;
  */
 public class SimulatorServer extends AbstractNodeMain {
 
-	// ROS topic names of provided services
-	public static final java.lang.String srvSPAWN = "spawnService";
-	public static final java.lang.String srvCONTROL = "simControlSerice";
-	public static final java.lang.String srvLOAD = "loadMapSerice";
 	
-	public static final java.lang.String V2N = "vivae2nengo";
-	public static final java.lang.String N2V = "nengo2vivae";
 
 	public static final String NAME = "VivaeSimulatorServer";
 	public final String me = "["+NAME+"] ";
@@ -54,16 +48,16 @@ public class SimulatorServer extends AbstractNodeMain {
 
 		// loading the maps to vivae server
 		LoadMapServiceResponseBuilder mapSrb = new LoadMapServiceResponseBuilder(vs);
-		connectedNode.newServiceServer(srvLOAD, vivae.LoadMap._TYPE, mapSrb);
+		connectedNode.newServiceServer(Sim.Msg.LOAD, vivae.LoadMap._TYPE, mapSrb);
 
 		// simulation controller over the ROS network
 		SimControlServiceResponseBuilder srb = new SimControlServiceResponseBuilder(sc);
-		connectedNode.newServiceServer(srvCONTROL, vivae.SimController._TYPE,srb);
+		connectedNode.newServiceServer(Sim.Msg.CONTROL, vivae.SimController._TYPE,srb);
 
 		// agent spawner over the ROS network
 		AgentSpawnServiceResponseBuilder asp = new AgentSpawnServiceResponseBuilder(vs,
 				connectedNode);
-		connectedNode.newServiceServer(srvSPAWN, vivae.Spawn._TYPE,asp);
+		connectedNode.newServiceServer(Sim.Msg.SPAWN, vivae.Spawn._TYPE,asp);
 	}
 
 }
