@@ -10,7 +10,6 @@ import org.ros.node.service.ServiceClient;
 import ctu.nengoros.service.synchornous.SynchronousService;
 import vivae.ros.simulator.client.SynchronousSimulationClient;
 import vivae.ros.simulator.server.Sim;
-import vivae.ros.simulator.server.SimulatorServer;
 
 /**
  * This is general synchronous client for the SimulatorServer. To implement your arbitrary client,

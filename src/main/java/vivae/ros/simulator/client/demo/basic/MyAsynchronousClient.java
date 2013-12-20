@@ -15,7 +15,6 @@ import org.ros.node.service.ServiceResponseListener;
 import vivae.LoadMapResponse;
 import vivae.SimControllerResponse;
 import vivae.ros.simulator.server.Sim;
-import vivae.ros.simulator.server.SimulatorServer;
 
 /**
  * Start the client as a ROS node, press enter, this will load the simulation and run for 5 seconds.

@@ -9,7 +9,6 @@ import ctu.nengoros.service.synchornous.SynchronousService;
 import vivae.SpawnResponse;
 import vivae.ros.simulator.client.AgentSpawningSynchronousSimulationClient;
 import vivae.ros.simulator.server.Sim;
-import vivae.ros.simulator.server.SimulatorServer;
 
 /**
  * Basic ROS node which supports spawning agents in the ViVae simulator.

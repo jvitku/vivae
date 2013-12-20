@@ -8,7 +8,6 @@ import org.ros.node.ConnectedNode;
 import ctu.nengoros.service.synchornous.SynchronousService;
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
 import vivae.ros.simulator.server.Sim;
-import vivae.ros.util.MapLoader;
 import vivae.ros.util.Util;
 
 /**
