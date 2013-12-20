@@ -8,6 +8,13 @@ import vivae.SimControllerResponse;
 import vivae.ros.simulator.engine.SimulatorController;
 import vivae.ros.simulator.server.SimCommands;
 
+/**
+ * This service provides ability to control the state of the ViVae simulation, 
+ * for all available commands @see the class SimCommands or the interface Simulaiton.  
+ * 
+ * @author Jaroslav Vitku
+ *
+ */
 public class SimControlServiceResponseBuilder implements 
 ServiceResponseBuilder<vivae.SimControllerRequest, vivae.SimControllerResponse>{
 

@@ -8,6 +8,18 @@ import vivae.ros.simulator.engine.AgentRegisteringSimulation;
 import vivae.ros.simulator.engine.agents.RosAgent;
 import vivae.ros.simulator.server.AgentFactory;
 
+/**
+ * This spawns agents in the ViVae simulation. After loading map, the arena contains
+ * agent bodies which are not controlled. In order to control agent in the arena, the 
+ * agent needs to be registered. In order to control the agent over the ROS network,
+ * the agent has to communicate over the ROS network (publish/subscribe here). 
+ * 
+ * This service tries to register agent in the arena, if success, it opens the ROS
+ * communication channels for the agent and returns all necessary information.
+ *
+ * @author Jaroslav Vitku
+ *
+ */
 public class AgentSpawnServiceResponseBuilder implements 
 ServiceResponseBuilder<vivae.SpawnRequest, vivae.SpawnResponse>{
 

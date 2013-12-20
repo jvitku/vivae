@@ -7,6 +7,12 @@ import vivae.LoadMapRequest;
 import vivae.LoadMapResponse;
 import vivae.ros.simulator.engine.Simulation;
 
+/**
+ * This service provides the ability to load map in the ViVae arena over the ROS network.
+ *  
+ * @author Jaroslav Vitku
+ *
+ */
 public class LoadMapServiceResponseBuilder implements 
 ServiceResponseBuilder<vivae.LoadMapRequest, vivae.LoadMapResponse>{
 

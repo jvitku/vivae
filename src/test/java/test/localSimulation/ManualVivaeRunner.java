@@ -17,7 +17,7 @@ import static org.junit.Assert.assertFalse;
  */
 public class ManualVivaeRunner {
 
-	public static int wait = 50;
+	public static int wait = 1;
 	
 	public static void main(String[] args){
 		ManualVivaeRunner mvr = new ManualVivaeRunner(); 

@@ -200,6 +200,11 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		System.out.println(me+"releasing all resources");
 		if(f!=null)
 			f.dispose();
+		if(arena == null){
+			System.err.println(me+"Warning: Arena still not initialized, "
+					+ "probably closing it to soon!");
+			return true;
+		}
 		arena.setVisible(false);
 		arena = null;
 		return true;
