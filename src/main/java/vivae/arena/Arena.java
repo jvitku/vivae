@@ -12,21 +12,24 @@ package vivae.arena;
 import net.phys2d.math.Vector2f;
 import net.phys2d.raw.World;
 import net.phys2d.raw.strategies.QuadSpaceStrategy;
+
 import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.apache.batik.svggen.SVGGraphics2D;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.svg.SVGDocument;
+
 import vivae.arena.parts.*;
 import vivae.arena.parts.Robot;
 import vivae.controllers.KeyboardVivaeController;
 import vivae.controllers.VivaeController;
-import vivae.ros.simulator.agents.RosAgent;
-import vivae.ros.simulator.demo.pubsub.KeyControlledSensoryDataPublisher;
+import vivae.ros.simulator.engine.agents.RosAgent;
+import vivae.ros.simulator.engine.demo.pubsub.KeyControlledSensoryDataPublisher;
 import vivae.util.ArenaPartsGenerator;
 import vivae.util.FrictionBuffer;
 import vivae.util.SVGShapeLoader;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -38,6 +41,7 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import cma.PrintfFormat;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

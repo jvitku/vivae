@@ -1,4 +1,6 @@
-package test.ros.controlsServer;
+package vivae.ros.simulator.client.demo.basic;
+
+import java.io.IOException;
 
 import org.ros.concurrent.CancellableLoop;
 import org.ros.exception.RemoteException;
@@ -12,29 +14,36 @@ import org.ros.node.service.ServiceResponseListener;
 
 import vivae.LoadMapResponse;
 import vivae.SimControllerResponse;
-import vivae.ros.simulator.server.SimCommands;
 import vivae.ros.simulator.server.SimulatorServer;
 
 /**
+ * -Run the roscore
+ * -RUn the class SimulatorServer, e.g.:
  * 
- *  Requests services from the SimulatorServer
+ * 		./run vivae.ros.simulator.server.SimulatorServer
+ * 
+ * -Run this class:
+ * 
+ * 		./run vivae.ros.simulator.server.demo.MyRequester
  *  
- *  E.g. loading vivae with selected map, start/stop simulation etc...
+ * -Press enter and this thing will request loading vivae with selected map from the SimulatorServer.
+ * 
+ * 
+ * Note that synchronous usage of services is strongly advised, for demo on this @see SynchronousClient .
  * 
  * @author Jaroslav Vitku
  *
  */
-public class Requester extends AbstractNodeMain {
+public class AsynchronousClient extends AbstractNodeMain {
 
-	private final String me = "["+NAME+"] ";
-	public static final String NAME = "Requester";
+	private final String me = "[AsynchronousClient] ";
 
 	/**
 	 * default name of the Node
 	 */
 	@Override
 	public GraphName getDefaultNodeName() {
-		return GraphName.of(NAME);
+		return GraphName.of("myPublisher");
 	}
 
 	ServiceClient<vivae.LoadMapRequest, vivae.LoadMapResponse> mapServiceClient; // load maps
@@ -44,11 +53,8 @@ public class Requester extends AbstractNodeMain {
 	String[] names = new String[]{"data/scenarios/arena1.svg", "data/scenarios/arena2.svg", "data/scenarios/ushape.svg" };
 
 	SimControlServiceResponseListener simSrl;
-	ServiceResponseListener<vivae.LoadMapResponse> srl;
-
-	/**
-	 * After starting the node, just initialize communication and wait for commands (methods call*() )
-	 */
+	
+	
 	@Override
 	public void onStart(final ConnectedNode connectedNode) {
 
@@ -61,15 +67,11 @@ public class Requester extends AbstractNodeMain {
 			throw new RosRuntimeException(e);
 		}
 
-		srl = new MyServiceResponseListener();
-		simSrl = new SimControlServiceResponseListener();
-
 		// create classical while(true) loop, but this loop can be cancelled by the others..
-		/*
 		connectedNode.executeCancellableLoop(new CancellableLoop() {
 			private int poc;
 			ServiceResponseListener<vivae.LoadMapResponse> srl;
-
+			
 			@Override
 			protected void setup() {
 				poc = 0;
@@ -77,86 +79,59 @@ public class Requester extends AbstractNodeMain {
 				simSrl = new SimControlServiceResponseListener();
 			}
 
-
 			@Override
 			protected void loop() throws InterruptedException {
 				System.out.println(me+" --------- press any key to request a map and start new simulation");
 				try {
 					System.in.read();
 				} catch (IOException e) { e.printStackTrace(); }
-				System.out.println("requesting this: "+names[poc]);
+				System.out.println(me+"Requesting this map: "+names[poc]);
 
 				// set the request and call the srvice server (asynchronously)
 				final vivae.LoadMapRequest req = mapServiceClient.newMessage();
 				req.setName(names[poc]);
 				mapServiceClient.call(req, srl);
-
+				
 				startSimulation();
-				System.out.println(me+"eaiting 5 seconds and then stopping the simulation");
+				System.out.println(me+"waiting 5 seconds...");
 				Thread.sleep(5000);
-
+				System.out.println(me+"stopping the simulation now!");
 				stopSimulation();
 				destroySimulation();
-
+				
 				if(++poc>names.length-1)
 					poc =0;
 			}
-		});*/
-		connectedNode.executeCancellableLoop(new CancellableLoop() {
-
-			@Override
-			protected void setup() {
-			}
-
-
-			@Override
-			protected void loop() throws InterruptedException {
-				System.out.println(me+"eaiting 5 seconds and then stopping the simulation");
-				Thread.sleep(5000);
-			}
 		});
 	}
-
-	public void callRequestMap(String name){
-		final vivae.LoadMapRequest req = mapServiceClient.newMessage();
-		req.setName(name);
-		mapServiceClient.call(req, srl);
-	}
-
-
-	public void callStartSimulation(){
+	
+	
+	public void startSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(SimCommands.START);
-		// set requests for starting the simulation
+		req.setWhat("start");
+		// set reques for starting the simulation
 		simServiceClient.call(req, simSrl);
+		
 	}
-
-	public void callStopSimulation(){
+	
+	public void stopSimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(SimCommands.STOP);
+		req.setWhat("stop");
+		// set reques for starting the simulation
 		simServiceClient.call(req, simSrl);
-
+		
 	}
-
-	public void callDestroySimulation(){
+	
+	public void destroySimulation(){
 
 		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		req.setWhat(SimCommands.DESTROY);
+		req.setWhat("destroy");
+		// set reques for starting the simulation
 		simServiceClient.call(req, simSrl);
 	}
 	
-	public void callSetVisible(boolean visible){
-
-		final vivae.SimControllerRequest req = simServiceClient.newMessage();
-		if(visible)
-			req.setWhat(SimCommands.SETVISIBLE);
-		else
-			req.setWhat(SimCommands.SETINVISIBLE);
-		simServiceClient.call(req, simSrl);
-	}
-
 
 	/**
 	 * Request these things from the vivae simulator:

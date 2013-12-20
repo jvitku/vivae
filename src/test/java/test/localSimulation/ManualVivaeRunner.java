@@ -2,9 +2,9 @@ package test.localSimulation;
 
 import org.junit.Test;
 
-import vivae.ros.simulator.Simulation;
-import vivae.ros.simulator.SimulatorController;
-import vivae.ros.simulator.demo.keycontrolled.KeyControlledVivaeSimulator;
+import vivae.ros.simulator.engine.Simulation;
+import vivae.ros.simulator.engine.SimulatorController;
+import vivae.ros.simulator.engine.demo.keycontrolled.KeyControlledVivaeSimulator;
 import vivae.ros.util.ClasspathPrinter;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;

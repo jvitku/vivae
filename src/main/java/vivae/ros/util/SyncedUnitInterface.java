@@ -4,7 +4,8 @@ package vivae.ros.util;
 
 /**
  * Represents basically an object that can be in two states: ready/notReady
- * If you want to use hierarchical infrastructure, extend abstract SyncedUnit
+ * 
+ * If you want to use hierarchical infrastructure, extend abstract SyncedUnit.
  *  
  * @author Jaroslav Vitku
  *
