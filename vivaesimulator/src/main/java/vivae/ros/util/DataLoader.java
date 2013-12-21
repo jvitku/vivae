@@ -30,6 +30,8 @@ public class DataLoader{
 		"../../../src/main/resources/",
 		"build/resources/test/",
 		"build/resources/main/",
+		"../maps/",				// place your maps here
+		"maps/",
 		"../"};					// installApp case
 	
 	protected static final String[] winLocations = {"..\\", "..\\src\\dist\\"};
@@ -111,7 +113,7 @@ public class DataLoader{
 				return abs;
 			}
 		}
-		
+			
 		//System.err.println(me+" I can see only these files: ");
 		//ClasspathPrinter.printListFiles();
 		throw new FileNotFoundException(me+" this file not found in any of given "

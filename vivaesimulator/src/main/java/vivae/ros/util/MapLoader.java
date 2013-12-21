@@ -28,8 +28,10 @@ public class MapLoader extends DataLoader{
 				System.err.println(me+" I can see only these files: ");
 				ClasspathPrinter.printListFiles();
 				throw new FileNotFoundException(me+"Even the default map could not be found!"+
-						"probably some errorn on the classpath! \n My directory: "
-						+ClasspathPrinter.getPWD()+"\n");
+						"probably some error on the classpath! \n My directory: "
+						+ClasspathPrinter.getPWD()+"\n\n "
+								+ "Note that loading from jar file is not supported so far!");
+				// TODO: jar file support
 			}
 		}
 	}
