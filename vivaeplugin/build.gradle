@@ -1,8 +1,8 @@
 // @author by Jaroslav Vitku
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.7'
-}
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '1.7'
+//}
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -41,8 +41,11 @@ dependencies {
 
 
 	// here goes the integration, depends on both, vivaesimulator and nengoros:simulator
-	compile 'ctu.nengoros.simulators:vivaesimulator:0.0.0-SNAPSHOT' 
-    testCompile 'ctu.nengoros.simulators:vivaesimulator:0.0.0-SNAPSHOT' 
+	// this is TODO: now the application is unable to load SVG from JAR
+	//compile 'ctu.nengoros.simulators:vivaesimulator:0.0.0-SNAPSHOT' 
+    //testCompile 'ctu.nengoros.simulators:vivaesimulator:0.0.0-SNAPSHOT' 
+
+	compile project(':vivae:vivaesimulator')
 
 	//compile 'ctu.nengoros:simulator:0.0.2-SNAPSHOT'
 	//testCompile 'ctu.nengoros:simulator:0.0.2-SNAPSHOT'

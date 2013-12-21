@@ -1,8 +1,8 @@
 // @author by Jaroslav Vitku
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.7'
-}
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '1.7'
+//}
 
 apply plugin: 'java'
 apply plugin: 'maven'

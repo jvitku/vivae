@@ -26,12 +26,13 @@ public class DataLoader{
 		"bin/", 
 		"src/main/resources/",
 		"../src/main/resources/",
-		"../../src/main/resources/",
+		"../../src/main/resources/",	// jar placed in build/libs folder (used by nengo!)
 		"../../../src/main/resources/",
 		"build/resources/test/",
 		"build/resources/main/",
 		"../maps/",				// place your maps here
 		"maps/",
+		
 		"../"};					// installApp case
 	
 	protected static final String[] winLocations = {"..\\", "..\\src\\dist\\"};
