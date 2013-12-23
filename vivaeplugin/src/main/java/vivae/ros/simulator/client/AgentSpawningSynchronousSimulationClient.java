@@ -17,7 +17,7 @@ package vivae.ros.simulator.client;
  * @author Jaroslav Vitku
  *
  */
-public interface AgentSpawningSynchronousSimulationClient extends SynchronousSimulationClient {
+public interface AgentSpawningSynchronousSimulationClient extends SynchornousClient {
 	
 	public vivae.SpawnResponse spawnAgent(String name); 
 

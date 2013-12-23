@@ -43,7 +43,7 @@ public class Sim {
 		public static final java.lang.String CONTROL = "simControlSerice";
 		public static final java.lang.String LOAD = "loadMapSerice";
 
-		// Topic names for commmunication?
+		// Topic names for communication?
 		public static final java.lang.String V2N = "vivae2nengo";
 		public static final java.lang.String N2V = "nengo2vivae";
 		

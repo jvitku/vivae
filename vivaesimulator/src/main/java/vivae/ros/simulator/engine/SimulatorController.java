@@ -18,8 +18,6 @@ public class SimulatorController{
 	private volatile boolean inited = false;
 	private Simulation mySim;
 
-	public SimulatorController(){
-	}
 
 	public void setMySimulator(Simulation s){
 		mySim = s;

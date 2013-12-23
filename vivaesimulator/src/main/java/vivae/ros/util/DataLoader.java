@@ -83,9 +83,6 @@ public class DataLoader{
 		}
 	}
 
-
-
-
 	/**
 	 * Give me string describing path to resource, I will try to find it 
 	 * on the list of possible (relative) locations to my location.

@@ -7,26 +7,30 @@ import org.ros.node.service.ServiceClient;
 
 import ctu.nengoros.service.synchornous.SynchronousService;
 import vivae.SpawnResponse;
-import vivae.ros.simulator.client.AgentSpawningSynchronousSimulationClient;
+import vivae.ros.simulator.client.AgentSpawningSynchronousClient;
 import vivae.ros.simulator.server.Sim;
 
 /**
- * Basic ROS node which supports spawning agents in the ViVae simulator.
+ * Client for SimulatorServer which is able to control the simulation state and spawn agents in it.
  *  
  * @author Jaroslav Vitku
  *
  */
 public class AgentSpawnSynchronousClient extends SynchronousClient 
-implements AgentSpawningSynchronousSimulationClient{
+implements AgentSpawningSynchronousClient{
 
 	public final static String NAME = "AgentSpawnSynchronousClient";
 	public final String me = "["+NAME+"] ";
 
 	SynchronousService<vivae.SpawnRequest, vivae.SpawnResponse> spawn;
 
-	@Override
-	public void onStart(final ConnectedNode connectedNode){
-		super.onStart(connectedNode);
+	public AgentSpawnSynchronousClient(ConnectedNode connectedNode){
+		super(connectedNode);
+
+		this.registerMyServices(connectedNode);
+	}
+
+	private void registerMyServices(ConnectedNode connectedNode) throws RosRuntimeException{
 
 		ServiceClient<vivae.SpawnRequest, vivae.SpawnResponse> serviceClient = null;
 		int sleptAlready = 0;
@@ -65,21 +69,74 @@ implements AgentSpawningSynchronousSimulationClient{
 
 	}
 
+
+	/**
+	 * Try to spawn agent in the Vivae SimulatorServer with given name. 
+	 * Return the spawnResponse which contains information about agent just spawned. 
+	 */
 	@Override
 	public SpawnResponse spawnAgent(String name) {
 		this.awaitServicesReady();
 
+		vivae.SpawnRequest req = this.makeBasicRequest(name);
+
+		return this.callAgentSpawnService(req);
+	}
+
+	@Override
+	public SpawnResponse spawnAgent(String name, int numSensors) {
+		vivae.SpawnRequest req = this.makeBasicRequest(name);
+		req.setNumSensors(numSensors);
+		return this.callAgentSpawnService(req);
+	}
+
+	@Override
+	public SpawnResponse spawnAgent(String name, int numSensors, float frictionDist) {
+		vivae.SpawnRequest req = this.makeBasicRequest(name);
+		req.setNumSensors(numSensors);
+		req.setFrictionDistance(frictionDist);
+		return this.callAgentSpawnService(req);
+	}
+
+
+	@Override
+	public SpawnResponse spawnAgent(String name, int numSensors, float frictionDist, float maxDist) {
+		vivae.SpawnRequest req = this.makeBasicRequest(name);
+		req.setNumSensors(numSensors);
+		req.setFrictionDistance(frictionDist);
+		req.setMaxDistance(maxDist);
+		return this.callAgentSpawnService(req);
+	}
+
+	private vivae.SpawnRequest makeBasicRequest(String name){
 		vivae.SpawnRequest req = spawn.getRequest();
 		req.setName(name);
+		return req;
+	}
+
+	/**
+	 * Call the service, receive response and return the result.
+	 * 
+	 * @param req angentSpawn request
+	 * @return agentSpawn response with information about the agent
+	 */
+	private vivae.SpawnResponse callAgentSpawnService(vivae.SpawnRequest req){
 		vivae.SpawnResponse resp = spawn.callService(req);
 
-		if(resp.getSpawnedOK()){
-			System.out.println(me+"agent named "+resp.getName() +" spawned OK");
-			System.out.println(me+"His new publisher and subscriber topics are:" +
-					" Publisher=\""+resp.getPubTopicName()+"\" Subscriber=\""+resp.getSubTopicName()+"\"");
+		if(resp==null){
+			System.err.println(me+"Error spawning agent! Probably network error!");
+			return null;
+		}
+
+		if(!resp.getSpawnedOK()){
+			System.err.println(me+"Error spawning agent named "+resp.getName()+"! "
+					+ "SimulatorServer probably denied to spawn this agent.");
 			return resp;
 		}
-		System.err.println(me+"Error spawning agent named "+name+"!");
+
+		System.out.println(me+"agent named "+resp.getName() +" spawned OK");
+		System.out.println(me+"His new publisher and subscriber topics are:" +
+				" Publisher=\""+resp.getPubTopicName()+"\" Subscriber=\""+resp.getSubTopicName()+"\"");
 		return resp;
 	}
 

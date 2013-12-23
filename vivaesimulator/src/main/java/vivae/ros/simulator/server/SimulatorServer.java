@@ -31,8 +31,6 @@ import vivae.ros.simulator.server.services.SimControlServiceResponseBuilder;
  */
 public class SimulatorServer extends AbstractNodeMain {
 
-	
-
 	public static final String NAME = "VivaeSimulatorServer";
 	public final String me = "["+NAME+"] ";
 

@@ -1,31 +1,23 @@
 package vivae.ros.simulator.engine;
 
 import vivae.arena.Arena;
+import vivae.ros.simulator.server.ExternalSimulation;
 
 
 /**
- * All simulations should be controlled through the simulation controller..
+ * Basic is externalSimulation, this can be used either locally or over the ROS network
+ * provided by the SimulatorServer.
+ * 
+ * This is extension for local use.
  * 
  * @author Jaroslav Vitku
  *
  */
-public interface Simulation {
+public interface Simulation extends ExternalSimulation{
 	
 	public SimulatorController getController();
 		
-	public boolean startSimulation();
-	
-	public boolean stopSimulation();
-	
-	public boolean init();
-	
-	public boolean destroy();
-	
-	public boolean loadMap(String path);
-	
     public Arena getArena();
 
-    public boolean setVisible(boolean visible);
-    
     public boolean isVisible();
 }

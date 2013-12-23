@@ -5,7 +5,6 @@ import org.junit.Test;
 import vivae.ros.simulator.engine.Simulation;
 import vivae.ros.simulator.engine.SimulatorController;
 import vivae.ros.simulator.engine.demo.keycontrolled.KeyControlledVivaeSimulator;
-import vivae.ros.util.ClasspathPrinter;
 import vivae.ros.util.Util;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;

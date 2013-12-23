@@ -6,7 +6,7 @@ import org.ros.concurrent.CancellableLoop;
 import org.ros.node.ConnectedNode;
 
 import ctu.nengoros.service.synchornous.SynchronousService;
-import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
+import vivae.ros.simulator.client.impl.nodes.AgentSpawnClientNode;
 import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.Util;
 
@@ -28,31 +28,30 @@ import vivae.ros.util.Util;
  * 		./run vivae.ros.simulator.client.demo.agent.MySpawnRequestingClient
  * 
  *  ..and press enter
- *  
  * 
  * 
  * @author Jaroslav Vitku
  *
  */
-public class MySpawnRequestingClient extends AgentSpawnSynchronousClient {
+public class MySpawnRequestingClient extends AgentSpawnClientNode {
 
 	public final static String NAME = "MyAgentSpawnSynchronousClient";
 	public final String me = "["+NAME+"] ";
-	
+
 	SynchronousService<vivae.SpawnRequest, vivae.SpawnResponse> spawn;
-	
+
 	// names for some agents
 	String[] names = new String[]{"a", "b", "c", "overagented" };
 
-
 	@Override
 	public void onStart(final ConnectedNode connectedNode) {
+		
+		// register services
 		super.onStart(connectedNode);
-		
-		
+
 		callLoadMap(Sim.Maps.DEFAULT);
 		callSetVisibility(true);
-		
+
 		// create classical while(true) loop, but this loop can be cancelled by the others..
 		connectedNode.executeCancellableLoop(new CancellableLoop() {
 			private int poc;
@@ -64,36 +63,42 @@ public class MySpawnRequestingClient extends AgentSpawnSynchronousClient {
 
 			@Override
 			protected void loop() throws InterruptedException {
-				
+
 				if(poc==0)
 					System.out.println(me+" --------- press any key to request agent and that is it");
 				else
 					System.out.println(me+" --------- press any key to register another agent!");
-				
+
 				try {
 					System.in.read();
 				} catch (IOException e) { e.printStackTrace(); }
 				System.out.println("requesting this agent: "+names[poc]);
-				
+
 				vivae.SpawnResponse sr = spawnAgent(names[poc]);
 				System.out.println(me+"agent registered OK? "+sr.getSpawnedOK());
-				
+
 				if(!sr.getSpawnedOK() && poc>2){
 					System.out.println(me+"\n\nWARNING: You tried to add "+(poc+1)+
 							"th agent to the simulation, "+
 							"but the map contains only 3 bodies for agents!\n\n");
 					System.out.println("......... !!!!!!!!!!!!!!!!!!!!!!!!!!!................\n\n");
 				}
-				
+
+				System.out.println(me+"---------------Informaiton about spawned agent: \n"+
+						"name:" +sr.getName()+"\nspawned OK:"+sr.getSpawnedOK()+
+						"\nNum.sensors: "+sr.getNumSensors()+
+						"\nsubscribes to the topic:"+sr.getSubTopicName()+
+						"\npublishes to the topic:"+sr.getPubTopicName()+"\n---------------");
+
 				System.out.println(me+"Starting the sumilation");
-				
+
 				callStartSimulation();
-				
+
 				Util.waitLoop(2000);
-				
+
 				System.out.println(me+"Stopping the simulation");
 				callStopSimulation();
-				
+
 				if(++poc>names.length-1)
 					poc =0;
 			}

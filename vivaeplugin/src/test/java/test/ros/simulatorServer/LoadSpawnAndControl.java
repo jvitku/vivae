@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
+import vivae.ros.simulator.client.impl.nodes.AgentSpawnClientNode;
 import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.Util;
 import ctu.nengoros.RosRunner;
@@ -25,7 +25,7 @@ import ctu.nengoros.RosRunner;
 public class LoadSpawnAndControl extends ctu.nengoros.nodes.RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
-	public static final String requester = "vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient";
+	public static final String requester = "vivae.ros.simulator.client.impl.nodes.AgentSpawnClientNode";
 
 	@Test
 	public void oneAgent(){
@@ -37,7 +37,7 @@ public class LoadSpawnAndControl extends ctu.nengoros.nodes.RosCommunicationTest
 		assertTrue(rr.isRunning());
 
 		System.out.println("building cl ");
-		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
+		AgentSpawnClientNode cl = (AgentSpawnClientNode)rr.getNode();
 
 		System.out.println("cl  done, calling");
 		resp = cl.callLoadMap(Sim.Maps.names[0]);

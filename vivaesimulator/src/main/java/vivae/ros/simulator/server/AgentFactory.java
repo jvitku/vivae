@@ -13,7 +13,8 @@ import vivae.ros.simulator.engine.agents.impl.SynchronousROSAgent;
  *
  */
 public class AgentFactory {
-
+	
+	public final String me = "[AgentFactory] ";
 	private final AgentRegisteringSimulation mysim;
 
 	public final String pub = "_pub";
@@ -29,7 +30,7 @@ public class AgentFactory {
 
 	private boolean check(String name){
 		if(!mysim.canAddAgent(name)){
-			System.err.println("agent cannot be added to the simulaiton");
+			System.err.println(me+"agent cannot be added to the simulaiton");
 			return false;
 		}
 		return true;

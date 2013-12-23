@@ -1,5 +1,7 @@
 package vivae.ros.simulator.client.demo.agent.control;
 
+import org.ros.node.ConnectedNode;
+
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
 
 /**
@@ -32,6 +34,11 @@ import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
  *
  */
 public class MyAgentControllingClient extends AgentSpawnSynchronousClient {
+
+	public MyAgentControllingClient(ConnectedNode connectedNode) {
+		super(connectedNode);
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 

@@ -1,10 +1,11 @@
 package test.ros.simulatorServer;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.*;
 
-import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
+import vivae.ros.simulator.client.impl.nodes.SynchronousClientNode;
 import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.Util;
 import ctu.nengoros.RosRunner;
@@ -18,7 +19,7 @@ import ctu.nengoros.RosRunner;
 public class MapFound extends ctu.nengoros.nodes.RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
-	public static final String requester = "vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient";
+	public static final String requester = "vivae.ros.simulator.client.impl.nodes.SynchronousClientNode";
 	
 	/**
 	 * This test just checks whether the default map can be found (dependencies OK).
@@ -35,11 +36,21 @@ public class MapFound extends ctu.nengoros.nodes.RosCommunicationTest{
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
 		
-		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
+		SynchronousClientNode cl = (SynchronousClientNode)rr.getNode();		
+		
+		Util.waitLoop(500);
 		
 		resp = cl.callLoadMap(Sim.Maps.DEFAULT);
 		System.out.println("map loaded OK? "+resp);
 		assertTrue(resp);
+		
+
+		s.stop();
+		assertFalse(s.isRunning());
+		
+		rr.stop();
+		assertFalse(rr.isRunning());
 	}
+	
 }
 

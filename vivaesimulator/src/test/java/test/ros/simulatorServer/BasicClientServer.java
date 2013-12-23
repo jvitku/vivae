@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.*;
 
-import vivae.ros.simulator.client.impl.SynchronousClient;
+import vivae.ros.simulator.client.impl.nodes.SynchronousClientNode;
 import vivae.ros.simulator.server.Sim;
 import ctu.nengoros.RosRunner;
 import vivae.ros.util.Util;
@@ -23,7 +23,7 @@ import vivae.ros.util.Util;
 public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
-	public static final String requester = "vivae.ros.simulator.client.impl.SynchronousClient";
+	public static final String requester = "vivae.ros.simulator.client.impl.nodes.SynchronousClientNode";
 	
 	@Test
 	public void startStopServer(){
@@ -38,7 +38,6 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 		assertFalse(rr.isRunning());
 	}
 
-	
 	@Test
 	public void startStopClientServer(){
 		
@@ -66,10 +65,9 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
 		
-		SynchronousClient cl = (SynchronousClient)rr.getNode();
+		SynchronousClientNode cl = (SynchronousClientNode)rr.getNode();
 		
 		resp = cl.callLoadMap(Sim.Maps.names[0]);
-		System.out.println("map loaded OK? "+resp);
 		assertTrue(resp);
 		
 		resp = cl.callSetVisibility(true);

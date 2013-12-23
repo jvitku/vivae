@@ -41,6 +41,7 @@ import vivae.ros.simulator.server.Sim;
  * @author Jaroslav Vitku
  *
  */
+@Deprecated
 public class MyAsynchronousClient extends AbstractNodeMain {
 
 	private final String me = "[MyAsynchronousClient] ";

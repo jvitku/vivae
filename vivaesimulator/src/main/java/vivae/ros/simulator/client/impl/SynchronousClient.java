@@ -2,28 +2,24 @@ package vivae.ros.simulator.client.impl;
 
 import org.ros.exception.RosRuntimeException;
 import org.ros.exception.ServiceNotFoundException;
-import org.ros.namespace.GraphName;
-import org.ros.node.AbstractNodeMain;
 import org.ros.node.ConnectedNode;
 import org.ros.node.service.ServiceClient;
 
 import ctu.nengoros.service.synchornous.SynchronousService;
-import vivae.ros.simulator.client.SynchronousSimulationClient;
+import vivae.ros.simulator.client.SynchornousClient;
 import vivae.ros.simulator.server.Sim;
 
 /**
- * This is general synchronous client for the SimulatorServer. To implement your arbitrary client,
- * subclass this and in the method onStart call super.onStart(connectedNode). 
+ * This is general synchronous client for the SimulatorServer which is able to control 
+ * the state of the simulation.  
  * 
  * @author Jaroslav Vitku
  *
  */
-public class SynchronousClient extends AbstractNodeMain implements SynchronousSimulationClient{
+public class SynchronousClient implements SynchornousClient{
 
 	public final static String NAME = "SynchronousClient";
 	public final String me = "["+NAME+"] "; 
-
-	
 
 	protected SynchronousService<vivae.LoadMapRequest,vivae.LoadMapResponse> map;
 	protected SynchronousService<vivae.SimControllerRequest,vivae.SimControllerResponse> controls;
@@ -34,13 +30,12 @@ public class SynchronousClient extends AbstractNodeMain implements SynchronousSi
 
 	protected final int servicesleeptime = 200;
 	protected final int maxWaitForServer= 5000;	// max time to wait for server to launch
-
-	@Override
-	public GraphName getDefaultNodeName() { return GraphName.of(NAME); }
-
-	@Override
-	public void onStart(final ConnectedNode connectedNode) {
-
+	
+	public SynchronousClient(ConnectedNode connectedNode){
+		this.registerMyServices(connectedNode);
+	}
+	
+	private void registerMyServices(ConnectedNode connectedNode) throws RosRuntimeException{
 		int sleptAlready = 0;
 		ServiceClient<vivae.LoadMapRequest, vivae.LoadMapResponse> mapServiceClient = null;
 		ServiceClient<vivae.SimControllerRequest, vivae.SimControllerResponse> simServiceClient = null;
@@ -63,7 +58,6 @@ public class SynchronousClient extends AbstractNodeMain implements SynchronousSi
 			}
 		}
 	}
-
 
 	/**
 	 * Register services or throw an exception if one of them is not found. 
@@ -166,4 +160,5 @@ public class SynchronousClient extends AbstractNodeMain implements SynchronousSi
 			}
 		}
 	}
+
 }

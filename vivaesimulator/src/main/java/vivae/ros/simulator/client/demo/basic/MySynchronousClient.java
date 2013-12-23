@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.ros.concurrent.CancellableLoop;
 import org.ros.node.ConnectedNode;
 
+import vivae.ros.simulator.client.impl.nodes.SynchronousClientNode;
 import vivae.ros.util.Util;
 
 /**
@@ -24,11 +25,10 @@ import vivae.ros.util.Util;
  * 
  * 		./run vivae.ros.simulator.client.demo.basic.MySynchronousClient
  *  
- * 
  * @author Jaroslav Vitku
  *
  */
-public class MySynchronousClient extends vivae.ros.simulator.client.impl.SynchronousClient{
+public class MySynchronousClient extends SynchronousClientNode{
 
 	public static final String NAME = "MySynchronousClient";
 	
@@ -39,6 +39,8 @@ public class MySynchronousClient extends vivae.ros.simulator.client.impl.Synchro
 
 	@Override
 	public void onStart(final ConnectedNode connectedNode) {
+		
+		// register services
 		super.onStart(connectedNode);
 
 		connectedNode.executeCancellableLoop(new CancellableLoop() {

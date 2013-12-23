@@ -6,7 +6,7 @@ import org.ros.concurrent.CancellableLoop;
 import org.ros.node.ConnectedNode;
 
 import ctu.nengoros.service.synchornous.SynchronousService;
-import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
+import vivae.ros.simulator.client.impl.nodes.AgentSpawnClientNode;
 import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.Util;
 
@@ -30,11 +30,10 @@ import vivae.ros.util.Util;
  *  ..and press enter
  *  
  * 
- * 
  * @author Jaroslav Vitku
  *
  */
-public class MySpawnRequestingClient extends AgentSpawnSynchronousClient {
+public class MySpawnRequestingClient extends AgentSpawnClientNode {
 
 	public final static String NAME = "MyAgentSpawnSynchronousClient";
 	public final String me = "["+NAME+"] ";
