@@ -63,6 +63,13 @@ public class SynchronousClientNode extends AbstractNodeMain implements Synchorno
 		this.awaitStarted();
 		return sc.callSetVisibility(visible); 
 	}
+	
+	@Override
+	public boolean callReset() { 
+		this.awaitStarted();
+		return sc.callReset(); 
+	}
+	
 
 	private void awaitStarted(){
 		slept=0;

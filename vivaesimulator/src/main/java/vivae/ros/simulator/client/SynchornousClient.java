@@ -1,6 +1,5 @@
 package vivae.ros.simulator.client;
 
-import org.ros.exception.RosRuntimeException;
 
 /**
  * This client is purposed to connect to the SimulatorServer and call 
@@ -9,7 +8,7 @@ import org.ros.exception.RosRuntimeException;
  * -loadMap
  * -start
  * -stop
- * -reset
+ * -reset (destroys the current simulation and starts the new one)
  * -spawn agent..
  * 
  * The synchronous version means that methods wait for response 
@@ -21,16 +20,6 @@ import org.ros.exception.RosRuntimeException;
  */
 public interface SynchornousClient {
 
-	/**
-	 * This has to be called before any of other methods, this registers
-	 * all services in the ROS network.
-	 * 
-	 * The method should be called from the onStart method or from the class constructor
-	 * 
-	 * @throws RosRuntimeException if some of my services was not found/connected
-	 */
-	//public void registerMyServices(ConnectedNode connectedNode) throws RosRuntimeException;
-	
 	public boolean callLoadMap(String name);
 
 	public boolean callStartSimulation();
@@ -40,7 +29,8 @@ public interface SynchornousClient {
 	public boolean callDestroySimulation();
 
 	public boolean callSetVisibility(boolean visible);
-
+	
+	public boolean callReset();
 
 }
 

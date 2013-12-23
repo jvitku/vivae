@@ -140,6 +140,13 @@ public class SynchronousClient implements SynchornousClient{
 		return resp.getOk();
 	}
 
+	@Override
+	public boolean callReset() {
+		this.awaitServicesReady();
+		return this.callControlsService(Sim.Cmd.RESET);
+	}
+
+	
 	/**
 	 * This method waits until the node is initialized
 	 * and the services are registered in the ROS network! 

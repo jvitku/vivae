@@ -40,7 +40,5 @@ public interface Controls {
 			double FrictionSensor) throws StructuralException;
 	
 	void removeAgent(String name);
-	
-	
 
 }

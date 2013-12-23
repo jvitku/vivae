@@ -23,9 +23,9 @@ public class SynchronousROSAgent extends RobotWithSensorController implements Ro
 		public String pub;
 		public String sub;
 		
-		private double maxDistance =50;
+		private double maxDistance = 50;
 		private double frictionDistance = 25;
-		private int numSensors = 6; // note that this may not be the num of sensors..
+		private int numSensors = 6; 
 		
 		private volatile float lw;
 		private volatile float rw;
@@ -68,7 +68,7 @@ public class SynchronousROSAgent extends RobotWithSensorController implements Ro
 		        	
 		        	float[] data = message.getData();
 		        	if(data.length != 2){
-		        		System.err.println("Aget: received data have has to contain 2 values!");
+		        		System.err.println("Aget: received data has to contain 2 values!");
 		        		return;
 		        	}
 		        	// set the motor commands

@@ -63,6 +63,12 @@ public class AgentSpawnClientNode extends AbstractNodeMain implements AgentSpawn
 		this.awaitStarted();
 		return sc.callSetVisibility(visible); 
 	}
+	
+	@Override
+	public boolean callReset() {
+		this.awaitStarted();
+		return sc.callReset();
+	}
 
 	@Override
 	public SpawnResponse spawnAgent(String name) { 
@@ -103,4 +109,5 @@ public class AgentSpawnClientNode extends AbstractNodeMain implements AgentSpawn
 			}
 		}
 	}
+
 }
