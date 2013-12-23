@@ -107,7 +107,7 @@ public class DataLoader{
 		// try to find file, if found, return his name with absolute path
 		for(int i=0; i<locations.length; i++){
 			abs = getProjectAbsPath()+locations[i]+s;
-			System.out.println("trying: "+abs);
+			//System.out.println("trying: "+abs);
 			File f = new File(abs);
 			if(f.exists()){
 				//System.out.println("FOUND here: "+abs);

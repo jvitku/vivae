@@ -27,13 +27,8 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 
 		RosRunner s= runNode(server);		// server
 		assertTrue(s.isRunning());
-		
-		//Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
-		
-		// This must be here to initialize the services TODO improve this
-		Util.waitLoop(10);
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		
@@ -81,10 +76,6 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 		//Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
-		
-		
-		// This must be here to initialize the services TODO improve this
-		Util.waitLoop(10);
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		
@@ -139,14 +130,8 @@ public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
 
 		RosRunner s= runNode(server);		// server
 		assertTrue(s.isRunning());
-		
-		//Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
-		
-		
-		// This must be here to initialize the services TODO improve this
-		Util.waitLoop(10);
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		

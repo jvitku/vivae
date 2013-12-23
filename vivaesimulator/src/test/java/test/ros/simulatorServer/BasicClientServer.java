@@ -25,20 +25,20 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.SynchronousClient";
 	
-	
 	@Test
 	public void startStopServer(){
 		RosRunner rr = runNode(server);
 		//NodeMain node = rr.getNode();
 		assertTrue(rr.isRunning());
 		
-		sleep(100);
+		sleep(10);
 		
 		assertTrue(rr.isRunning());
 		rr.stop();
 		assertFalse(rr.isRunning());
 	}
 
+	
 	@Test
 	public void startStopClientServer(){
 		
@@ -48,7 +48,7 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
 		
-		sleep(100); // cannot shut down the server immediately
+		sleep(200); // cannot shut down the server immediately
 		
 		s.stop();
 		assertFalse(s.isRunning());
@@ -63,14 +63,8 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 
 		RosRunner s= runNode(server);		// server
 		assertTrue(s.isRunning());
-		
-		//Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
-		
-		
-		// This must be here to initialize the services TODO improve this
-		Util.waitLoop(10);
 		
 		SynchronousClient cl = (SynchronousClient)rr.getNode();
 		
@@ -102,5 +96,5 @@ public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
 		rr.stop();
 		assertFalse(rr.isRunning());
 	}
-	
 }
+

@@ -28,21 +28,47 @@ implements AgentSpawningSynchronousSimulationClient{
 	public void onStart(final ConnectedNode connectedNode){
 		super.onStart(connectedNode);
 
-		// try to connect to the service for requesting the agents..		
-		try {
-			ServiceClient<vivae.SpawnRequest, vivae.SpawnResponse> serviceClient 
-			= connectedNode.newServiceClient(Sim.Msg.SPAWN, vivae.Spawn._TYPE);
+		ServiceClient<vivae.SpawnRequest, vivae.SpawnResponse> serviceClient = null;
+		int sleptAlready = 0;
 
-			// make it synchronous service
-			spawn= new SynchronousService<vivae.SpawnRequest, vivae.SpawnResponse>(serviceClient);
+		while(true){
+			try {
+				// try to connect to the service for requesting the agents..
+				this.registerService(connectedNode, serviceClient);
+				break;
 
-		} catch (ServiceNotFoundException e) {
-			throw new RosRuntimeException(e);
+				// problem? retry several times (simulatorServer may not be started)
+			} catch (ServiceNotFoundException e) {
+
+				if(servicesleeptime*sleptAlready++ > maxWaitForServer){
+					System.err.println(me+"Error while initializing agent spawn service!");
+					throw new RosRuntimeException(e);
+				}
+				System.out.println(me+"Could not register service.. retrying");
+			}
 		}
+	}
+
+	/**
+	 * Register agent spawning service to the simulatorServer
+	 * 
+	 * @param connectedNode
+	 * @param serviceClient
+	 * @throws ServiceNotFoundException server probably not managed to initialize the service yet
+	 */
+	private void registerService(ConnectedNode connectedNode,
+			ServiceClient<vivae.SpawnRequest, vivae.SpawnResponse> serviceClient)
+					throws ServiceNotFoundException{
+
+		serviceClient = connectedNode.newServiceClient(Sim.Msg.SPAWN, vivae.Spawn._TYPE);
+		spawn= new SynchronousService<vivae.SpawnRequest, vivae.SpawnResponse>(serviceClient);
+
 	}
 
 	@Override
 	public SpawnResponse spawnAgent(String name) {
+		this.awaitServicesReady();
+
 		vivae.SpawnRequest req = spawn.getRequest();
 		req.setName(name);
 		vivae.SpawnResponse resp = spawn.callService(req);
@@ -55,6 +81,26 @@ implements AgentSpawningSynchronousSimulationClient{
 		}
 		System.err.println(me+"Error spawning agent named "+name+"!");
 		return resp;
+	}
+
+	/**
+	 * Wait also for agent spawning service to be registered.
+	 */
+	@Override
+	protected void awaitServicesReady(){
+		super.awaitServicesReady();
+		while(spawn==null){
+			try {
+				Thread.sleep(sleeptime);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if(sleeptime*slept++ >maxSleep){
+				System.err.println(me+"Services not registered within " +
+						"max. time of "+maxSleep+"ms, giving up !!!");
+				return;
+			}
+		}
 	}
 
 }

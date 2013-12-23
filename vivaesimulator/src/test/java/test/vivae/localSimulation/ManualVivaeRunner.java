@@ -6,6 +6,7 @@ import vivae.ros.simulator.engine.Simulation;
 import vivae.ros.simulator.engine.SimulatorController;
 import vivae.ros.simulator.engine.demo.keycontrolled.KeyControlledVivaeSimulator;
 import vivae.ros.util.ClasspathPrinter;
+import vivae.ros.util.Util;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -17,8 +18,6 @@ import static org.junit.Assert.assertFalse;
  */
 public class ManualVivaeRunner {
 
-	public static int wait = 1;
-	
 	public static void main(String[] args){
 		ManualVivaeRunner mvr = new ManualVivaeRunner(); 
 
@@ -29,8 +28,8 @@ public class ManualVivaeRunner {
 	@Test
 	public void testVivaeRunner(){
 
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-		ClasspathPrinter.printListFiles();
+		//System.out.println("Working Directory = " + System.getProperty("user.dir"));
+		//ClasspathPrinter.printListFiles();
 
 		/**
 		 * One robot is controlled by keyboard
@@ -51,11 +50,7 @@ public class ManualVivaeRunner {
 		assertTrue(sc.isInited());
 		assertTrue(sc.isRunning());
 
-		try {
-			Thread.sleep(wait*20);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Util.waitLoop(10);
 
 		System.out.println("Stopping the arena..");
 		sc.stop();
@@ -76,45 +71,28 @@ public class ManualVivaeRunner {
 		assertTrue(sc.isInited());
 		assertTrue(sc.isRunning());
 		
-		try {
-			Thread.sleep(wait*10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+		Util.waitLoop(10);
+
 		System.out.println("\n\nStopping the simulation");
 		sc.stop();
 		assertTrue(sc.isInited());
 		assertFalse(sc.isRunning());
-		try {
-			Thread.sleep(wait*20);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
+		Util.waitLoop(10);
+
 		System.out.println("\n\n Resuming the simulation");
 		sc.start();
-		try {
-			Thread.sleep(wait*30);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
+		Util.waitLoop(10);
+
 		sc.stop();
 		sc.destroy();
-		
-		try {
-			Thread.sleep(wait*10);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+
 		System.out.println("\n\n Restarting simulation from the scratch\n");
 		sc.start();
 		
+		Util.waitLoop(10);
 
-		try {
-			Thread.sleep(wait*5);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		System.out.println("\nCLosing the simulation end exiting the process..");
 		sc.destroy();
 	}

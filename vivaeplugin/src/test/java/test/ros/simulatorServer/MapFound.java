@@ -21,7 +21,7 @@ public class MapFound extends ctu.nengoros.nodes.RosCommunicationTest{
 	public static final String requester = "vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient";
 	
 	/**
-	 * This test just checks whether the default map can be found.
+	 * This test just checks whether the default map can be found (dependencies OK).
 	 * The error can occur while the project is linked e.g. to jar file of
 	 * vivaesimulator located on unexpected place (e.g. under ~/.m2) 
 	 */
@@ -32,12 +32,8 @@ public class MapFound extends ctu.nengoros.nodes.RosCommunicationTest{
 		RosRunner s= runNode(server);		// server
 		assertTrue(s.isRunning());
 		
-		//Util.waitLoop(1000);
 		RosRunner rr = runNode(requester);	// client
 		assertTrue(rr.isRunning());
-		
-		// This must be here to initialize the services TODO improve this
-		Util.waitLoop(10);
 		
 		AgentSpawnSynchronousClient cl = (AgentSpawnSynchronousClient)rr.getNode();
 		
@@ -46,3 +42,4 @@ public class MapFound extends ctu.nengoros.nodes.RosCommunicationTest{
 		assertTrue(resp);
 	}
 }
+

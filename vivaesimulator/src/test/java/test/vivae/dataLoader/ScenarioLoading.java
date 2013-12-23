@@ -118,14 +118,5 @@ public class ScenarioLoading {
 		
 		return (longString.substring(l-s).equalsIgnoreCase(searchedSubstring));
 	}
-	
-	
-	/**
-	 * There are maps and tiles
-	 */
-	@Test
-	public void loadTile(){
-	}
-
 
 }
