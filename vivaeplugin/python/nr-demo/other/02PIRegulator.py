@@ -1,6 +1,5 @@
-# Agent which is controlled by simple proportional controller and navigates through the maze.
-# -only distance sensors are used here (lines)
-# -position of friciton sensors is under the agent (dots; friction of road 0 < friction of grass)
+# Agent which is controlled by proportional controller and navigates through the maze. 
+# Noise is added into the control signal by use of ANN.
 # 
 # by Jaroslav Vitku
 
@@ -23,44 +22,43 @@ import time
 from ca.nengo.math.impl import FourierFunction
 from ca.nengo.model.impl import FunctionInput
 from ca.nengo.model import Units
-from ctu.nengoros.modules.vivae import VivaeNeuralModule as NeuralModule
-from ctu.nengoros.comm.nodeFactory import NodeGroup as NodeGroup
-from ctu.nengoros.comm.rosutils import RosUtils as RosUtils
-from ctu.nengoros.modules.vivae import SimulationControls as Controls
+from nengoros.modules.impl.vivae import VivaeNeuralModule as NeuralModule
+from nengoros.comm.nodeFactory import NodeGroup as NodeGroup
+from nengoros.comm.rosutils import RosUtils as RosUtils
+from nengoros.modules.impl.vivae.impl import SimulationControls as Controls
 import simplemodule
-
-#RosUtils.setAutorun(False)     # Do we want to autorun roscore and rxgraph? (tru by default)
+#RosUtils.setAutorun(False)     # Do we want to autorun roscore and rxgraph? (true by default)
 
 # initializes the simulator
 def initVivae(numsensors):
-    modem  = "ctu.nengoros.comm.nodeFactory.modem.impl.DefaultModem";   
-    server = "vivae.ros.simulator.server.SimulatorServer"        		# start the simulator server in own thread
+    modem  = "nengoros.comm.nodeFactory.modem.impl.DefaultModem";   # custom modem here
+    server = "vivae.ros.simulatorControlsServer.ControlsServer"        # call Vivae as a thread in Java from this process
     # Call Vivae as an external process
     #server = ["./sb/../../../../simulators/vivae/build/install/vivae/bin/vivae","vivae.ros.simulatorControlsServer.ControlsServer"]
 
     # create group of nodes
     g = NodeGroup("vivae", True);               # create default group of nodes
-    g.addNode(server, "vivaeSimulator", "java");   # run the simulator..
-    g.addNode(modem,"modem","modem")              # add default modem..
+    g.addNC(server, "vivaeSimulator", "java");   # run the simulator..
+    g.addNC(modem,"modem","modem")              # add default modem..
     g.startGroup()                              # start group normally
 
+    modem = g.getModem()
     #time.sleep(3)    # if the process is native, it takes longer time to init the services !!                 
-    simulator = NeuralModule('VivaeSimulator', g)  # create NeuralModule which is able to add/remove agents
+    simulator = NeuralModule('VivaeSimulator',modem)  # create NeuralModule which is able to add/remove agents
 
-    sc = simulator.getControls();     # this starts the control services..
-    sc.callSetVisibility(True);              # make simulation window visible..
+    vivae = simulator.getControls();     # this starts the control services..
+    vivae.setVisible(True);              # make simulation window visible..
     many=net.add(simulator)                 # add it to the Nengo network
 
-    sc.callLoadMap('data/scenarios/test/walls.svg')  
+    vivae.loadMap('data/scenarios/test/wallsII.svg')  
 
-    #addAgent(name,numSensors, maxDistance, frictionSensor) 
-    sc.addAgent('a',2*numsensors,    120          ,0)
-    sc.start()
+    #addAgent(name,numSensors, maxDistance, frictionSensor)  (note that you will actually get numSensors+1 floats +(speed))
+    vivae.addAgent('a',2*numsensors,    120          ,0)
+    vivae.start()
     return simulator;
-    
-class Controller(simplemodule.SimpleModule):
 
-    # This "constructor" is called before each simulation
+# controller mixes sinusoid with actual closed-loop signal
+class Controller(simplemodule.SimpleModule):
     def init(self,inputdims,outputdims,numpars):
 
         self.inputdims=inputdims;    # no of agents sensors (2x distance [used] 2xfriction [unused] for simplicity)
@@ -70,10 +68,24 @@ class Controller(simplemodule.SimpleModule):
         
         self.k = 0.12;               # regulator parameters
         self.p = 0.25;
+        self.pi = 0.04;
+        
+        self.prevL = 0;
+        self.prevR = 0;
         
     # data from agent are: [[distance sensors from left to right], [friction sensors from left to right], [speed]]
     def termination_inputs(self,values):
-        self.output = [self.k+self.p*values[1], self.k+self.p*values[2]]; # more close to the wall => smaller speed on the opposite wheel
+        self.t = self.t+1;
+        self.prevL = self.prevL/self.t + values[1];         # "integrate"
+        self.prevR = self.prevR/self.t + values[2];
+        
+        I = [self.pi*self.prevL, self.pi*self.prevR];
+        P = [self.p*values[1], self.p*values[2]];       
+        
+        self.output = [P[0]+I[0]+self.k, P[1]+I[1]+self.k]; # add forward speed 
+        
+        #print 'speed '+repr(values[8])
+        
     def origin_outputs(self):
         return self.output
     
@@ -91,29 +103,27 @@ class DataSaver(nef.SimpleNode):
         o.write('%1.3f,%s\n'%(self.t,list(actuatordata)))
         i.close()
         o.close()
-
-################################################################################# here is the script
-net=nef.Network('Vivae - hardwired control for agent')
+        
+#################################################################################
+net=nef.Network('Vivae - PI controller for agent')
 net.add_to_nengo()  
 
 numsensors=4                                # number of agents sensors (if changed, need to read correct values in the Controller)
 simulator = initVivae(numsensors);    # build simulator and access its controls
-sc = simulator.getControls();
+vivae = simulator.getControls();
 
 controller = net.add(Controller('Agent controller',2*numsensors+1,2,0)); # build controller
 
 net.connect(simulator.getAgent('a').getOrigin(),controller.getTermination('inputs'))    # connect agent with controller
-net.connect(controller.getOrigin('outputs'), simulator.getAgent('a').getTermination())
+net.connect(controller.getOrigin('outputs'), simulator.getAgent('a').getTermination())  # connect controller to the agent
 
-#saver = net.add(DataSaver('saver'))         # save data??
 
+#saver = net.add(DataSaver('saver')) # save data ??
 
 t=2;
 dt=0.001;
-print "OK, configuration done. Simulating network for "+repr(t)+" seconds and ssaving data to files"
-net.run(t,dt)
+print "OK, configuration done. Simulating network for "+repr(t)+" seconds"
+#net.run(t,dt)
 
 print "Simulation done, will reset and show the interactive simulation window."
 net.view()
-
-print "All done."
