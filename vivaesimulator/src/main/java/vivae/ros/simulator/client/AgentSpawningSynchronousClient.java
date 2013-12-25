@@ -22,29 +22,69 @@ public interface AgentSpawningSynchronousClient extends SynchornousClient {
 	/**
 	 * Spawns agent with the default values (num.sensors, friction distance etc..)
 	 * 
+	 * Not recommended to use, will not initialize sensors correctly.
+	 * 
 	 * @param name
 	 * @return
 	 */
 	public vivae.SpawnResponse spawnAgent(String name);
 	
 	/**
+	 * Not recommended to use, will spawn agent with all sensor parameters
+	 * set to zero. Obstacle sensors will return NaN and friction 
+	 * sensors will measure only friction directly under the agent. 
+	 * 
+	 * Parameter numSensors supports even numbers > 4, the agent will use
+	 * two sensors: distance (lines) and friction (rectangles). The agent
+	 * will publish array of values of the following structure:
+	 * [distanceSensorData, frictionSensorData, currentSpeed]
+	 * and dimensions of data:
+	 * [numSensors/2, numSensors/2, 1]
+	 * 
 	 * 
 	 * @param name
-	 * @param numSensors specify number of agents sensors
+	 * @param numSensors supported even numbers > 4
 	 * @return
 	 */
 	public vivae.SpawnResponse spawnAgent(String name, int numSensors);
 	
 	/**
+	 * WIll spawn agent with no distance sensors (distance sensors return NaN),
+	 * and with numSensors/2 of friction sensors placed on the specified distance 
+	 * from agents body.
+	 * 
+	 * Parameter numSensors supports even numbers > 4, the agent will use
+	 * two sensors: distance (lines) and friction (rectangles). The agent
+	 * will publish array of values of the following structure:
+	 * [distanceSensorData, frictionSensorData, currentSpeed]
+	 * and dimensions of data:
+	 * [numSensors/2, numSensors/2, 1]
 	 * 
 	 * @param name
-	 * @param numSensors number of agents sensors
-	 * @param frictionDist specify range of agents friction sensors
+	 * @param numSensors number of agents sensors, see above
+	 * @param frictionDist distance of friction sensors from agent
 	 * @return
 	 */
 	public vivae.SpawnResponse spawnAgent(String name, int numSensors, float frictionDist);
 	
 	/**
+	 * Will spawn agent with numSensors/2 of distance (obstacle) sensors
+	 * and numSensors/2 of friction sensors. 
+	 * 
+	 * Parameter numSensors supports even numbers > 4, the agent will use
+	 * two sensors: distance (lines) and friction (rectangles). The agent
+	 * will publish array of values of the following structure:
+	 * [distanceSensorData, frictionSensorData, currentSpeed]
+	 * and dimensions of data:
+	 * [numSensors/2, numSensors/2, 1]
+	 * 
+	 * Example of use:
+	 * spawnAgent("test",8,10,30); 
+	 * will spawn agent with:
+	 * -4 distance sensors measuring distance to 
+	 * obstacle with the range maxDist,
+	 * -4 friction sensors placed frictionDist from the agents body
+	 * -1 sensor of actual speed 
 	 * 
 	 * @param name
 	 * @param numSensors number of sensors

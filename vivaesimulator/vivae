@@ -48,10 +48,10 @@ if [ ! -d "build/install/$NAME/bin/" ]; then
     echo "\nInstalled\n"
 fi
 
-echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Starting Vivae Simulation Server NOW"  
+echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Starting Vivae SimulationServer NOW"  
 cd build/install/$NAME/bin/
 
-./$NAME vivae.ros.simulatorControlsServer.ControlsServer
+./$NAME vivae.ros.simulator.server.SimulatorServer
 
 
 

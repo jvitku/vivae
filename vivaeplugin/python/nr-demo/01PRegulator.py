@@ -40,7 +40,7 @@ def initVivae(numsensors):
 
     # create group of nodes
     g = NodeGroup("vivae", True);               # create default group of nodes
-    g.addNode(server, "vivaeSimulator", "java");   # run the simulator..
+    g.addNode(server, "SimulatorServer", "java");   # run the simulator..
     g.addNode(modem,"modem","modem")              # add default modem..
     g.startGroup()                              # start group normally
 

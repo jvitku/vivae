@@ -4,6 +4,21 @@ public class Util {
 	
 	private static final int defwt = 70;
 	
+	public static void waitLoopQuiet(int waittime){
+		waitLoop(waittime, defwt);
+	}
+	
+	public static void waitLoopQuiet(int waittime, int wt){
+		int waited = 0;
+		
+		while(waited<waittime){
+			try {
+				Thread.sleep(wt);
+			} catch (InterruptedException e) { e.printStackTrace(); }
+			waited +=wt;
+		}
+	}
+	
 	public static void waitLoop(int waittime){
 		waitLoop(waittime, defwt);
 	}

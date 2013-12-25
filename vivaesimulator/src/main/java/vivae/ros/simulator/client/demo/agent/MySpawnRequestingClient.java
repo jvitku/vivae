@@ -81,7 +81,7 @@ public class MySpawnRequestingClient extends AgentSpawnClientNode {
 					System.out.println(me+"\n\nWARNING: You tried to add "+(poc+1)+
 							"th agent to the simulation, "+
 							"but the map contains only 3 bodies for agents!\n\n");
-					System.out.println("......... !!!!!!!!!!!!!!!!!!!!!!!!!!!................\n\n");
+					System.out.println("......... !!!!!!!!!!!!!!!!!!!!!!!!!!! ................\n\n");
 				}
 
 				System.out.println(me+"---------------Informaiton about spawned agent: \n"+
