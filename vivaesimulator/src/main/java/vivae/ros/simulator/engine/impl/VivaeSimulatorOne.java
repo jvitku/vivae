@@ -199,8 +199,22 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 	@Override
 	public boolean destroy() {
 		System.out.println(me+"releasing all resources");
-		if(f!=null)
-			f.dispose();
+		
+		//System.out.println("killin it");
+		//System.exit(0);
+		//if(true)
+		//	return true;
+		
+		if(f!=null){
+			System.out.println(me+"Disposing JFrame...");
+			f.setEnabled(false);
+			f.removeAll();
+			f.dispose();		// does not return when deleting from GUI
+			
+		}
+		
+		System.out.println(me+"JFrame disposed, destroying the arena");
+		
 		if(arena == null){
 			System.err.println(me+"Warning: Arena still not initialized, "
 					+ "probably closing it to soon!");

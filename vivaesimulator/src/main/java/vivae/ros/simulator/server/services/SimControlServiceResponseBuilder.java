@@ -45,7 +45,7 @@ ServiceResponseBuilder<vivae.SimControllerRequest, vivae.SimControllerResponse>{
 
 		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.DESTROY)){
 			boolean result = sc.destroy();
-			//System.out.println(me+"called request for destroy, responding with "+result);
+			System.out.println(me+"called request for destroy, responding with "+result);
 			resp.setOk(result);
 
 		}else if(req.getWhat().equalsIgnoreCase(Sim.Cmd.RESET)){

@@ -23,7 +23,7 @@ repositories {
 }
 
 // Define the version and name of my stack (ROS convention)
-version = '0.0.0-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
 group = 'ctu.nengoros.simulators'
 
 dependencies {

@@ -4,8 +4,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ctu.nengoros.simulators</groupId>
   <artifactId>vivaeplugin</artifactId>
-  <version>0.0.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <dependencies>
+    <dependency>
+      <groupId>ctu.nengoros.simulators</groupId>
+      <artifactId>vivaesimulator</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>ros.rosjava_core</groupId>
       <artifactId>rosjava</artifactId>
@@ -22,12 +28,6 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.10</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>ctu.nengoros.simulators</groupId>
-      <artifactId>vivaesimulator</artifactId>
-      <version>0.0.0-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>

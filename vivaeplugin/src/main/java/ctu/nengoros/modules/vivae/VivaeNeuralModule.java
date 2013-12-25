@@ -46,6 +46,8 @@ public class VivaeNeuralModule extends AbsNeuralModule{
 	}
 	
 	public VivaeAgent getAgent(String name){
+		this.awaitStarted();
+		
 		if(sc.getAgents().containsKey(name)){
 			return (VivaeAgent) sc.getAgents().get(name);
 		}
@@ -55,6 +57,7 @@ public class VivaeNeuralModule extends AbsNeuralModule{
 	}
 	
 	public void removeAgent(String name){
+		this.awaitStarted();
 		sc.removeAgent(name);
 	}
 	
@@ -64,7 +67,7 @@ public class VivaeNeuralModule extends AbsNeuralModule{
 	 */
 	@Override
 	public void reset(boolean randomize) {
-		
+		this.awaitStarted();
 		// TODO: Vivae has to be reloaded in order to work correctly with the Nengo.. ?
 		sc.callReset(); 
 		mc.resetModem();
@@ -75,8 +78,9 @@ public class VivaeNeuralModule extends AbsNeuralModule{
 	 */
 	@Override
 	public void notifyAboutDeletion() {
-		System.out.print(me+"OK, I am being deleted, will close ROS componnets and Vivae"+getName());
-		sc.callStopSimulation();
+		this.awaitStarted();
+		System.out.print(me+"OK, I am being deleted, will close ROS componnets and "+getName());
+		//sc.callStopSimulation();
 		sc.callDestroySimulation();
 		mc.stop(); 
 	}

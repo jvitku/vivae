@@ -132,13 +132,18 @@ public class SynchronousClient implements SynchornousClient{
 
 		vivae.SimControllerRequest req = controls.getRequest();
 		req.setWhat(command);
+		//System.out.println("calling this service: "+command);
 		vivae.SimControllerResponse resp = controls.callService(req);
 
+		//System.out.println("service is done, the result is ull? "+(resp==null));
 		if(resp==null)
 			return false;
 
+		//System.out.println("service is done, the result is unot null ll? "+resp.getOk());
 		return resp.getOk();
 	}
+	
+	// SimControlService
 
 	@Override
 	public boolean callReset() {

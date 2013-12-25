@@ -27,36 +27,8 @@ from ctu.nengoros.comm.nodeFactory import NodeGroup as NodeGroup
 from ctu.nengoros.comm.rosutils import RosUtils as RosUtils
 from ctu.nengoros.modules.vivae import SimulationControls as Controls
 import simplemodule
+import vivaeServer as vivae
 
-#RosUtils.setAutorun(False)     # Do we want to autorun roscore and rxgraph? (tru by default)
-
-# initializes the simulator
-def initVivae(numsensors):
-    modem  = "ctu.nengoros.comm.nodeFactory.modem.impl.DefaultModem";   
-    server = "vivae.ros.simulator.server.SimulatorServer"        		# start the simulator server in own thread
-    # Call Vivae as an external process
-    #server = ["./sb/../../../../simulators/vivae/build/install/vivae/bin/vivae","vivae.ros.simulatorControlsServer.ControlsServer"]
-
-    # create group of nodes
-    g = NodeGroup("vivae", True);               # create default group of nodes
-    g.addNode(server, "SimulatorServer", "java");   # run the simulator..
-    g.addNode(modem,"modem","modem")              # add default modem..
-    g.startGroup()                              # start group normally
-
-    #time.sleep(3)    # if the process is native, it takes longer time to init the services !!                 
-    simulator = NeuralModule('VivaeSimulator', g)  # create NeuralModule which is able to add/remove agents
-
-    sc = simulator.getControls();     # this starts the control services..
-    sc.callSetVisibility(True);              # make simulation window visible..
-    many=net.add(simulator)                 # add it to the Nengo network
-
-    sc.callLoadMap('data/scenarios/test/walls.svg')  
-
-    #addAgent(name,numSensors, maxDistance, frictionSensor) 
-    sc.addAgent('a',2*numsensors,    120          ,0)
-    sc.callStartSimulation()
-    return simulator;
-    
 class Controller(simplemodule.SimpleModule):
 
     # This "constructor" is called before each simulation
@@ -75,7 +47,7 @@ class Controller(simplemodule.SimpleModule):
         self.output = [self.k+self.p*values[1], self.k+self.p*values[2]]; # more close to the wall => smaller speed on the opposite wheel
     def origin_outputs(self):
         return self.output
-    
+
 # stores data into csv files each time step
 class DataSaver(nef.SimpleNode):
     def tick(self):
@@ -96,20 +68,23 @@ net=nef.Network('Vivae - hardwired control for agent')
 net.add_to_nengo()  
 
 numsensors=4                                # number of agents sensors (if changed, need to read correct values in the Controller)
-simulator = initVivae(numsensors);    # build simulator and access its controls
-sc = simulator.getControls();
+
+simulator = vivae.init(net,"data/scenarios/test/walls.svg", True)
+v = simulator.getControls()
+v.addAgent('a',2*numsensors,    120          ,0)
+v.callStartSimulation()
+
 
 controller = net.add(Controller('Agent controller',2*numsensors+1, 2, 0 )); # build controller
 
 net.connect(simulator.getAgent('a').getOrigin(),controller.getTermination('inputs'))    # connect agent with controller
 net.connect(controller.getOrigin('outputs'), simulator.getAgent('a').getTermination())
 
-#saver = net.add(DataSaver('saver'))         # save data??
+saver = net.add(DataSaver('saver'))         # save data??
 
-
-t=2;
+t=0.5;
 dt=0.001;
-print "OK, configuration done. Simulating network for "+repr(t)+" seconds and ssaving data to files"
+print "OK, configuration done. Simulating network for "+repr(t)+" seconds and saving data to files"
 net.run(t,dt)
 
 print "Simulation done, will reset and show the interactive simulation window."
