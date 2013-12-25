@@ -11,7 +11,20 @@ package vivae.ros.simulator.client;
  * the agent has to communicate over the ROS network (publish/subscribe here). 
  * 
  * This service tries to register agent in the arena, if success, it opens the ROS
- * communication channels for the agent and returns all necessary information.
+ * communication channels for the agent and returns all necessary information. 
+ *
+ * Information about published/subscribed topics can be obtained from the vivae.SpawnResponse.
+ * Agent is controlled by means of two float values, which define speeds of agents wheels.
+ * 
+ * Agent publishes vector of float values of length (numSensors*1). Sensory data is in
+ * the following form: 
+ * 
+ * [[distanceSensoryData],[FrictionSensoryData],speed]
+ *  
+ * and have the following dimensions:
+ * 
+ * [[numSensors/2],[numSensors/2],1] 
+ * 
  * 
  *   
  * @author Jaroslav Vitku
