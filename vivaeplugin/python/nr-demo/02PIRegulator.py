@@ -22,11 +22,12 @@ import time
 from ca.nengo.math.impl import FourierFunction
 from ca.nengo.model.impl import FunctionInput
 from ca.nengo.model import Units
-from nengoros.modules.impl.vivae import VivaeNeuralModule as NeuralModule
-from nengoros.comm.nodeFactory import NodeGroup as NodeGroup
-from nengoros.comm.rosutils import RosUtils as RosUtils
-from nengoros.modules.impl.vivae.impl import SimulationControls as Controls
+from ctu.nengoros.modules.vivae import VivaeNeuralModule as NeuralModule
+from ctu.nengoros.comm.nodeFactory import NodeGroup as NodeGroup
+from ctu.nengoros.comm.rosutils import RosUtils as RosUtils
+from ctu.nengoros.modules.vivae import SimulationControls as Controls
 import simplemodule
+
 #RosUtils.setAutorun(False)     # Do we want to autorun roscore and rxgraph? (true by default)
 
 # initializes the simulator

@@ -3,6 +3,7 @@ package vivae.ros.simulator.client.demo.agent;
 import org.ros.node.ConnectedNode;
 
 import vivae.ros.simulator.client.impl.nodes.AgentControlClientNode;
+import vivae.ros.simulator.server.Sim;
 
 /**
  * This client is able to:
@@ -48,5 +49,25 @@ public class MyAgentControllingClient extends AgentControlClientNode{
 		super.connectToAgent(agent.getPubTopicName(), agent.getSubTopicName());
 		super.runTheSimulationFor(runtime);//ms
 	}
-	
+
+	@Override
+	public vivae.SpawnResponse prepareVivaeSimulation(){
+
+		System.out.println(me+"loading the default map");
+		callLoadMap(Sim.Maps.DEFAULT);
+		callSetVisibility(true);
+
+		System.out.println(me+"Requesting this agent: "+name);
+		
+		vivae.SpawnResponse sr = spawnAgent(name,numSensors,maxDist,frictionDist);
+		//vivae.SpawnResponse sr = spawnAgent(name,numSensors,0,frictionDist);
+		//vivae.SpawnResponse sr = spawnAgent(name,8);
+		//vivae.SpawnResponse sr = spawnAgent(name,8,10);
+
+		System.out.println(me+"agent registered OK? "+sr.getSpawnedOK());
+
+		System.out.println("Reading this num of sensors:  "+ sr.getNumSensors());
+		return sr;
+	}
 }
+

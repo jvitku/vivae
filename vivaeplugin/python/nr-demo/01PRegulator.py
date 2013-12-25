@@ -9,13 +9,12 @@ Notes about agents: (see screenshot to this script)
 
 Friction sensor [dots]
     -measures [binary] presence of ANY OBJECT (including grass)
-    -black and blue lines gere
-    -road=0, everything other=1
+    -road=0, everything else=1
 
 Distance sensor [lines]
-    -measures [continuous] distance to the nearest OBSTACLE (not grass, not road)
+    -measures [continuous] distance to the nearest OBSTACLE (not a grass, not a road)
 
-Note: value 0 to sensor properties should add 0 sendors now
+Note: value 0 to sensor properties should add 0 sensors now
 """
 
 import nef
@@ -100,7 +99,7 @@ numsensors=4                                # number of agents sensors (if chang
 simulator = initVivae(numsensors);    # build simulator and access its controls
 sc = simulator.getControls();
 
-controller = net.add(Controller('Agent controller',2*numsensors+1,2,0)); # build controller
+controller = net.add(Controller('Agent controller',2*numsensors+1, 2, 0 )); # build controller
 
 net.connect(simulator.getAgent('a').getOrigin(),controller.getTermination('inputs'))    # connect agent with controller
 net.connect(controller.getOrigin('outputs'), simulator.getAgent('a').getTermination())
