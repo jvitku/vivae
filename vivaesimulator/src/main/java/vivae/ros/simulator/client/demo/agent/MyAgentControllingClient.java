@@ -50,6 +50,9 @@ public class MyAgentControllingClient extends AgentControlClientNode{
 		super.runTheSimulationFor(runtime);//ms
 	}
 
+	/**
+	 * Here, try different configurations of the agent.
+	 */
 	@Override
 	public vivae.SpawnResponse prepareVivaeSimulation(){
 

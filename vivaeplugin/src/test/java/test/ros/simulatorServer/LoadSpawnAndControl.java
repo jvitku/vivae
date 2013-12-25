@@ -49,10 +49,12 @@ public class LoadSpawnAndControl extends ctu.nengoros.nodes.RosCommunicationTest
 		resp = cl.callSetVisibility(true);
 		System.out.println("visibility set OK? "+resp);
 		assertTrue(resp);
+		
+		//Util.waitLoop(100);
 
 		// spawn agent 1
 		vivae.SpawnResponse spr = cl.spawnAgent("testAgent1");
-		System.out.println("visibility set OK? "+spr.getSpawnedOK());
+		System.out.println("spawned OK? "+spr.getSpawnedOK());
 		assertTrue(spr.getSpawnedOK());
 
 		resp = cl.callStartSimulation();
