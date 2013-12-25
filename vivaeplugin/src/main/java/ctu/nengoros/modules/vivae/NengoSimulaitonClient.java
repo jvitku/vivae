@@ -7,11 +7,18 @@ import ca.nengo.model.StructuralException;
 import vivae.ros.simulator.client.SynchornousClient;
 
 /**
- * This should implement the class which will be responsible for:
+ * This integrates Viave simulator into the Nengoros. It is responsible for 
+ * interacting with the Vivae simulator from the Nengoros. 
+ *  
+ * Specifically, it supports these operations:
+ * 
+ * -spawning agents in the Vivae simulator
+ * -registering these agents in the Nengo network 
+ * 		that is adding origins/terinations and throwing StructuralExceptions
  * 
  * -general controlling of Vivae simulator from the Nengo
- * -spawning agents in the Vivae simulator
- * -
+ * 		that is callSimulationStart/stop/loadMap..
+ * 
  * 
  * 
  * @author Jaroslav Vitku
@@ -27,7 +34,7 @@ public interface NengoSimulaitonClient extends SynchornousClient{
 	 * After successful return of this method, agent should be ready and available in both simulators. 
 	 *  
 	 * @param name
-	 * @throws StructuralException thrown mainly when the Nengo NeuralModule has already origin/termination registered din the network  
+	 * @throws StructuralException thrown mainly when the Nengo VivaeNeuralModule has already origin/termination registered din the network  
 	 */
 	public void addAgent(String name) throws StructuralException;
 	

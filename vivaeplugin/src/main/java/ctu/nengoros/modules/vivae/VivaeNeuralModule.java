@@ -9,13 +9,12 @@ import ctu.nengoros.comm.nodeFactory.NodeGroup;
 import ctu.nengoros.exceptions.ConnectionException;
 import ctu.nengoros.modules.AbsNeuralModule;
 
-public class VivaeNeuralModule extends AbsNeuralModule /*implements NengoSimulaitonClient*/{
+public class VivaeNeuralModule extends AbsNeuralModule{
 
 	private static final long serialVersionUID = 1L;
 	public static final String me = "[VivaeNeuralModule] ";
 
-	private SimulationControls sc;
-
+	private SimulationControls sc;			// control the Vivae simulator over the ROS network
 
 	protected int slept;
 	protected final int sleeptime = 10;

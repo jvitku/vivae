@@ -1,9 +1,10 @@
-package ctu.nengoros.modules.vivae;
+package ctu.nengoros.modules.vivae.impl;
 
 import ca.nengo.model.Origin;
 import ca.nengo.model.StructuralException;
 import ca.nengo.model.Termination;
 import ctu.nengoros.modules.AsynNeuralModule;
+import ctu.nengoros.modules.vivae.VivaeAgent;
 
 /**
  * This is basic Vivae Agent controller. It connects ROS topics 

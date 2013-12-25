@@ -3,11 +3,12 @@ package ctu.nengoros.modules.vivae;
 import java.util.HashMap;
 
 import ctu.nengoros.modules.AbsNeuralModule;
+import ctu.nengoros.modules.vivae.impl.SimpleControlledAgent;
 
 import org.ros.node.ConnectedNode;
 
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
-//import ctu.nengoros.modules.impl.vivae.impl.SimpleControlledAgent;
+
 import ca.nengo.model.StructuralException;
 
 /**
