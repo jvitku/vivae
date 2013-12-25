@@ -8,7 +8,6 @@ import ca.nengo.util.ScriptGenException;
 import ctu.nengoros.comm.nodeFactory.NodeGroup;
 import ctu.nengoros.exceptions.ConnectionException;
 import ctu.nengoros.modules.AbsNeuralModule;
-import ctu.nengoros.modules.impl.vivae.VivaeAgent;
 
 public class VivaeNeuralModule extends AbsNeuralModule /*implements NengoSimulaitonClient*/{
 

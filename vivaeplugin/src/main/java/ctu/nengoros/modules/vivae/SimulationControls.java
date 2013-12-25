@@ -7,7 +7,7 @@ import ctu.nengoros.modules.AbsNeuralModule;
 import org.ros.node.ConnectedNode;
 
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
-import ctu.nengoros.modules.impl.vivae.impl.SimpleControlledAgent;
+//import ctu.nengoros.modules.impl.vivae.impl.SimpleControlledAgent;
 import ca.nengo.model.StructuralException;
 
 /**

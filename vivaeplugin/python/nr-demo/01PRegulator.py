@@ -55,7 +55,7 @@ def initVivae(numsensors):
 
     #addAgent(name,numSensors, maxDistance, frictionSensor) 
     sc.addAgent('a',2*numsensors,    120          ,0)
-    sc.start()
+    sc.callStartSimulation()
     return simulator;
     
 class Controller(simplemodule.SimpleModule):
