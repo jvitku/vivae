@@ -36,8 +36,8 @@ dependencies {
 
   	compile 'ros.rosjava_core:rosjava:0.0.0-SNAPSHOT'
 
-  	compile 'ctu.nengoros:jroscore:0.0.3-SNAPSHOT' 
-    testCompile 'ctu.nengoros:jroscore:0.0.3-SNAPSHOT'
+  	compile 'ctu.nengoros:jroscore:0.0.4-SNAPSHOT' 
+    testCompile 'ctu.nengoros:jroscore:0.0.4-SNAPSHOT'
 
 
 	// here goes the integration, depends on both, vivaesimulator and nengoros:simulator
