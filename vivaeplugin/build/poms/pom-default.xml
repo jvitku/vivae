@@ -7,9 +7,9 @@
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
     <dependency>
-      <groupId>ctu.nengoros</groupId>
-      <artifactId>simulator</artifactId>
-      <version>0.0.2-SNAPSHOT</version>
+      <groupId>ctu.nengoros.simulators</groupId>
+      <artifactId>vivaesimulator</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -31,9 +31,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>ctu.nengoros.simulators</groupId>
-      <artifactId>vivaesimulator</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <groupId>ctu.nengoros</groupId>
+      <artifactId>simulator</artifactId>
+      <version>0.0.4-SNAPSHOT</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
