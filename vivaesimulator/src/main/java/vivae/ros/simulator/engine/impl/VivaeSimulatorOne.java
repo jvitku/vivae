@@ -314,6 +314,7 @@ public class VivaeSimulatorOne implements AgentRegisteringSimulation{
 		System.err.println("Simulation here: killing the Agents is not supported so far");
 	}
 
+	
 	@Override
 	public boolean setVisible(boolean visible){
 		this.visibility = visible;

@@ -28,7 +28,7 @@ Usage is the following:
 
 import vivaeServer as vivae
 
-simulator = vivae.init(net,"data/scenarios/test/walls.svg", True)
+simulator = vivae.init(net,"data/scenarios/arena1.svg", True)
 #net.add(simulator)
 v = simulator.getControls()
 v.addAgent('a',2*numsensors,    120          ,0)

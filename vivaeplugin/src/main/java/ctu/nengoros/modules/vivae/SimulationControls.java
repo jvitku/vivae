@@ -8,7 +8,6 @@ import ctu.nengoros.modules.vivae.impl.SimpleControlledAgent;
 import org.ros.node.ConnectedNode;
 
 import vivae.ros.simulator.client.impl.AgentSpawnSynchronousClient;
-
 import ca.nengo.model.StructuralException;
 
 /**
@@ -122,6 +121,17 @@ public class SimulationControls implements NengoSimulaitonClient{
 	}
 	
 	@Override
+	public void tryToAddAgent(String name, int numSensors, float maxDistance, float frictionSensor) {
+		
+		try {
+			this.add(name, numSensors, maxDistance, frictionSensor);
+		} catch (Exception e) {
+			System.out.println(me+"Vivae denied to add the agent named "+name+" not adding him");
+		}
+		
+	}
+	
+	@Override
 	public void removeAgent(String name) {
 		this.awaitStarted();
 
@@ -189,6 +199,6 @@ public class SimulationControls implements NengoSimulaitonClient{
 	@Override
 	public HashMap<String, VivaeAgent> getAgents() {
 		return this.agents;
-	}
+	}	
 }
 

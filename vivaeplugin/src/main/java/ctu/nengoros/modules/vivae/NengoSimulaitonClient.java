@@ -50,6 +50,17 @@ public interface NengoSimulaitonClient extends SynchornousClient{
 	public void addAgent(String name, int numSensors, float maxDistance, float frictionSensor) 
 			throws StructuralException;
 	
+	/**
+	 * Tries to add agent into the simulation, if something goes wrong (typically Vivae map has not enough bodies), 
+	 * nothing happens, no exception is thrown and no new agent is added into the Nengoros network.
+	 * 
+	 * @param name
+	 * @param numSensors
+	 * @param maxDistance
+	 * @param frictionSensor
+	 */
+	public void tryToAddAgent(String name, int numSensors, float maxDistance, float frictionSensor);
+	
 	public void removeAgent(String name);
 	
 	/**
