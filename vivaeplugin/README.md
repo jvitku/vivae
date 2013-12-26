@@ -94,3 +94,10 @@ This example will do the following:
 * start the simulation and simulate several seconds of the system (the agent should attempt to drive along the road)
 * stop the simulation
 * show the Nengo interactive simulation window (this resets the system (resets the Nengoros network and Vivae simulaiton))
+
+
+# TODO
+
+* Destroy() : When deleting VivaeNeuralModule by the Jython script (e.g. net.add with the same name), it is OK. However, when deleting the node from Nengo gui, the j.dispose() in the destroy() method is not released until the synchronousService from the Nengoros crashes. It seems as some concurrency problem. Probably the problem is that the Simulator core (Jframe) contains also SimulatorControls, which communicate with Nengo (concurency) and therefore cannot be destroyed. 
+
+* Decide the question whether support connecting multidimensional terminations/origins in the Nengoros or leave it as TODO
