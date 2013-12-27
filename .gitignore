@@ -11,26 +11,31 @@
 basic/.settings/org.eclipse.jdt.core.prefs
 basic/build/poms/pom-default.xml
 
-vivaesimulator/build/classes/
-vivaesimulator/build/dependency-cache/
-vivaesimulator/build/install/
-vivaesimulator/build/libs/
-vivaesimulator/build/poms/
-vivaesimulator/build/reports/
-vivaesimulator/build/resources/
-vivaesimulator/build/scripts/
-vivaesimulator/build/test-results/
-vivaesimulator/build/tmp/
+# ignore entire build with docs, these will be stored in the nengoros/javadocs folder
+vivaesimulator/build/
+vivaeplugin/build/
+
+# ignore everything except docs
+#vivaesimulator/build/classes/
+#vivaesimulator/build/dependency-cache/
+#vivaesimulator/build/install/
+#vivaesimulator/build/libs/
+#vivaesimulator/build/poms/
+#vivaesimulator/build/reports/
+#vivaesimulator/build/resources/
+#vivaesimulator/build/scripts/
+#vivaesimulator/build/test-results/
+#vivaesimulator/build/tmp/
 
 
-
-vivaeplugin/build/classes/
-vivaeplugin/build/dependency-cache/
-vivaeplugin/build/install/
-vivaeplugin/build/libs/
-vivaeplugin/build/poms/
-vivaeplugin/build/reports/
-vivaeplugin/build/resources/
-vivaeplugin/build/scripts/
-vivaeplugin/build/test-results/
-vivaeplugin/build/tmp/
+# ignore everything except docs
+#vivaeplugin/build/classes/
+#vivaeplugin/build/dependency-cache/
+#vivaeplugin/build/install/
+#vivaeplugin/build/libs/
+#vivaeplugin/build/poms/
+#vivaeplugin/build/reports/
+#vivaeplugin/build/resources/
+#vivaeplugin/build/scripts/
+#vivaeplugin/build/test-results/
+#vivaeplugin/build/tmp/
