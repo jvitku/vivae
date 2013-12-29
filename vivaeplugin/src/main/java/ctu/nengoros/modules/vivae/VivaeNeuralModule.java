@@ -7,9 +7,9 @@ import ca.nengo.model.StructuralException;
 import ca.nengo.util.ScriptGenException;
 import ctu.nengoros.comm.nodeFactory.NodeGroup;
 import ctu.nengoros.exceptions.ConnectionException;
-import ctu.nengoros.modules.AbsNeuralModule;
+import ctu.nengoros.modules.impl.DefaultNeuralModule;
 
-public class VivaeNeuralModule extends AbsNeuralModule{
+public class VivaeNeuralModule extends DefaultNeuralModule{
 
 	private static final long serialVersionUID = 1L;
 	public static final String me = "[VivaeNeuralModule] ";
@@ -21,7 +21,7 @@ public class VivaeNeuralModule extends AbsNeuralModule{
 	protected final int maxSleep = 2000;	// max wait time to services to initialize
 
 	
-	public VivaeNeuralModule(String name, NodeGroup group) {
+	public VivaeNeuralModule(String name, NodeGroup group) throws ConnectionException {
 		super(name, group);
 
 		// connect the simulation controller to the ROS network

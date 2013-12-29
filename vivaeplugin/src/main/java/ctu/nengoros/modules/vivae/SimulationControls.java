@@ -2,7 +2,7 @@ package ctu.nengoros.modules.vivae;
 
 import java.util.HashMap;
 
-import ctu.nengoros.modules.AbsNeuralModule;
+import ctu.nengoros.modules.impl.DefaultNeuralModule;
 import ctu.nengoros.modules.vivae.impl.SimpleControlledAgent;
 
 import org.ros.node.ConnectedNode;
@@ -42,8 +42,8 @@ public class SimulationControls implements NengoSimulaitonClient{
 
 	AgentSpawnSynchronousClient serviceClient;
 
-	// add decoders and encoders to this neuron
-	private final AbsNeuralModule an;
+	// add decoders and encoders to this NeuralModule
+	private final DefaultNeuralModule an;
 
 	public SimulationControls(VivaeNeuralModule vivaeNeuralModule, ConnectedNode cn){
 		//this.cn = cn;

@@ -3,7 +3,7 @@ package ctu.nengoros.modules.vivae.impl;
 import ca.nengo.model.Origin;
 import ca.nengo.model.StructuralException;
 import ca.nengo.model.Termination;
-import ctu.nengoros.modules.AsynNeuralModule;
+import ctu.nengoros.modules.impl.DefaultNeuralModule;
 import ctu.nengoros.modules.vivae.VivaeAgent;
 
 /**
@@ -16,7 +16,7 @@ import ctu.nengoros.modules.vivae.VivaeAgent;
  */
 public class SimpleControlledAgent implements VivaeAgent{
 
-	private final AsynNeuralModule parent;
+	private final DefaultNeuralModule parent;
 	private final String name; 
 	private final int numIns = 2;
 	private int numOuts = 0; 
@@ -34,7 +34,7 @@ public class SimpleControlledAgent implements VivaeAgent{
 	 * @param numSensors length of vector of sensory data provided by the agent
 	 * @throws StructuralException if origin or termination (just created) are not found
 	 */
-	public SimpleControlledAgent(AsynNeuralModule myParent, String name, String pub, String sub, int numSensors) 
+	public SimpleControlledAgent(DefaultNeuralModule myParent, String name, String pub, String sub, int numSensors) 
 			throws StructuralException{
 		parent = myParent;
 		this.name = name;
