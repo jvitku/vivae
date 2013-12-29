@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>vivaeplugin</name>
-	<comment/>
-	<projects/>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-	</natures>
+	<comment></comment>
+	<projects>
+	</projects>
 	<buildSpec>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments/>
+			<arguments>
+			</arguments>
 		</buildCommand>
 	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
 	<linkedResources>
-		<link>
-			<name>resources</name>
-			<type>2</type>
-			<location>/media/sf_Dropbox/workspace/nengoros/vivae/vivaesimulator/src/main/resources</location>
-		</link>
 		<link>
 			<name>resources</name>
 			<type>2</type>
