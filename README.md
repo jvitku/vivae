@@ -62,7 +62,7 @@ To run the demo, which will start the Simulation Server and Simulation Client wh
 	./run vivae.ros.simulator.client.demo.basic.MySynchronousClient
 
 
-# Known Issues
+# Known Issues & TODO
 
 
 
@@ -74,3 +74,5 @@ To run the demo, which will start the Simulation Server and Simulation Client wh
 		-set in vivaeneuralmodule method "reset" to call only start/stop requests on vivae
 		-launch nengo, launch vivae and connect agent in the simulator, open interactive window and start script (agent moves slowly and unresponsively)
 		-call vivae.reset(), agent moves much faster and signal is better
+		
+2. SimulatorServer launched from GUI does not want to register all agents on the first attempt on Ubuntu Linux. After deleting the Vivae node from the Nengo GUI and dragging into the network again will solve the issue.
