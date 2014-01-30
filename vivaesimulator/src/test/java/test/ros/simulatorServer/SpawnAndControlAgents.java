@@ -9,8 +9,9 @@ import org.junit.Test;
 import vivae.ros.simulator.client.impl.nodes.AgentControlClientNode;
 import vivae.ros.util.Util;
 import ctu.nengoros.RosRunner;
+import ctu.nengoros.network.node.testsuit.RosCommunicationTest;
 
-public class SpawnAndControlAgents extends ctu.nengoros.nodes.RosCommunicationTest{
+public class SpawnAndControlAgents extends RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.nodes.AgentControlClientNode";

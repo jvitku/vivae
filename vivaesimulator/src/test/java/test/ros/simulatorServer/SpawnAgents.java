@@ -9,6 +9,7 @@ import vivae.ros.simulator.client.impl.nodes.AgentSpawnClientNode;
 import vivae.ros.simulator.server.Sim;
 import vivae.ros.util.Util;
 import ctu.nengoros.RosRunner;
+import ctu.nengoros.network.node.testsuit.RosCommunicationTest;
 /**
  * Further testing of functionalities of SimulatorServer: 
  * spawn agents (that can be controlled over the ROS network) in the simulator.
@@ -16,7 +17,7 @@ import ctu.nengoros.RosRunner;
  * @author Jaroslav Vitku
  *
  */
-public class SpawnAgents extends ctu.nengoros.nodes.RosCommunicationTest{
+public class SpawnAgents extends RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.nodes.AgentSpawnClientNode";

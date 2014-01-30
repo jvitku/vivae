@@ -8,6 +8,7 @@ import org.junit.*;
 import vivae.ros.simulator.client.impl.nodes.SynchronousClientNode;
 import vivae.ros.simulator.server.Sim;
 import ctu.nengoros.RosRunner;
+import ctu.nengoros.network.node.testsuit.RosCommunicationTest;
 import vivae.ros.util.Util;
 
 /**
@@ -20,7 +21,7 @@ import vivae.ros.util.Util;
  * @author Jaroslav Vitku
  *
  */
-public class BasicClientServer extends ctu.nengoros.nodes.RosCommunicationTest{
+public class BasicClientServer extends RosCommunicationTest{
 
 	public static final String server = "vivae.ros.simulator.server.SimulatorServer";
 	public static final String requester = "vivae.ros.simulator.client.impl.nodes.SynchronousClientNode";
