@@ -22,7 +22,7 @@ repositories {
 }
 
 // Define the version and name of my stack (ROS convention)
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 group = 'ctu.nengoros.simulators'
 
 dependencies {
@@ -36,8 +36,8 @@ dependencies {
 
   	compile 'ros.rosjava_core:rosjava:0.0.0-SNAPSHOT'
 
-  	compile 'ctu.nengoros:jroscore:0.0.5-SNAPSHOT' 
-    testCompile 'ctu.nengoros:jroscore:0.0.5-SNAPSHOT'
+  	compile 'ctu.nengoros:jroscore:0.0.8-SNAPSHOT' 
+    testCompile 'ctu.nengoros:jroscore:0.0.8-SNAPSHOT'
 
 
 	// here goes the integration, depends on both, vivaesimulator and nengoros:simulator

@@ -8,6 +8,7 @@ import ca.nengo.util.ScriptGenException;
 import ctu.nengoros.comm.nodeFactory.NodeGroup;
 import ctu.nengoros.exceptions.ConnectionException;
 import ctu.nengoros.modules.impl.DefaultNeuralModule;
+import ctu.nengoros.network.common.exceptions.StartupDelayException;
 
 public class VivaeNeuralModule extends DefaultNeuralModule{
 
@@ -21,7 +22,8 @@ public class VivaeNeuralModule extends DefaultNeuralModule{
 	protected final int maxSleep = 2000;	// max wait time to services to initialize
 
 	
-	public VivaeNeuralModule(String name, NodeGroup group) throws ConnectionException {
+	public VivaeNeuralModule(String name, NodeGroup group) throws ConnectionException,
+	StartupDelayException {
 		super(name, group);
 
 		// connect the simulation controller to the ROS network
@@ -96,7 +98,8 @@ public class VivaeNeuralModule extends DefaultNeuralModule{
 		return null;
 	}
 	
-	private void awaitStarted(){
+	@Override
+	public void awaitStarted(){
 		slept=0;
 		while(sc==null){
 			try {

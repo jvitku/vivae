@@ -23,7 +23,7 @@ repositories {
 }
 
 // Define the version and name of my stack (ROS convention)
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 group = 'ctu.nengoros.simulators'
 
 dependencies {
@@ -34,8 +34,8 @@ dependencies {
     compile 'junit:junit:4.10'
     testCompile 'junit:junit:4.10'
   	compile 'ros.rosjava_core:rosjava:0.0.0-SNAPSHOT'
-  	compile 'ctu.nengoros:jroscore:0.0.5-SNAPSHOT' 
-    testCompile 'ctu.nengoros:jroscore:0.0.5-SNAPSHOT'
+  	compile 'ctu.nengoros:jroscore:0.0.8-SNAPSHOT' 
+    testCompile 'ctu.nengoros:jroscore:0.0.8-SNAPSHOT'
 }
 
 sourceSets{
