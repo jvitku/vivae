@@ -72,7 +72,8 @@ public class VivaeNeuralModule extends DefaultNeuralModule{
 		this.awaitStarted();
 		// TODO: Vivae has to be reloaded in order to work correctly with the Nengo.. ?
 		sc.callReset(); 
-		mc.resetModem();
+		//mc.resetModem();
+		mc.reset(randomize);
 	}
 	
 	/**
