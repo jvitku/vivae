@@ -15,6 +15,12 @@ basic/build/poms/pom-default.xml
 vivaesimulator/build/
 vivaeplugin/build/
 
+vivaeplugin/.settings/
+vivaesimulator/.settings/
+
+vivaeplugin/build/poms/
+vivaesimulator/build/poms/
+
 # ignore everything except docs
 #vivaesimulator/build/classes/
 #vivaesimulator/build/dependency-cache/
