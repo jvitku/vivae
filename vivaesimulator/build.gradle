@@ -34,8 +34,10 @@ dependencies {
     compile 'junit:junit:4.10'
     testCompile 'junit:junit:4.10'
   	compile 'ros.rosjava_core:rosjava:0.0.0-SNAPSHOT'
-  	compile 'ctu.nengoros:jroscore:0.0.11-SNAPSHOT' 
-    testCompile 'ctu.nengoros:jroscore:0.0.11-SNAPSHOT'
+  	//compile 'ctu.nengoros:jroscore:0.0.11-SNAPSHOT' 
+    //testCompile 'ctu.nengoros:jroscore:0.0.11-SNAPSHOT'
+    compile 'ctu.nengoros:jroscore:0.0.12-SNAPSHOT' 
+    testCompile 'ctu.nengoros:jroscore:0.0.12-SNAPSHOT'
 }
 
 sourceSets{
